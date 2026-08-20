@@ -1,0 +1,42 @@
+{
+  "app": { "name": "Coran Al Hak" },
+  "menu": {
+    "open": "Menu",
+    "summary": "Kandungan",
+    "bookmarks": "Bacaan Saya",
+    "settings": "Tetapan",
+    "language": "Bahasa",
+    "about": "Perihal"
+  },
+  "home": {
+    "title": "Kandungan Al-Quran",
+    "subtitle": "114 surah",
+    "loading": "Memuatkan surah...",
+    "errorTitle": "Gagal memuatkan surah",
+    "retry": "Cuba lagi",
+    "verses": "{{count}} ayat",
+    "makkah": "Makkiyah",
+    "madinah": "Madaniyah",
+    "play": "Dengar",
+    "pause": "Jeda",
+    "bookmarkAdd": "Tandakan untuk dibaca",
+    "bookmarkRemove": "Alih keluar daripada senarai bacaan",
+    "searchPlaceholder": "Cari surah..."
+  },
+  "bookmarks": {
+    "title": "Bacaan Saya",
+    "empty": "Belum ada surah disimpan.",
+    "emptyHint": "Ketik ikon penanda buku pada surah untuk menambahkannya di sini."
+  },
+  "settings": {
+    "title": "Tetapan",
+    "language": "Bahasa aplikasi"
+  },
+  "about": {
+    "title": "Perihal",
+    "description": "Coran Al Hak membolehkan anda mendengar dan mengikuti bacaan Al-Quran dalam pelbagai bahasa.",
+    "apiCredit": "Data disediakan oleh Ummah API, dipersembahkan sebagai sedekah jariah untuk umat.",
+    "version": "Versi"
+  },
+  "player": { "nowPlaying": "Sedang dimainkan" }
+}

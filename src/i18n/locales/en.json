@@ -1,0 +1,42 @@
+{
+  "app": { "name": "Coran Al Hak" },
+  "menu": {
+    "open": "Menu",
+    "summary": "Contents",
+    "bookmarks": "My Reading",
+    "settings": "Settings",
+    "language": "Language",
+    "about": "About"
+  },
+  "home": {
+    "title": "Quran Contents",
+    "subtitle": "114 surahs",
+    "loading": "Loading surahs...",
+    "errorTitle": "Could not load the surahs",
+    "retry": "Retry",
+    "verses": "{{count}} verses",
+    "makkah": "Meccan",
+    "madinah": "Medinan",
+    "play": "Listen",
+    "pause": "Pause",
+    "bookmarkAdd": "Mark for reading",
+    "bookmarkRemove": "Remove from reading list",
+    "searchPlaceholder": "Search a surah..."
+  },
+  "bookmarks": {
+    "title": "My Reading",
+    "empty": "No surah saved yet.",
+    "emptyHint": "Tap the bookmark icon on a surah to add it here."
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "App language"
+  },
+  "about": {
+    "title": "About",
+    "description": "Coran Al Hak lets you listen to and follow the recitation of the Holy Quran in many languages.",
+    "apiCredit": "Data provided by the Ummah API, offered as sadaqah jariyah for the Ummah.",
+    "version": "Version"
+  },
+  "player": { "nowPlaying": "Now playing" }
+}

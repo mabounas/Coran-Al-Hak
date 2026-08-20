@@ -1,0 +1,42 @@
+{
+  "app": { "name": "Kuran Al Hak" },
+  "menu": {
+    "open": "Menü",
+    "summary": "İçindekiler",
+    "bookmarks": "Okumalarım",
+    "settings": "Ayarlar",
+    "language": "Dil",
+    "about": "Hakkında"
+  },
+  "home": {
+    "title": "Kur'an İçindekiler",
+    "subtitle": "114 sure",
+    "loading": "Sureler yükleniyor...",
+    "errorTitle": "Sureler yüklenemedi",
+    "retry": "Tekrar dene",
+    "verses": "{{count}} ayet",
+    "makkah": "Mekki",
+    "madinah": "Medeni",
+    "play": "Dinle",
+    "pause": "Duraklat",
+    "bookmarkAdd": "Okuma için işaretle",
+    "bookmarkRemove": "Okuma listesinden çıkar",
+    "searchPlaceholder": "Bir sure ara..."
+  },
+  "bookmarks": {
+    "title": "Okumalarım",
+    "empty": "Henüz kaydedilmiş bir sure yok.",
+    "emptyHint": "Buraya eklemek için bir surenin yer imi simgesine dokunun."
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "language": "Uygulama dili"
+  },
+  "about": {
+    "title": "Hakkında",
+    "description": "Coran Al Hak, Kur'an-ı Kerim'i birçok dilde dinlemenizi ve takip etmenizi sağlar.",
+    "apiCredit": "Veriler, ümmet için sadaka-i cariye olarak sunulan Ummah API tarafından sağlanmaktadır.",
+    "version": "Sürüm"
+  },
+  "player": { "nowPlaying": "Şu an çalıyor" }
+}

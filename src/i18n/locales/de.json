@@ -1,0 +1,42 @@
+{
+  "app": { "name": "Coran Al Hak" },
+  "menu": {
+    "open": "Menü",
+    "summary": "Inhalt",
+    "bookmarks": "Meine Lektüre",
+    "settings": "Einstellungen",
+    "language": "Sprache",
+    "about": "Über"
+  },
+  "home": {
+    "title": "Verzeichnis des Koran",
+    "subtitle": "114 Suren",
+    "loading": "Suren werden geladen...",
+    "errorTitle": "Suren konnten nicht geladen werden",
+    "retry": "Erneut versuchen",
+    "verses": "{{count}} Verse",
+    "makkah": "Mekkanisch",
+    "madinah": "Medinensisch",
+    "play": "Anhören",
+    "pause": "Pause",
+    "bookmarkAdd": "Zum Lesen markieren",
+    "bookmarkRemove": "Aus der Leseliste entfernen",
+    "searchPlaceholder": "Sure suchen..."
+  },
+  "bookmarks": {
+    "title": "Meine Lektüre",
+    "empty": "Noch keine Sure gespeichert.",
+    "emptyHint": "Tippen Sie auf das Lesezeichen-Symbol einer Sure, um sie hier hinzuzufügen."
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "language": "App-Sprache"
+  },
+  "about": {
+    "title": "Über",
+    "description": "Mit Coran Al Hak können Sie den Heiligen Koran in vielen Sprachen anhören und mitlesen.",
+    "apiCredit": "Daten bereitgestellt von der Ummah API, als Sadaqah Jariyah für die Umma.",
+    "version": "Version"
+  },
+  "player": { "nowPlaying": "Wird jetzt abgespielt" }
+}

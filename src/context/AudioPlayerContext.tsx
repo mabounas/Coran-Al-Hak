@@ -1,0 +1,78 @@
+import { useAudioPlayer, useAudioPlayerStatus, setAudioModeAsync } from 'expo-audio';
+import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
+
+import type { Surah } from '../types/quran';
+
+interface AudioPlayerContextValue {
+  currentSurah: Surah | null;
+  isPlaying: boolean;
+  isBuffering: boolean;
+  currentTime: number;
+  duration: number;
+  playSurah: (surah: Surah) => void;
+  togglePlayPause: () => void;
+  stop: () => void;
+}
+
+const AudioPlayerContext = createContext<AudioPlayerContextValue | undefined>(undefined);
+
+export function AudioPlayerProvider({ children }: { children: React.ReactNode }) {
+  const [currentSurah, setCurrentSurah] = useState<Surah | null>(null);
+  const player = useAudioPlayer(null, { updateInterval: 500 });
+  const status = useAudioPlayerStatus(player);
+
+  useEffect(() => {
+    setAudioModeAsync({
+      playsInSilentMode: true,
+      interruptionMode: 'doNotMix',
+    }).catch(() => {});
+  }, []);
+
+  const playSurah = (surah: Surah) => {
+    if (currentSurah?.number === surah.number) {
+      player.play();
+      return;
+    }
+    setCurrentSurah(surah);
+    player.replace(surah.audio.example_audio);
+    player.play();
+  };
+
+  const togglePlayPause = () => {
+    if (!currentSurah) return;
+    if (status.playing) {
+      player.pause();
+    } else {
+      player.play();
+    }
+  };
+
+  const stop = () => {
+    player.pause();
+    setCurrentSurah(null);
+  };
+
+  const value = useMemo<AudioPlayerContextValue>(
+    () => ({
+      currentSurah,
+      isPlaying: status.playing,
+      isBuffering: status.isBuffering,
+      currentTime: status.currentTime,
+      duration: status.duration,
+      playSurah,
+      togglePlayPause,
+      stop,
+    }),
+    [currentSurah, status.playing, status.isBuffering, status.currentTime, status.duration]
+  );
+
+  return <AudioPlayerContext.Provider value={value}>{children}</AudioPlayerContext.Provider>;
+}
+
+export function useAudioPlayerContext(): AudioPlayerContextValue {
+  const context = useContext(AudioPlayerContext);
+  if (!context) {
+    throw new Error('useAudioPlayerContext must be used within an AudioPlayerProvider');
+  }
+  return context;
+}

@@ -1,0 +1,46 @@
+{
+  "expo": {
+    "name": "Coran Al Hak",
+    "slug": "coran-al-hak",
+    "scheme": "coranalhak",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "primaryColor": "#0F6E52",
+    "backgroundColor": "#0F6E52",
+    "plugins": [
+      "expo-router",
+      [
+        "expo-localization",
+        {}
+      ]
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mabounas.coranalhak",
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "audio"
+        ]
+      }
+    },
+    "android": {
+      "package": "com.mabounas.coranalhak",
+      "adaptiveIcon": {
+        "backgroundColor": "#0F6E52",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

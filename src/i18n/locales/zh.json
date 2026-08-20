@@ -1,0 +1,42 @@
+{
+  "app": { "name": "古兰经·哈克" },
+  "menu": {
+    "open": "菜单",
+    "summary": "目录",
+    "bookmarks": "我的诵读",
+    "settings": "设置",
+    "language": "语言",
+    "about": "关于"
+  },
+  "home": {
+    "title": "古兰经目录",
+    "subtitle": "114 章",
+    "loading": "正在加载章节...",
+    "errorTitle": "无法加载章节",
+    "retry": "重试",
+    "verses": "{{count}} 节经文",
+    "makkah": "麦加章",
+    "madinah": "麦地那章",
+    "play": "收听",
+    "pause": "暂停",
+    "bookmarkAdd": "标记为要诵读",
+    "bookmarkRemove": "从诵读列表移除",
+    "searchPlaceholder": "搜索章节..."
+  },
+  "bookmarks": {
+    "title": "我的诵读",
+    "empty": "尚未保存任何章节。",
+    "emptyHint": "点击章节上的书签图标即可添加到此处。"
+  },
+  "settings": {
+    "title": "设置",
+    "language": "应用语言"
+  },
+  "about": {
+    "title": "关于",
+    "description": "古兰经·哈克 让您以多种语言聆听并跟读《古兰经》。",
+    "apiCredit": "数据由 Ummah API 提供，作为造福乌玛的长期善举（sadaqah jariyah）。",
+    "version": "版本"
+  },
+  "player": { "nowPlaying": "正在播放" }
+}

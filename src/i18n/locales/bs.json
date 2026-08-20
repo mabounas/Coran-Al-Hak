@@ -1,0 +1,42 @@
+{
+  "app": { "name": "Kur'an Al Hak" },
+  "menu": {
+    "open": "Meni",
+    "summary": "Sadržaj",
+    "bookmarks": "Moja čitanja",
+    "settings": "Postavke",
+    "language": "Jezik",
+    "about": "O aplikaciji"
+  },
+  "home": {
+    "title": "Sadržaj Kur'ana",
+    "subtitle": "114 sura",
+    "loading": "Učitavanje sura...",
+    "errorTitle": "Sure se nisu mogle učitati",
+    "retry": "Pokušaj ponovo",
+    "verses": "{{count}} ajeta",
+    "makkah": "Mekanska",
+    "madinah": "Medinska",
+    "play": "Slušaj",
+    "pause": "Pauza",
+    "bookmarkAdd": "Označi za čitanje",
+    "bookmarkRemove": "Ukloni iz čitanja",
+    "searchPlaceholder": "Pretraži suru..."
+  },
+  "bookmarks": {
+    "title": "Moja čitanja",
+    "empty": "Još nema sačuvanih sura.",
+    "emptyHint": "Dodirnite ikonu oznake na suri da biste je dodali ovdje."
+  },
+  "settings": {
+    "title": "Postavke",
+    "language": "Jezik aplikacije"
+  },
+  "about": {
+    "title": "O aplikaciji",
+    "description": "Kur'an Al Hak vam omogućava da slušate i pratite učenje Časnog Kur'ana na više jezika.",
+    "apiCredit": "Podatke pruža Ummah API, ponuđen kao sadaka džarija za ummet.",
+    "version": "Verzija"
+  },
+  "player": { "nowPlaying": "Trenutno svira" }
+}

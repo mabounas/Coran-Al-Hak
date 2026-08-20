@@ -1,0 +1,42 @@
+{
+  "app": { "name": "Corán Al Hak" },
+  "menu": {
+    "open": "Menú",
+    "summary": "Índice",
+    "bookmarks": "Mis lecturas",
+    "settings": "Ajustes",
+    "language": "Idioma",
+    "about": "Acerca de"
+  },
+  "home": {
+    "title": "Índice del Corán",
+    "subtitle": "114 suras",
+    "loading": "Cargando suras...",
+    "errorTitle": "No se pudieron cargar las suras",
+    "retry": "Reintentar",
+    "verses": "{{count}} versículos",
+    "makkah": "Mecana",
+    "madinah": "Medinesa",
+    "play": "Escuchar",
+    "pause": "Pausa",
+    "bookmarkAdd": "Marcar para leer",
+    "bookmarkRemove": "Quitar de lecturas",
+    "searchPlaceholder": "Buscar una sura..."
+  },
+  "bookmarks": {
+    "title": "Mis lecturas",
+    "empty": "Aún no hay ninguna sura guardada.",
+    "emptyHint": "Toca el icono de marcador en una sura para añadirla aquí."
+  },
+  "settings": {
+    "title": "Ajustes",
+    "language": "Idioma de la app"
+  },
+  "about": {
+    "title": "Acerca de",
+    "description": "Corán Al Hak te permite escuchar y seguir la recitación del Sagrado Corán en varios idiomas.",
+    "apiCredit": "Datos proporcionados por la API Ummah, ofrecidos como sadaqah jariyah para la Umma.",
+    "version": "Versión"
+  },
+  "player": { "nowPlaying": "Reproduciendo ahora" }
+}

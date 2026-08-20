@@ -1,0 +1,42 @@
+{
+  "app": { "name": "Coran Al Hak" },
+  "menu": {
+    "open": "Menu",
+    "summary": "Sommaire",
+    "bookmarks": "Mes lectures",
+    "settings": "Paramètres",
+    "language": "Langue",
+    "about": "À propos"
+  },
+  "home": {
+    "title": "Sommaire du Coran",
+    "subtitle": "114 sourates",
+    "loading": "Chargement des sourates...",
+    "errorTitle": "Impossible de charger les sourates",
+    "retry": "Réessayer",
+    "verses": "{{count}} versets",
+    "makkah": "Mecquoise",
+    "madinah": "Médinoise",
+    "play": "Écouter",
+    "pause": "Pause",
+    "bookmarkAdd": "Marquer pour lecture",
+    "bookmarkRemove": "Retirer des lectures",
+    "searchPlaceholder": "Rechercher une sourate..."
+  },
+  "bookmarks": {
+    "title": "Mes lectures",
+    "empty": "Aucune sourate enregistrée pour l'instant.",
+    "emptyHint": "Touchez l'icône signet sur une sourate pour l'ajouter ici."
+  },
+  "settings": {
+    "title": "Paramètres",
+    "language": "Langue de l'application"
+  },
+  "about": {
+    "title": "À propos",
+    "description": "Coran Al Hak vous permet d'écouter et de suivre la lecture du Saint Coran dans plusieurs langues.",
+    "apiCredit": "Données fournies par l'API Ummah, offertes en sadaqah jariyah pour la Oummah.",
+    "version": "Version"
+  },
+  "player": { "nowPlaying": "Lecture en cours" }
+}
