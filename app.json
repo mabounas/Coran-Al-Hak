@@ -19,6 +19,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.mabounas.coranalhak",
+      "buildNumber": "1",
       "infoPlist": {
         "UIBackgroundModes": [
           "audio"
@@ -27,6 +28,7 @@
     },
     "android": {
       "package": "com.mabounas.coranalhak",
+      "versionCode": 1,
       "adaptiveIcon": {
         "backgroundColor": "#0F6E52",
         "foregroundImage": "./assets/android-icon-foreground.png",
