@@ -14,6 +14,12 @@
       [
         "expo-localization",
         {}
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Allow Coran Al Ummah to use your location to find the Qibla direction."
+        }
       ]
     ],
     "ios": {

@@ -1,5 +1,6 @@
 export const QURAN_API_BASE_URL = 'https://ummahapi.com/api/quran';
 export const QURAN_API_KEY = 'umh_f1916cf91103e37c66ce73741de5bb557cb59308';
+export const QIBLA_API_URL = 'https://ummahapi.com/api/qibla';
 
 export const COLORS = {
   primary: '#0F6E52',

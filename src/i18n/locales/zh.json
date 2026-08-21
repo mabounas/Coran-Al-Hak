@@ -51,5 +51,12 @@
     "dua": "祈祷词",
     "qibla": "朝拜方向",
     "comingSoon": "即将推出"
+  },
+  "qibla": {
+    "locating": "正在获取您的位置...",
+    "permissionDenied": "需要定位权限才能确定朝拜方向。",
+    "error": "无法确定朝拜方向。",
+    "instructions": "将手机顶部指向箭头",
+    "bearing": "距北方 {{degrees}}°"
   }
 }

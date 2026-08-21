@@ -51,5 +51,12 @@
     "dua": "Dua",
     "qibla": "Kıble",
     "comingSoon": "Yakında"
+  },
+  "qibla": {
+    "locating": "Konumunuz belirleniyor...",
+    "permissionDenied": "Kıble yönünü bulmak için konum izni gereklidir.",
+    "error": "Kıble yönü belirlenemedi.",
+    "instructions": "Telefonunuzun üst kısmını oka doğru çevirin",
+    "bearing": "Kuzeyden {{degrees}}°"
   }
 }

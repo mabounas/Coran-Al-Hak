@@ -51,5 +51,12 @@
     "dua": "Dua",
     "qibla": "Qibla",
     "comingSoon": "Demnächst verfügbar"
+  },
+  "qibla": {
+    "locating": "Standort wird ermittelt...",
+    "permissionDenied": "Standortzugriff ist erforderlich, um die Qibla-Richtung zu finden.",
+    "error": "Die Qibla-Richtung konnte nicht ermittelt werden.",
+    "instructions": "Richten Sie die Oberseite Ihres Telefons auf den Pfeil",
+    "bearing": "{{degrees}}° von Norden"
   }
 }

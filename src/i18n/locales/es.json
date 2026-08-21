@@ -51,5 +51,12 @@
     "dua": "Dua",
     "qibla": "Qibla",
     "comingSoon": "Próximamente"
+  },
+  "qibla": {
+    "locating": "Obteniendo tu ubicación...",
+    "permissionDenied": "Se requiere permiso de ubicación para encontrar la dirección de la Qibla.",
+    "error": "No se pudo determinar la dirección de la Qibla.",
+    "instructions": "Apunta la parte superior de tu teléfono hacia la flecha",
+    "bearing": "{{degrees}}° desde el Norte"
   }
 }

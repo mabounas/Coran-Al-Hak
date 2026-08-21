@@ -37,6 +37,7 @@ function RootStack() {
         <Stack.Screen name="bookmarks" options={{ title: t('bookmarks.title') }} />
         <Stack.Screen name="settings" options={{ title: t('settings.title') }} />
         <Stack.Screen name="about" options={{ title: t('about.title') }} />
+        <Stack.Screen name="qibla" options={{ title: t('landing.qibla') }} />
       </Stack>
       <MiniPlayer />
     </View>

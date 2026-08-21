@@ -51,5 +51,12 @@
     "dua": "Doa",
     "qibla": "Kiblat",
     "comingSoon": "Segera hadir"
+  },
+  "qibla": {
+    "locating": "Mendapatkan lokasi Anda...",
+    "permissionDenied": "Izin lokasi diperlukan untuk menemukan arah Kiblat.",
+    "error": "Tidak dapat menentukan arah Kiblat.",
+    "instructions": "Arahkan bagian atas ponsel Anda ke panah",
+    "bearing": "{{degrees}}° dari Utara"
   }
 }

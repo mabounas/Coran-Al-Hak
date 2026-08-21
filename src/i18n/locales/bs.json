@@ -51,5 +51,12 @@
     "dua": "Dova",
     "qibla": "Kibla",
     "comingSoon": "Uskoro dostupno"
+  },
+  "qibla": {
+    "locating": "Utvrđivanje vaše lokacije...",
+    "permissionDenied": "Potrebna je dozvola za lokaciju kako bi se pronašao pravac Kible.",
+    "error": "Nije moguće odrediti pravac Kible.",
+    "instructions": "Usmjerite vrh telefona prema strelici",
+    "bearing": "{{degrees}}° od sjevera"
   }
 }
