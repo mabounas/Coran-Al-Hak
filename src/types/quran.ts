@@ -82,3 +82,30 @@ export interface SurahDetailResponse {
   timestamp: string;
   api_info?: Record<string, string>;
 }
+
+export interface MushafWord {
+  position: number;
+  text_uthmani: string;
+  text_uthmani_tajweed: string;
+  line_number: number;
+  char_type_name: 'word' | 'end' | string;
+  verse_key: string;
+  surah_number: number;
+  ayah_number: number;
+}
+
+export interface MushafPage {
+  page: number;
+  total_pages: number;
+  lines_per_page: number;
+  total_words: number;
+  words: MushafWord[];
+}
+
+export interface MushafPageResponse {
+  success: boolean;
+  service: string;
+  data: MushafPage;
+  timestamp: string;
+  api_info?: Record<string, string>;
+}

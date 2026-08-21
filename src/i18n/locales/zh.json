@@ -106,5 +106,12 @@
     "limitNotice": "接口最多返回 {{limit}} 条结果",
     "noResults": "没有找到“{{query}}”",
     "openSurah": "打开该章"
+  },
+  "mushaf": {
+    "page": "第 {{page}} / {{total}} 页",
+    "previous": "上一页",
+    "next": "下一页",
+    "tapHint": "点按词语查看该节的翻译",
+    "open": "穆斯哈夫页面"
   }
 }

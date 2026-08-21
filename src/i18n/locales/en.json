@@ -106,5 +106,12 @@
     "limitNotice": "The API returns at most {{limit}} results",
     "noResults": "No results for “{{query}}”",
     "openSurah": "Open the surah"
+  },
+  "mushaf": {
+    "page": "Page {{page}} / {{total}}",
+    "previous": "Previous",
+    "next": "Next",
+    "tapHint": "Tap a word to see its verse translated",
+    "open": "Mushaf page"
   }
 }

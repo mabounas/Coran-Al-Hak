@@ -106,5 +106,12 @@
     "limitNotice": "API mengembalikan maksimal {{limit}} hasil",
     "noResults": "Tidak ada hasil untuk \"{{query}}\"",
     "openSurah": "Buka surah"
+  },
+  "mushaf": {
+    "page": "Halaman {{page}} / {{total}}",
+    "previous": "Sebelumnya",
+    "next": "Berikutnya",
+    "tapHint": "Ketuk kata untuk melihat terjemahan ayatnya",
+    "open": "Halaman mushaf"
   }
 }

@@ -106,5 +106,12 @@
     "limitNotice": "API vraća najviše {{limit}} rezultata",
     "noResults": "Nema rezultata za „{{query}}“",
     "openSurah": "Otvori suru"
+  },
+  "mushaf": {
+    "page": "Stranica {{page}} / {{total}}",
+    "previous": "Prethodna",
+    "next": "Sljedeća",
+    "tapHint": "Dodirnite riječ da vidite prijevod ajeta",
+    "open": "Stranica mushafa"
   }
 }

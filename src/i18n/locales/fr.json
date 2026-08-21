@@ -106,5 +106,12 @@
     "limitNotice": "L'API renvoie au maximum {{limit}} résultats",
     "noResults": "Aucun résultat pour « {{query}} »",
     "openSurah": "Ouvrir la sourate"
+  },
+  "mushaf": {
+    "page": "Page {{page}} / {{total}}",
+    "previous": "Précédente",
+    "next": "Suivante",
+    "tapHint": "Touchez un mot pour voir son verset traduit",
+    "open": "Page du mushaf"
   }
 }

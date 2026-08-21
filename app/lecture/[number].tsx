@@ -1,5 +1,5 @@
 import { AmiriQuran_400Regular, useFonts } from '@expo-google-fonts/amiri-quran';
-import { Stack, useLocalSearchParams } from 'expo-router';
+import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -31,6 +31,7 @@ const BISMILLAH = 'بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَ
 export default function ReadSurahScreen() {
   const { t } = useTranslation();
   const { language, isRTL } = useLocale();
+  const router = useRouter();
   const scheme = useColorScheme();
   const dark = scheme === 'dark';
   const params = useLocalSearchParams<{
@@ -97,6 +98,11 @@ export default function ReadSurahScreen() {
       audio: { reciters_available: 0, example_audio: '' },
     };
   }, [surahs, surahNumber, detail]);
+
+  const mushafPage = useMemo(
+    () => surahs.find((s) => s.number === surahNumber)?.pages?.[0],
+    [surahs, surahNumber]
+  );
 
   const active = currentSurah?.number === surahNumber;
 
@@ -171,6 +177,21 @@ export default function ReadSurahScreen() {
             {textMode === 'ar' ? profileLanguage?.nativeLabel : 'العربية'}
           </Text>
         </TouchableOpacity>
+
+        {textMode === 'ar' && mushafPage ? (
+          <TouchableOpacity
+            onPress={() =>
+              router.push({
+                pathname: '/mushaf/[page]',
+                params: { page: String(mushafPage) },
+              } as never)
+            }
+            style={[styles.chip, dark && styles.chipDark]}
+            accessibilityLabel={t('mushaf.open')}
+          >
+            <Text style={styles.chipText}>📖</Text>
+          </TouchableOpacity>
+        ) : null}
 
         <TouchableOpacity
           onPress={handleTogglePlay}

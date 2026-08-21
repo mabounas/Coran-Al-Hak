@@ -106,5 +106,12 @@
     "limitNotice": "Die API liefert höchstens {{limit}} Ergebnisse",
     "noResults": "Keine Ergebnisse für „{{query}}“",
     "openSurah": "Sure öffnen"
+  },
+  "mushaf": {
+    "page": "Seite {{page}} / {{total}}",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "tapHint": "Tippe auf ein Wort, um seinen Vers übersetzt zu sehen",
+    "open": "Mushaf-Seite"
   }
 }

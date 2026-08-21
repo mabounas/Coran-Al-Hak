@@ -106,5 +106,12 @@
     "limitNotice": "API en fazla {{limit}} sonuç döndürür",
     "noResults": "“{{query}}” için sonuç yok",
     "openSurah": "Sureyi aç"
+  },
+  "mushaf": {
+    "page": "Sayfa {{page}} / {{total}}",
+    "previous": "Önceki",
+    "next": "Sonraki",
+    "tapHint": "Ayetin mealini görmek için bir kelimeye dokunun",
+    "open": "Mushaf sayfası"
   }
 }

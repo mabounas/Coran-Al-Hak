@@ -1,6 +1,6 @@
 import { containsArabic, normalizeArabic } from '../constants/arabic';
 
-import quranText from './quranText.json';
+import { getAllSurahs } from './verses';
 
 export interface LocalMatch {
   verseKey: string;
@@ -19,7 +19,7 @@ interface NormalizedVerse {
   normalizedWords: string[];
 }
 
-const SURAHS: string[][] = quranText as string[][];
+const SURAHS = getAllSurahs();
 
 let index: NormalizedVerse[] | null = null;
 
