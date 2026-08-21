@@ -39,6 +39,12 @@ export default function AboutScreen() {
 
       <View style={[styles.card, dark && styles.cardDark]}>
         <Text style={[styles.cardTitle, dark && styles.textDark]}>{t('about.apiCredit')}</Text>
+        <Text style={[styles.arabicCredit, dark && styles.textDark]}>
+          محمد أبوالنصر · صدقة جارية
+        </Text>
+        <Text style={[styles.arabicDua, dark && styles.mutedDark]}>
+          أدعو لنا بالرحمة والمغفرة
+        </Text>
       </View>
 
       <Text style={[styles.version, dark && styles.mutedDark]}>
@@ -106,6 +112,17 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: COLORS.text,
     lineHeight: 19,
+  },
+  arabicCredit: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: COLORS.text,
+    textAlign: 'right',
+  },
+  arabicDua: {
+    fontSize: 13,
+    color: COLORS.muted,
+    textAlign: 'right',
   },
   languagesList: {
     fontSize: 13,
