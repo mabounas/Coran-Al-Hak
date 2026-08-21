@@ -76,6 +76,16 @@ export function SurahCard({ surah }: Props) {
           >
             <Text style={styles.iconGlyph}>{bookmarked ? '★' : '☆'}</Text>
           </TouchableOpacity>
+          {active && (
+            <TouchableOpacity
+              onPress={() => setPickerVisible(true)}
+              accessibilityLabel={t('reciter.title')}
+              style={styles.iconButton}
+              hitSlop={8}
+            >
+              <Text style={styles.iconGlyph}>🎙️</Text>
+            </TouchableOpacity>
+          )}
           <TouchableOpacity
             onPress={handlePlayPress}
             accessibilityLabel={active && isPlaying ? t('home.pause') : t('home.play')}
