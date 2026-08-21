@@ -88,6 +88,8 @@
     "translationOff": "Samo arapski",
     "noTranslation": "Prijevod nije dostupan na ovom jeziku",
     "loading": "Učitavanje sure...",
-    "error": "Nije moguće učitati suru."
+    "error": "Nije moguće učitati suru.",
+    "verse": "Ajet {{number}}",
+    "tapHint": "Dodirnite ajet da vidite prijevod"
   }
 }

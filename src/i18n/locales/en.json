@@ -88,6 +88,8 @@
     "translationOff": "Arabic only",
     "noTranslation": "Translation not available in this language",
     "loading": "Loading the surah...",
-    "error": "Could not load the surah."
+    "error": "Could not load the surah.",
+    "verse": "Verse {{number}}",
+    "tapHint": "Tap a verse to show its translation"
   }
 }

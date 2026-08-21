@@ -88,6 +88,8 @@
     "translationOff": "Hanya bahasa Arab",
     "noTranslation": "Terjemahan tidak tersedia dalam bahasa ini",
     "loading": "Memuat surah...",
-    "error": "Tidak dapat memuat surah."
+    "error": "Tidak dapat memuat surah.",
+    "verse": "Ayat {{number}}",
+    "tapHint": "Ketuk ayat untuk melihat terjemahannya"
   }
 }

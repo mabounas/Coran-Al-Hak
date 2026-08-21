@@ -88,6 +88,8 @@
     "translationOff": "Arabe uniquement",
     "noTranslation": "Traduction indisponible dans cette langue",
     "loading": "Chargement de la sourate...",
-    "error": "Impossible de charger la sourate."
+    "error": "Impossible de charger la sourate.",
+    "verse": "Verset {{number}}",
+    "tapHint": "Touchez un verset pour afficher sa traduction"
   }
 }

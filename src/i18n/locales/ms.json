@@ -88,6 +88,8 @@
     "translationOff": "Bahasa Arab sahaja",
     "noTranslation": "Terjemahan tidak tersedia dalam bahasa ini",
     "loading": "Memuatkan surah...",
-    "error": "Surah tidak dapat dimuatkan."
+    "error": "Surah tidak dapat dimuatkan.",
+    "verse": "Ayat {{number}}",
+    "tapHint": "Ketik ayat untuk melihat terjemahannya"
   }
 }

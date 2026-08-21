@@ -88,6 +88,8 @@
     "translationOff": "Sadece Arapça",
     "noTranslation": "Bu dilde meal mevcut değil",
     "loading": "Sure yükleniyor...",
-    "error": "Sure yüklenemedi."
+    "error": "Sure yüklenemedi.",
+    "verse": "{{number}}. ayet",
+    "tapHint": "Mealini görmek için bir ayete dokunun"
   }
 }

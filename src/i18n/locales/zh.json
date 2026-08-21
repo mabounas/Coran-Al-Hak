@@ -88,6 +88,8 @@
     "translationOff": "仅阿拉伯语",
     "noTranslation": "该语言暂无翻译",
     "loading": "正在加载章节...",
-    "error": "无法加载该章节。"
+    "error": "无法加载该章节。",
+    "verse": "第 {{number}} 节",
+    "tapHint": "点按经节以查看翻译"
   }
 }

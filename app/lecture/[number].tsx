@@ -1,9 +1,10 @@
+import { AmiriQuran_400Regular, useFonts } from '@expo-google-fonts/amiri-quran';
 import { Stack, useLocalSearchParams } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ActivityIndicator,
-  FlatList,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -12,9 +13,12 @@ import {
 } from 'react-native';
 
 import { fetchSurahDetail } from '../../src/api/quran';
+import { MushafFrame } from '../../src/components/MushafFrame';
+import { VerseTranslationSheet } from '../../src/components/VerseTranslationSheet';
+import { ayahMarker, toArabicNumerals } from '../../src/constants/arabic';
 import { COLORS } from '../../src/constants/config';
 import { RECITERS, buildReciterAudioUrl } from '../../src/constants/reciters';
-import { getVerseTranslation, hasTranslation } from '../../src/constants/translations';
+import { hasTranslation } from '../../src/constants/translations';
 import { useAudioPlayerContext } from '../../src/context/AudioPlayerContext';
 import { useLocale } from '../../src/context/LocaleContext';
 import { useSurahs } from '../../src/context/SurahsContext';
@@ -24,7 +28,7 @@ const BISMILLAH = 'بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَ
 
 export default function ReadSurahScreen() {
   const { t } = useTranslation();
-  const { language, isRTL } = useLocale();
+  const { language } = useLocale();
   const scheme = useColorScheme();
   const dark = scheme === 'dark';
   const params = useLocalSearchParams<{
@@ -37,6 +41,9 @@ export default function ReadSurahScreen() {
   const surahNumber = Number(params.number);
   const translationAvailable = hasTranslation(language);
 
+  const [fontsLoaded] = useFonts({ AmiriQuran_400Regular });
+  const arabicFont = fontsLoaded ? 'AmiriQuran_400Regular' : undefined;
+
   const { surahs } = useSurahs();
   const { currentSurah, isPlaying, isBuffering, playSurah, togglePlayPause } =
     useAudioPlayerContext();
@@ -47,6 +54,7 @@ export default function ReadSurahScreen() {
   const [showTranslation, setShowTranslation] = useState(
     params.translation === '1' && translationAvailable
   );
+  const [selectedVerse, setSelectedVerse] = useState<Verse | null>(null);
   const autoPlayedRef = useRef(false);
 
   const reciter = useMemo(
@@ -104,6 +112,14 @@ export default function ReadSurahScreen() {
     playSurah(playableSurah, buildReciterAudioUrl(reciter, surahNumber), reciter);
   }, [params.sound, playableSurah, playSurah, reciter, surahNumber]);
 
+  const handleVersePress = useCallback(
+    (verse: Verse) => {
+      if (!showTranslation) return;
+      setSelectedVerse(verse);
+    },
+    [showTranslation]
+  );
+
   const title = detail
     ? `${detail.surah.number}. ${detail.surah.name_arabic}`
     : t('landing.read');
@@ -130,32 +146,7 @@ export default function ReadSurahScreen() {
     );
   }
 
-  const renderVerse = ({ item }: { item: Verse }) => {
-    const translated = showTranslation ? getVerseTranslation(item, language) : undefined;
-    return (
-      <View style={[styles.verseCard, dark && styles.verseCardDark]}>
-        <View style={styles.verseHeader}>
-          <View style={[styles.verseBadge, dark && styles.verseBadgeDark]}>
-            <Text style={[styles.verseBadgeText, dark && styles.verseBadgeTextDark]}>
-              {item.ayah}
-            </Text>
-          </View>
-        </View>
-        <Text style={[styles.arabic, dark && styles.textDark]}>{item.arabic}</Text>
-        {translated ? (
-          <Text
-            style={[
-              styles.translation,
-              dark && styles.mutedDark,
-              { textAlign: isRTL ? 'right' : 'left', writingDirection: isRTL ? 'rtl' : 'ltr' },
-            ]}
-          >
-            {translated}
-          </Text>
-        ) : null}
-      </View>
-    );
-  };
+  const arabicStyle = arabicFont ? { fontFamily: arabicFont } : null;
 
   return (
     <View style={[styles.container, dark && styles.containerDark]}>
@@ -197,17 +188,50 @@ export default function ReadSurahScreen() {
         </TouchableOpacity>
       </View>
 
-      <FlatList
-        data={detail.verses}
-        keyExtractor={(item) => item.verse_key}
-        renderItem={renderVerse}
-        contentContainerStyle={styles.listContent}
-        ListHeaderComponent={
-          detail.surah.bismillah_pre ? (
-            <Text style={[styles.bismillah, dark && styles.textDark]}>{BISMILLAH}</Text>
-          ) : null
-        }
-        initialNumToRender={12}
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <MushafFrame dark={dark}>
+          <View style={styles.cartouche}>
+            <Text style={[styles.cartoucheText, arabicStyle]}>
+              سورة {detail.surah.name_arabic} {toArabicNumerals(detail.surah.number)}
+            </Text>
+          </View>
+
+          {detail.surah.bismillah_pre ? (
+            <Text style={[styles.bismillah, arabicStyle]}>{BISMILLAH}</Text>
+          ) : null}
+
+          <Text style={[styles.mushaf, dark && styles.textDark, arabicStyle]}>
+            {detail.verses.map((verse) => (
+              <Text
+                key={verse.verse_key}
+                onPress={() => handleVersePress(verse)}
+                suppressHighlighting={!showTranslation}
+                style={
+                  selectedVerse?.verse_key === verse.verse_key ? styles.verseSelected : undefined
+                }
+              >
+                {verse.arabic.trim()}
+                <Text style={styles.marker}> {ayahMarker(verse.ayah)} </Text>
+              </Text>
+            ))}
+          </Text>
+
+          <View style={styles.cartoucheFooter}>
+            <Text style={[styles.cartoucheFooterText, arabicStyle]}>
+              وآياتها {toArabicNumerals(detail.total_verses)}
+            </Text>
+          </View>
+        </MushafFrame>
+
+        {showTranslation ? (
+          <Text style={[styles.hint, dark && styles.mutedDark]}>{t('read.tapHint')}</Text>
+        ) : null}
+      </ScrollView>
+
+      <VerseTranslationSheet
+        verse={selectedVerse}
+        arabicFont={arabicFont}
+        onClose={() => setSelectedVerse(null)}
       />
     </View>
   );
@@ -321,70 +345,67 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 14,
   },
-  listContent: {
+  scrollContent: {
     paddingBottom: 32,
   },
-  bismillah: {
-    fontSize: 24,
-    lineHeight: 46,
-    textAlign: 'center',
-    color: COLORS.primary,
-    paddingVertical: 18,
+  cartouche: {
+    borderWidth: 1,
+    borderColor: COLORS.gold,
+    borderRadius: 4,
+    paddingVertical: 8,
     paddingHorizontal: 16,
+    marginHorizontal: 26,
+    marginBottom: 14,
+    alignItems: 'center',
+  },
+  cartoucheText: {
+    fontSize: 20,
+    lineHeight: 40,
+    color: COLORS.primaryDark,
     writingDirection: 'rtl',
   },
-  verseCard: {
-    backgroundColor: COLORS.card,
-    borderRadius: 16,
-    padding: 16,
-    marginHorizontal: 16,
-    marginVertical: 6,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    gap: 10,
-  },
-  verseCardDark: {
-    backgroundColor: COLORS.cardDark,
-    borderColor: COLORS.borderDark,
-  },
-  verseHeader: {
-    flexDirection: 'row',
+  cartoucheFooter: {
+    borderTopWidth: 1,
+    borderTopColor: COLORS.gold,
+    marginTop: 14,
+    marginHorizontal: 26,
+    paddingTop: 8,
     alignItems: 'center',
   },
-  verseBadge: {
-    minWidth: 30,
-    height: 30,
-    paddingHorizontal: 8,
-    borderRadius: 15,
-    backgroundColor: COLORS.background,
-    alignItems: 'center',
-    justifyContent: 'center',
+  cartoucheFooterText: {
+    fontSize: 16,
+    lineHeight: 34,
+    color: COLORS.primaryDark,
+    writingDirection: 'rtl',
   },
-  verseBadgeDark: {
-    backgroundColor: COLORS.backgroundDark,
-  },
-  verseBadgeText: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: COLORS.primary,
-  },
-  verseBadgeTextDark: {
-    color: COLORS.gold,
-  },
-  arabic: {
-    fontSize: 26,
+  bismillah: {
+    fontSize: 22,
     lineHeight: 52,
-    textAlign: 'right',
+    textAlign: 'center',
+    color: COLORS.primaryDark,
+    paddingBottom: 10,
+    writingDirection: 'rtl',
+  },
+  mushaf: {
+    fontSize: 24,
+    lineHeight: 62,
+    textAlign: 'justify',
     writingDirection: 'rtl',
     color: COLORS.text,
   },
-  translation: {
-    fontSize: 15,
-    lineHeight: 24,
+  marker: {
+    color: COLORS.gold,
+    fontSize: 22,
+  },
+  verseSelected: {
+    backgroundColor: 'rgba(201,162,75,0.22)',
+  },
+  hint: {
+    fontSize: 12,
     color: COLORS.muted,
-    borderTopWidth: 1,
-    borderTopColor: COLORS.border,
-    paddingTop: 10,
+    textAlign: 'center',
+    paddingHorizontal: 24,
+    paddingTop: 4,
   },
   textDark: {
     color: COLORS.textDark,

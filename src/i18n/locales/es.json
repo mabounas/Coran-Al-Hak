@@ -88,6 +88,8 @@
     "translationOff": "Solo árabe",
     "noTranslation": "Traducción no disponible en este idioma",
     "loading": "Cargando la sura...",
-    "error": "No se pudo cargar la sura."
+    "error": "No se pudo cargar la sura.",
+    "verse": "Versículo {{number}}",
+    "tapHint": "Toca un versículo para ver su traducción"
   }
 }
