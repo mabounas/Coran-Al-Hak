@@ -1,5 +1,7 @@
 {
-  "app": { "name": "Coran Al Ummah" },
+  "app": {
+    "name": "Coran Al Ummah"
+  },
   "menu": {
     "open": "Menu",
     "home": "Laman Utama",
@@ -39,8 +41,12 @@
     "apiCredit": "Data disediakan oleh Ummah API, dipersembahkan sebagai sedekah jariah untuk umat.",
     "version": "Versi"
   },
-  "player": { "nowPlaying": "Sedang dimainkan" },
-  "reciter": { "title": "Pilih qari" },
+  "player": {
+    "nowPlaying": "Sedang dimainkan"
+  },
+  "reciter": {
+    "title": "Pilih qari"
+  },
   "landing": {
     "chooseLanguage": "Pilih bahasa anda",
     "listen": "Dengar Al-Quran",
@@ -69,5 +75,19 @@
     "loadingDuas": "Memuatkan doa...",
     "errorCategories": "Tidak dapat memuatkan kategori.",
     "errorDuas": "Tidak dapat memuatkan doa."
+  },
+  "read": {
+    "subtitle": "Pilih surah untuk dibaca",
+    "display": "Papar",
+    "options": "Pilihan paparan",
+    "sound": "Bunyi",
+    "soundOn": "Bacaan dihidupkan",
+    "soundOff": "Tanpa bacaan",
+    "translation": "Terjemahan",
+    "translationOn": "Terjemahan dipaparkan",
+    "translationOff": "Bahasa Arab sahaja",
+    "noTranslation": "Terjemahan tidak tersedia dalam bahasa ini",
+    "loading": "Memuatkan surah...",
+    "error": "Surah tidak dapat dimuatkan."
   }
 }

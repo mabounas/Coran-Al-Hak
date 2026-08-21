@@ -1,5 +1,7 @@
 {
-  "app": { "name": "古兰经·乌玛" },
+  "app": {
+    "name": "古兰经·乌玛"
+  },
   "menu": {
     "open": "菜单",
     "home": "首页",
@@ -39,8 +41,12 @@
     "apiCredit": "数据由 Ummah API 提供，作为造福乌玛的长期善举（sadaqah jariyah）。",
     "version": "版本"
   },
-  "player": { "nowPlaying": "正在播放" },
-  "reciter": { "title": "选择诵读者" },
+  "player": {
+    "nowPlaying": "正在播放"
+  },
+  "reciter": {
+    "title": "选择诵读者"
+  },
   "landing": {
     "chooseLanguage": "选择您的语言",
     "listen": "聆听古兰经",
@@ -69,5 +75,19 @@
     "loadingDuas": "正在加载祈祷词...",
     "errorCategories": "无法加载分类。",
     "errorDuas": "无法加载祈祷词。"
+  },
+  "read": {
+    "subtitle": "选择一章诵读",
+    "display": "显示",
+    "options": "显示选项",
+    "sound": "声音",
+    "soundOn": "已开启诵读",
+    "soundOff": "不诵读",
+    "translation": "翻译",
+    "translationOn": "显示翻译",
+    "translationOff": "仅阿拉伯语",
+    "noTranslation": "该语言暂无翻译",
+    "loading": "正在加载章节...",
+    "error": "无法加载该章节。"
   }
 }

@@ -1,5 +1,7 @@
 {
-  "app": { "name": "Coran Al Ummah" },
+  "app": {
+    "name": "Coran Al Ummah"
+  },
   "menu": {
     "open": "Menü",
     "home": "Startseite",
@@ -39,8 +41,12 @@
     "apiCredit": "Daten bereitgestellt von der Ummah API, als Sadaqah Jariyah für die Umma.",
     "version": "Version"
   },
-  "player": { "nowPlaying": "Wird jetzt abgespielt" },
-  "reciter": { "title": "Rezitator auswählen" },
+  "player": {
+    "nowPlaying": "Wird jetzt abgespielt"
+  },
+  "reciter": {
+    "title": "Rezitator auswählen"
+  },
   "landing": {
     "chooseLanguage": "Wählen Sie Ihre Sprache",
     "listen": "Koran anhören",
@@ -69,5 +75,19 @@
     "loadingDuas": "Bittgebete werden geladen...",
     "errorCategories": "Kategorien konnten nicht geladen werden.",
     "errorDuas": "Bittgebete konnten nicht geladen werden."
+  },
+  "read": {
+    "subtitle": "Wähle eine Sure zum Lesen",
+    "display": "Anzeigen",
+    "options": "Anzeigeoptionen",
+    "sound": "Ton",
+    "soundOn": "Rezitation an",
+    "soundOff": "Ohne Rezitation",
+    "translation": "Übersetzung",
+    "translationOn": "Übersetzung angezeigt",
+    "translationOff": "Nur Arabisch",
+    "noTranslation": "Übersetzung in dieser Sprache nicht verfügbar",
+    "loading": "Sure wird geladen...",
+    "error": "Die Sure konnte nicht geladen werden."
   }
 }

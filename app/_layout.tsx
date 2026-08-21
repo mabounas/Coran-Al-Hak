@@ -34,6 +34,8 @@ function RootStack() {
       >
         <Stack.Screen name="index" options={{ title: t('app.name') }} />
         <Stack.Screen name="sommaire" options={{ title: t('landing.listen') }} />
+        <Stack.Screen name="lecture/index" options={{ title: t('landing.read') }} />
+        <Stack.Screen name="lecture/[number]" options={{ title: t('landing.read') }} />
         <Stack.Screen name="bookmarks" options={{ title: t('bookmarks.title') }} />
         <Stack.Screen name="settings" options={{ title: t('settings.title') }} />
         <Stack.Screen name="about" options={{ title: t('about.title') }} />

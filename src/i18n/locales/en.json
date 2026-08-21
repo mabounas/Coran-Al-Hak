@@ -1,5 +1,7 @@
 {
-  "app": { "name": "Coran Al Ummah" },
+  "app": {
+    "name": "Coran Al Ummah"
+  },
   "menu": {
     "open": "Menu",
     "home": "Home",
@@ -39,8 +41,12 @@
     "apiCredit": "Data provided by the Ummah API, offered as sadaqah jariyah for the Ummah.",
     "version": "Version"
   },
-  "player": { "nowPlaying": "Now playing" },
-  "reciter": { "title": "Choose a reciter" },
+  "player": {
+    "nowPlaying": "Now playing"
+  },
+  "reciter": {
+    "title": "Choose a reciter"
+  },
   "landing": {
     "chooseLanguage": "Choose your language",
     "listen": "Listen to the Quran",
@@ -69,5 +75,19 @@
     "loadingDuas": "Loading duas...",
     "errorCategories": "Could not load categories.",
     "errorDuas": "Could not load duas."
+  },
+  "read": {
+    "subtitle": "Choose a surah to read",
+    "display": "Display",
+    "options": "Display options",
+    "sound": "Sound",
+    "soundOn": "Recitation on",
+    "soundOff": "No recitation",
+    "translation": "Translation",
+    "translationOn": "Translation shown",
+    "translationOff": "Arabic only",
+    "noTranslation": "Translation not available in this language",
+    "loading": "Loading the surah...",
+    "error": "Could not load the surah."
   }
 }

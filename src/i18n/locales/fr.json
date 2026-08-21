@@ -1,5 +1,7 @@
 {
-  "app": { "name": "Coran Al Ummah" },
+  "app": {
+    "name": "Coran Al Ummah"
+  },
   "menu": {
     "open": "Menu",
     "home": "Accueil",
@@ -39,8 +41,12 @@
     "apiCredit": "Données fournies par l'API Ummah, offertes en sadaqah jariyah pour la Oummah.",
     "version": "Version"
   },
-  "player": { "nowPlaying": "Lecture en cours" },
-  "reciter": { "title": "Choisir un récitateur" },
+  "player": {
+    "nowPlaying": "Lecture en cours"
+  },
+  "reciter": {
+    "title": "Choisir un récitateur"
+  },
   "landing": {
     "chooseLanguage": "Choisissez votre langue",
     "listen": "Écouter le Coran",
@@ -69,5 +75,19 @@
     "loadingDuas": "Chargement des douaas...",
     "errorCategories": "Impossible de charger les catégories.",
     "errorDuas": "Impossible de charger les douaas."
+  },
+  "read": {
+    "subtitle": "Choisissez une sourate à lire",
+    "display": "Afficher",
+    "options": "Options d'affichage",
+    "sound": "Son",
+    "soundOn": "Récitation activée",
+    "soundOff": "Sans récitation",
+    "translation": "Traduction",
+    "translationOn": "Traduction affichée",
+    "translationOff": "Arabe uniquement",
+    "noTranslation": "Traduction indisponible dans cette langue",
+    "loading": "Chargement de la sourate...",
+    "error": "Impossible de charger la sourate."
   }
 }

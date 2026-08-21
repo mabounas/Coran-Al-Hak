@@ -1,5 +1,7 @@
 {
-  "app": { "name": "Corán Al Ummah" },
+  "app": {
+    "name": "Corán Al Ummah"
+  },
   "menu": {
     "open": "Menú",
     "home": "Inicio",
@@ -39,8 +41,12 @@
     "apiCredit": "Datos proporcionados por la API Ummah, ofrecidos como sadaqah jariyah para la Umma.",
     "version": "Versión"
   },
-  "player": { "nowPlaying": "Reproduciendo ahora" },
-  "reciter": { "title": "Elige un recitador" },
+  "player": {
+    "nowPlaying": "Reproduciendo ahora"
+  },
+  "reciter": {
+    "title": "Elige un recitador"
+  },
   "landing": {
     "chooseLanguage": "Elige tu idioma",
     "listen": "Escuchar el Corán",
@@ -69,5 +75,19 @@
     "loadingDuas": "Cargando súplicas...",
     "errorCategories": "No se pudieron cargar las categorías.",
     "errorDuas": "No se pudieron cargar las súplicas."
+  },
+  "read": {
+    "subtitle": "Elige una sura para leer",
+    "display": "Mostrar",
+    "options": "Opciones de visualización",
+    "sound": "Sonido",
+    "soundOn": "Recitación activada",
+    "soundOff": "Sin recitación",
+    "translation": "Traducción",
+    "translationOn": "Traducción visible",
+    "translationOff": "Solo árabe",
+    "noTranslation": "Traducción no disponible en este idioma",
+    "loading": "Cargando la sura...",
+    "error": "No se pudo cargar la sura."
   }
 }

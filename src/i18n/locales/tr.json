@@ -1,5 +1,7 @@
 {
-  "app": { "name": "Kuran Al Ümmet" },
+  "app": {
+    "name": "Kuran Al Ümmet"
+  },
   "menu": {
     "open": "Menü",
     "home": "Ana Sayfa",
@@ -39,8 +41,12 @@
     "apiCredit": "Veriler, ümmet için sadaka-i cariye olarak sunulan Ummah API tarafından sağlanmaktadır.",
     "version": "Sürüm"
   },
-  "player": { "nowPlaying": "Şu an çalıyor" },
-  "reciter": { "title": "Bir kâri seçin" },
+  "player": {
+    "nowPlaying": "Şu an çalıyor"
+  },
+  "reciter": {
+    "title": "Bir kâri seçin"
+  },
   "landing": {
     "chooseLanguage": "Dilinizi seçin",
     "listen": "Kur'an Dinle",
@@ -69,5 +75,19 @@
     "loadingDuas": "Dualar yükleniyor...",
     "errorCategories": "Kategoriler yüklenemedi.",
     "errorDuas": "Dualar yüklenemedi."
+  },
+  "read": {
+    "subtitle": "Okumak için bir sure seçin",
+    "display": "Göster",
+    "options": "Görüntüleme seçenekleri",
+    "sound": "Ses",
+    "soundOn": "Tilavet açık",
+    "soundOff": "Tilavetsiz",
+    "translation": "Meal",
+    "translationOn": "Meal gösteriliyor",
+    "translationOff": "Sadece Arapça",
+    "noTranslation": "Bu dilde meal mevcut değil",
+    "loading": "Sure yükleniyor...",
+    "error": "Sure yüklenemedi."
   }
 }

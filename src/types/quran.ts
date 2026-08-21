@@ -27,3 +27,58 @@ export interface SurahsResponse {
   timestamp: string;
   api_info?: Record<string, string>;
 }
+
+// Translations shipped by /api/quran/surah/{number} for every verse.
+export interface VerseTranslations {
+  sahih_international?: string;
+  pickthall?: string;
+  yusuf_ali?: string;
+  urdu?: string;
+  turkish?: string;
+  indonesian?: string;
+  french?: string;
+  german?: string;
+  bengali?: string;
+  spanish?: string;
+  malay?: string;
+  bosnian?: string;
+}
+
+export interface VerseAudio {
+  ayah_audio: string;
+  all_reciters: string;
+}
+
+export interface Verse {
+  verse_key: string;
+  ayah: number;
+  arabic: string;
+  transliteration: string;
+  translations: VerseTranslations;
+  audio: VerseAudio;
+}
+
+export interface SurahSummary {
+  number: number;
+  name_arabic: string;
+  name_english: string;
+  name_translation: string;
+  revelation_place: string;
+  revelation_order: number;
+  verses_count: number;
+  bismillah_pre: boolean;
+}
+
+export interface SurahDetail {
+  surah: SurahSummary;
+  total_verses: number;
+  verses: Verse[];
+}
+
+export interface SurahDetailResponse {
+  success: boolean;
+  service: string;
+  data: SurahDetail;
+  timestamp: string;
+  api_info?: Record<string, string>;
+}

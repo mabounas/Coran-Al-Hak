@@ -1,5 +1,7 @@
 {
-  "app": { "name": "Kur'an Al Ummah" },
+  "app": {
+    "name": "Kur'an Al Ummah"
+  },
   "menu": {
     "open": "Meni",
     "home": "Početna",
@@ -39,8 +41,12 @@
     "apiCredit": "Podatke pruža Ummah API, ponuđen kao sadaka džarija za ummet.",
     "version": "Verzija"
   },
-  "player": { "nowPlaying": "Trenutno svira" },
-  "reciter": { "title": "Odaberite kari'ja" },
+  "player": {
+    "nowPlaying": "Trenutno svira"
+  },
+  "reciter": {
+    "title": "Odaberite kari'ja"
+  },
   "landing": {
     "chooseLanguage": "Odaberite jezik",
     "listen": "Slušaj Kur'an",
@@ -69,5 +75,19 @@
     "loadingDuas": "Učitavanje dova...",
     "errorCategories": "Nije moguće učitati kategorije.",
     "errorDuas": "Nije moguće učitati dove."
+  },
+  "read": {
+    "subtitle": "Odaberite suru za čitanje",
+    "display": "Prikaži",
+    "options": "Opcije prikaza",
+    "sound": "Zvuk",
+    "soundOn": "Učenje uključeno",
+    "soundOff": "Bez učenja",
+    "translation": "Prijevod",
+    "translationOn": "Prijevod prikazan",
+    "translationOff": "Samo arapski",
+    "noTranslation": "Prijevod nije dostupan na ovom jeziku",
+    "loading": "Učitavanje sure...",
+    "error": "Nije moguće učitati suru."
   }
 }

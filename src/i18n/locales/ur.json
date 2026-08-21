@@ -1,5 +1,7 @@
 {
-  "app": { "name": "قرآن الامت" },
+  "app": {
+    "name": "قرآن الامت"
+  },
   "menu": {
     "open": "مینو",
     "home": "ہوم",
@@ -39,8 +41,12 @@
     "apiCredit": "ڈیٹا Ummah API کی طرف سے فراہم کیا گیا، امت کے لیے صدقہ جاریہ کے طور پر۔",
     "version": "ورژن"
   },
-  "player": { "nowPlaying": "اس وقت چل رہا ہے" },
-  "reciter": { "title": "قاری منتخب کریں" },
+  "player": {
+    "nowPlaying": "اس وقت چل رہا ہے"
+  },
+  "reciter": {
+    "title": "قاری منتخب کریں"
+  },
   "landing": {
     "chooseLanguage": "اپنی زبان منتخب کریں",
     "listen": "قرآن سنیں",
@@ -69,5 +75,19 @@
     "loadingDuas": "دعائیں لوڈ ہو رہی ہیں...",
     "errorCategories": "زمرے لوڈ نہیں ہو سکے۔",
     "errorDuas": "دعائیں لوڈ نہیں ہو سکیں۔"
+  },
+  "read": {
+    "subtitle": "پڑھنے کے لیے سورت منتخب کریں",
+    "display": "دکھائیں",
+    "options": "دکھانے کے اختیارات",
+    "sound": "آواز",
+    "soundOn": "تلاوت آن",
+    "soundOff": "تلاوت کے بغیر",
+    "translation": "ترجمہ",
+    "translationOn": "ترجمہ دکھایا جا رہا ہے",
+    "translationOff": "صرف عربی",
+    "noTranslation": "اس زبان میں ترجمہ دستیاب نہیں",
+    "loading": "سورت لوڊ ہو رہی ہے...",
+    "error": "سورت لوڊ نہیں ہو سکی۔"
   }
 }

@@ -1,5 +1,7 @@
 {
-  "app": { "name": "قرآن الأمة" },
+  "app": {
+    "name": "قرآن الأمة"
+  },
   "menu": {
     "open": "القائمة",
     "home": "الرئيسية",
@@ -39,8 +41,12 @@
     "apiCredit": "البيانات مقدَّمة من واجهة Ummah API، كصدقة جارية للأمة.",
     "version": "الإصدار"
   },
-  "player": { "nowPlaying": "قيد التشغيل الآن" },
-  "reciter": { "title": "اختر القارئ" },
+  "player": {
+    "nowPlaying": "قيد التشغيل الآن"
+  },
+  "reciter": {
+    "title": "اختر القارئ"
+  },
   "landing": {
     "chooseLanguage": "اختر لغتك",
     "listen": "استماع القرآن",
@@ -69,5 +75,19 @@
     "loadingDuas": "جارٍ تحميل الأدعية...",
     "errorCategories": "تعذّر تحميل التصنيفات.",
     "errorDuas": "تعذّر تحميل الأدعية."
+  },
+  "read": {
+    "subtitle": "اختر سورة للقراءة",
+    "display": "عرض",
+    "options": "خيارات العرض",
+    "sound": "الصوت",
+    "soundOn": "التلاوة مفعّلة",
+    "soundOff": "بدون تلاوة",
+    "translation": "الترجمة",
+    "translationOn": "عرض الترجمة",
+    "translationOff": "العربية فقط",
+    "noTranslation": "الترجمة غير متوفرة بهذه اللغة",
+    "loading": "جارٍ تحميل السورة...",
+    "error": "تعذّر تحميل السورة."
   }
 }
