@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
 
+import { DateBar } from '../src/components/DateBar';
 import { LanguagePicker } from '../src/components/LanguagePicker';
 import { COLORS } from '../src/constants/config';
 import { LANGUAGES } from '../src/constants/languages';
@@ -36,6 +37,7 @@ export default function LandingScreen() {
 
   return (
     <View style={[styles.container, dark && styles.containerDark]}>
+      <DateBar />
       <TouchableOpacity
         style={[styles.languageBanner, isRTL && styles.languageBannerRTL]}
         onPress={() => setLanguagePickerVisible(true)}
