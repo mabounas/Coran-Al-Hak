@@ -53,6 +53,8 @@
     "comingSoon": "Próximamente"
   },
   "qibla": {
+    "intro": "Necesitamos tu ubicación para encontrar la dirección de la Qibla.",
+    "start": "Encontrar la Qibla",
     "locating": "Obteniendo tu ubicación...",
     "permissionDenied": "Se requiere permiso de ubicación para encontrar la dirección de la Qibla.",
     "error": "No se pudo determinar la dirección de la Qibla.",

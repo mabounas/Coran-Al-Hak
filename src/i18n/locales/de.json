@@ -53,6 +53,8 @@
     "comingSoon": "Demnächst verfügbar"
   },
   "qibla": {
+    "intro": "Wir benötigen Ihren Standort, um die Qibla-Richtung zu finden.",
+    "start": "Qibla finden",
     "locating": "Standort wird ermittelt...",
     "permissionDenied": "Standortzugriff ist erforderlich, um die Qibla-Richtung zu finden.",
     "error": "Die Qibla-Richtung konnte nicht ermittelt werden.",

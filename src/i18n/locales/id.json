@@ -53,6 +53,8 @@
     "comingSoon": "Segera hadir"
   },
   "qibla": {
+    "intro": "Kami memerlukan lokasi Anda untuk menemukan arah Kiblat.",
+    "start": "Temukan Kiblat",
     "locating": "Mendapatkan lokasi Anda...",
     "permissionDenied": "Izin lokasi diperlukan untuk menemukan arah Kiblat.",
     "error": "Tidak dapat menentukan arah Kiblat.",

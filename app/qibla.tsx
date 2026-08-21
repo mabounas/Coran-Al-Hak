@@ -7,7 +7,7 @@ import { fetchQiblaDirection } from '../src/api/qibla';
 import { COLORS } from '../src/constants/config';
 import { useLocale } from '../src/context/LocaleContext';
 
-type Status = 'loading' | 'denied' | 'error' | 'ready';
+type Status = 'idle' | 'loading' | 'denied' | 'error' | 'ready';
 
 export default function QiblaScreen() {
   const { t } = useTranslation();
@@ -15,48 +15,17 @@ export default function QiblaScreen() {
   const scheme = useColorScheme();
   const dark = scheme === 'dark';
 
-  const [status, setStatus] = useState<Status>('loading');
+  const [status, setStatus] = useState<Status>('idle');
   const [bearing, setBearing] = useState<number | null>(null);
   const [heading, setHeading] = useState(0);
   const rotation = useRef(new Animated.Value(0)).current;
+  const headingSubscription = useRef<Location.LocationSubscription | undefined>(undefined);
 
   useEffect(() => {
-    if (status !== 'loading') return;
-
-    let cancelled = false;
-    let headingSubscription: Location.LocationSubscription | undefined;
-
-    (async () => {
-      const { status: permissionStatus } = await Location.requestForegroundPermissionsAsync();
-      if (permissionStatus !== 'granted') {
-        if (!cancelled) setStatus('denied');
-        return;
-      }
-
-      try {
-        const position = await Location.getCurrentPositionAsync({});
-        const direction = await fetchQiblaDirection(
-          position.coords.latitude,
-          position.coords.longitude
-        );
-        if (cancelled) return;
-        setBearing(direction);
-        setStatus('ready');
-
-        headingSubscription = await Location.watchHeadingAsync((event) => {
-          const value = event.trueHeading >= 0 ? event.trueHeading : event.magHeading;
-          setHeading(value);
-        });
-      } catch {
-        if (!cancelled) setStatus('error');
-      }
-    })();
-
     return () => {
-      cancelled = true;
-      headingSubscription?.remove();
+      headingSubscription.current?.remove();
     };
-  }, [status]);
+  }, []);
 
   useEffect(() => {
     if (bearing === null) return;
@@ -68,12 +37,51 @@ export default function QiblaScreen() {
     }).start();
   }, [bearing, heading, rotation]);
 
-  const retry = () => setStatus('loading');
+  // Must run directly from a user tap (onPress), not from an effect on mount:
+  // Safari on iOS silently refuses the geolocation prompt otherwise.
+  const start = async () => {
+    setStatus('loading');
 
-  if (status === 'loading') {
+    const { status: permissionStatus } = await Location.requestForegroundPermissionsAsync();
+    if (permissionStatus !== 'granted') {
+      setStatus('denied');
+      return;
+    }
+
+    try {
+      const position = await Location.getCurrentPositionAsync({});
+      const direction = await fetchQiblaDirection(
+        position.coords.latitude,
+        position.coords.longitude
+      );
+      setBearing(direction);
+      setStatus('ready');
+
+      headingSubscription.current = await Location.watchHeadingAsync((event) => {
+        const value = event.trueHeading >= 0 ? event.trueHeading : event.magHeading;
+        setHeading(value);
+      });
+    } catch {
+      setStatus('error');
+    }
+  };
+
+  if (status === 'idle' || status === 'loading') {
     return (
       <View style={[styles.centered, dark && styles.centeredDark]}>
-        <Text style={[styles.message, dark && styles.textDark]}>{t('qibla.locating')}</Text>
+        <Text style={styles.compassIcon}>🧭</Text>
+        {status === 'loading' ? (
+          <Text style={[styles.message, dark && styles.textDark]}>{t('qibla.locating')}</Text>
+        ) : (
+          <>
+            <Text style={[styles.message, dark && styles.textDark, styles.textCenter]}>
+              {t('qibla.intro')}
+            </Text>
+            <TouchableOpacity style={styles.retryButton} onPress={start}>
+              <Text style={styles.retryText}>{t('qibla.start')}</Text>
+            </TouchableOpacity>
+          </>
+        )}
       </View>
     );
   }
@@ -84,7 +92,7 @@ export default function QiblaScreen() {
         <Text style={[styles.errorTitle, dark && styles.textDark]}>
           {status === 'denied' ? t('qibla.permissionDenied') : t('qibla.error')}
         </Text>
-        <TouchableOpacity style={styles.retryButton} onPress={retry}>
+        <TouchableOpacity style={styles.retryButton} onPress={start}>
           <Text style={styles.retryText}>{t('home.retry')}</Text>
         </TouchableOpacity>
       </View>
@@ -134,12 +142,15 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 12,
+    gap: 14,
     padding: 24,
     backgroundColor: COLORS.background,
   },
   centeredDark: {
     backgroundColor: COLORS.backgroundDark,
+  },
+  compassIcon: {
+    fontSize: 48,
   },
   message: {
     fontSize: 15,

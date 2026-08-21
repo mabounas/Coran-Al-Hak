@@ -53,6 +53,8 @@
     "comingSoon": "Bientôt disponible"
   },
   "qibla": {
+    "intro": "Nous avons besoin de votre position pour trouver la direction de la Qibla.",
+    "start": "Trouver la Qibla",
     "locating": "Récupération de votre position...",
     "permissionDenied": "L'autorisation de localisation est nécessaire pour trouver la direction de la Qibla.",
     "error": "Impossible de déterminer la direction de la Qibla.",

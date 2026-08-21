@@ -53,6 +53,8 @@
     "comingSoon": "Yakında"
   },
   "qibla": {
+    "intro": "Kıble yönünü bulmak için konumunuza ihtiyacımız var.",
+    "start": "Kıbleyi Bul",
     "locating": "Konumunuz belirleniyor...",
     "permissionDenied": "Kıble yönünü bulmak için konum izni gereklidir.",
     "error": "Kıble yönü belirlenemedi.",

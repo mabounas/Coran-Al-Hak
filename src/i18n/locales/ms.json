@@ -53,6 +53,8 @@
     "comingSoon": "Akan datang"
   },
   "qibla": {
+    "intro": "Kami memerlukan lokasi anda untuk mencari arah Kiblat.",
+    "start": "Cari Kiblat",
     "locating": "Mendapatkan lokasi anda...",
     "permissionDenied": "Kebenaran lokasi diperlukan untuk mencari arah Kiblat.",
     "error": "Tidak dapat menentukan arah Kiblat.",

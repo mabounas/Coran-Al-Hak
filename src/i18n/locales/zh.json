@@ -53,6 +53,8 @@
     "comingSoon": "即将推出"
   },
   "qibla": {
+    "intro": "我们需要您的位置来确定朝拜方向。",
+    "start": "查找朝拜方向",
     "locating": "正在获取您的位置...",
     "permissionDenied": "需要定位权限才能确定朝拜方向。",
     "error": "无法确定朝拜方向。",
