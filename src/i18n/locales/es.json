@@ -90,5 +90,21 @@
     "verse": "Versículo {{number}}",
     "tapHint": "Toca un versículo para verlo en árabe y traducido",
     "textLanguage": "Idioma del texto"
+  },
+  "search": {
+    "placeholder": "Escribe una palabra para buscar...",
+    "hint": "Busca en el texto árabe, la transliteración y la traducción inglesa",
+    "intro": "Escribe una palabra o usa el micrófono para buscar en el Corán",
+    "listening": "Escuchando... habla",
+    "micStart": "Dictar la palabra",
+    "micDenied": "Acceso al micrófono denegado",
+    "micError": "El dictado falló, inténtalo de nuevo",
+    "micUnavailable": "El dictado no está disponible en este dispositivo",
+    "loading": "Buscando...",
+    "error": "La búsqueda falló.",
+    "resultsCount": "{{count}} resultados para «{{query}}»",
+    "limitNotice": "La API devuelve como máximo {{limit}} resultados",
+    "noResults": "Sin resultados para «{{query}}»",
+    "openSurah": "Abrir la sura"
   }
 }

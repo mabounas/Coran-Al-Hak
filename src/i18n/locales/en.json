@@ -90,5 +90,21 @@
     "verse": "Verse {{number}}",
     "tapHint": "Tap a verse to see it in Arabic and translated",
     "textLanguage": "Text language"
+  },
+  "search": {
+    "placeholder": "Type a word to search...",
+    "hint": "Searches the Arabic text, the transliteration and the English translation",
+    "intro": "Type a word or use the microphone to search the Quran",
+    "listening": "Listening... speak now",
+    "micStart": "Dictate the word",
+    "micDenied": "Microphone access denied",
+    "micError": "Dictation failed, try again",
+    "micUnavailable": "Dictation is not available on this device",
+    "loading": "Searching...",
+    "error": "The search failed.",
+    "resultsCount": "{{count}} results for “{{query}}”",
+    "limitNotice": "The API returns at most {{limit}} results",
+    "noResults": "No results for “{{query}}”",
+    "openSurah": "Open the surah"
   }
 }

@@ -90,5 +90,21 @@
     "verse": "Ajet {{number}}",
     "tapHint": "Dodirnite ajet da ga vidite na arapskom i prevedenog",
     "textLanguage": "Jezik teksta"
+  },
+  "search": {
+    "placeholder": "Upišite riječ za pretragu...",
+    "hint": "Pretražuje arapski tekst, transliteraciju i engleski prijevod",
+    "intro": "Upišite riječ ili koristite mikrofon za pretragu Kur'ana",
+    "listening": "Slušam... govorite",
+    "micStart": "Izgovorite riječ",
+    "micDenied": "Pristup mikrofonu odbijen",
+    "micError": "Diktiranje nije uspjelo, pokušajte ponovo",
+    "micUnavailable": "Diktiranje nije dostupno na ovom uređaju",
+    "loading": "Pretraga u toku...",
+    "error": "Pretraga nije uspjela.",
+    "resultsCount": "{{count}} rezultata za „{{query}}“",
+    "limitNotice": "API vraća najviše {{limit}} rezultata",
+    "noResults": "Nema rezultata za „{{query}}“",
+    "openSurah": "Otvori suru"
   }
 }

@@ -90,5 +90,21 @@
     "verse": "{{number}}. ayet",
     "tapHint": "Ayeti Arapça ve mealiyle görmek için dokunun",
     "textLanguage": "Metin dili"
+  },
+  "search": {
+    "placeholder": "Aranacak kelimeyi yazın...",
+    "hint": "Arapça metin, transliterasyon ve İngilizce mealde arar",
+    "intro": "Kuran'da aramak için bir kelime yazın veya mikrofonu kullanın",
+    "listening": "Dinleniyor... konuşun",
+    "micStart": "Kelimeyi söyleyin",
+    "micDenied": "Mikrofon erişimi reddedildi",
+    "micError": "Dikte başarısız, tekrar deneyin",
+    "micUnavailable": "Bu cihazda dikte kullanılamıyor",
+    "loading": "Aranıyor...",
+    "error": "Arama başarısız oldu.",
+    "resultsCount": "“{{query}}” için {{count}} sonuç",
+    "limitNotice": "API en fazla {{limit}} sonuç döndürür",
+    "noResults": "“{{query}}” için sonuç yok",
+    "openSurah": "Sureyi aç"
   }
 }

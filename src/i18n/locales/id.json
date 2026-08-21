@@ -90,5 +90,21 @@
     "verse": "Ayat {{number}}",
     "tapHint": "Ketuk ayat untuk melihatnya dalam bahasa Arab dan terjemahannya",
     "textLanguage": "Bahasa teks"
+  },
+  "search": {
+    "placeholder": "Ketik kata untuk dicari...",
+    "hint": "Mencari dalam teks Arab, transliterasi, dan terjemahan Inggris",
+    "intro": "Ketik kata atau gunakan mikrofon untuk mencari dalam Al-Qur'an",
+    "listening": "Mendengarkan... silakan bicara",
+    "micStart": "Ucapkan katanya",
+    "micDenied": "Akses mikrofon ditolak",
+    "micError": "Dikte gagal, coba lagi",
+    "micUnavailable": "Dikte tidak tersedia di perangkat ini",
+    "loading": "Mencari...",
+    "error": "Pencarian gagal.",
+    "resultsCount": "{{count}} hasil untuk \"{{query}}\"",
+    "limitNotice": "API mengembalikan maksimal {{limit}} hasil",
+    "noResults": "Tidak ada hasil untuk \"{{query}}\"",
+    "openSurah": "Buka surah"
   }
 }

@@ -21,7 +21,14 @@
           "locationWhenInUsePermission": "Allow Coran Al Ummah to use your location to find the Qibla direction."
         }
       ],
-      "expo-font"
+      "expo-font",
+      [
+        "expo-speech-recognition",
+        {
+          "microphonePermission": "Allow Coran Al Ummah to use the microphone to search the Quran by voice.",
+          "speechRecognitionPermission": "Allow Coran Al Ummah to use speech recognition to search the Quran by voice."
+        }
+      ]
     ],
     "ios": {
       "supportsTablet": true,

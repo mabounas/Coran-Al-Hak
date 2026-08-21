@@ -90,5 +90,21 @@
     "verse": "Verset {{number}}",
     "tapHint": "Touchez un verset pour le voir en arabe et traduit",
     "textLanguage": "Langue du texte"
+  },
+  "search": {
+    "placeholder": "Tapez un mot à chercher...",
+    "hint": "Recherche dans le texte arabe, la translittération et la traduction anglaise",
+    "intro": "Tapez un mot ou utilisez le microphone pour chercher dans le Coran",
+    "listening": "Écoute en cours... parlez",
+    "micStart": "Dicter le mot",
+    "micDenied": "Accès au microphone refusé",
+    "micError": "La dictée a échoué, réessayez",
+    "micUnavailable": "La dictée n'est pas disponible sur cet appareil",
+    "loading": "Recherche en cours...",
+    "error": "La recherche a échoué.",
+    "resultsCount": "{{count}} résultats pour « {{query}} »",
+    "limitNotice": "L'API renvoie au maximum {{limit}} résultats",
+    "noResults": "Aucun résultat pour « {{query}} »",
+    "openSurah": "Ouvrir la sourate"
   }
 }

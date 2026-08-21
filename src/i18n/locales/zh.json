@@ -90,5 +90,21 @@
     "verse": "第 {{number}} 节",
     "tapHint": "点按经节以查看阿拉伯原文和翻译",
     "textLanguage": "文本语言"
+  },
+  "search": {
+    "placeholder": "输入要搜索的词...",
+    "hint": "在阿拉伯原文、转写和英文翻译中搜索",
+    "intro": "输入词语或使用麦克风在《古兰经》中搜索",
+    "listening": "正在聆听……请说",
+    "micStart": "口述该词",
+    "micDenied": "麦克风权限被拒绝",
+    "micError": "语音输入失败，请重试",
+    "micUnavailable": "此设备不支持语音输入",
+    "loading": "搜索中……",
+    "error": "搜索失败。",
+    "resultsCount": "“{{query}}”的 {{count}} 条结果",
+    "limitNotice": "接口最多返回 {{limit}} 条结果",
+    "noResults": "没有找到“{{query}}”",
+    "openSurah": "打开该章"
   }
 }
