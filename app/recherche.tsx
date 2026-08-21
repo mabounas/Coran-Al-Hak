@@ -14,11 +14,34 @@ import {
 } from 'react-native';
 
 import { SEARCH_LIMIT, searchQuran } from '../src/api/search';
+import { containsArabic } from '../src/constants/arabic';
 import { COLORS } from '../src/constants/config';
 import { getSpeechLocale } from '../src/constants/speechLocales';
+import { getTranslationKey } from '../src/constants/translations';
 import { useLocale } from '../src/context/LocaleContext';
+import { useSurahs } from '../src/context/SurahsContext';
+import { collectForms, searchLocal } from '../src/data/localSearch';
 import { useDictation, type DictationError } from '../src/hooks/useDictation';
-import type { SearchData, SearchResult } from '../src/types/search';
+
+// How many vocalised spellings of an Arabic word we ask the API to translate.
+const MAX_FORMS = 6;
+
+interface ResultItem {
+  verseKey: string;
+  surahNumber: number;
+  ayah: number;
+  surahName: string;
+  arabic: string;
+  translation?: string;
+  matchedIn: string;
+}
+
+interface Results {
+  query: string;
+  total: number;
+  capped: boolean;
+  items: ResultItem[];
+}
 
 const MIC_ERROR_KEYS: Record<DictationError, string> = {
   denied: 'search.micDenied',
@@ -42,25 +65,81 @@ export default function SearchScreen() {
   const [fontsLoaded] = useFonts({ AmiriQuran_400Regular });
   const arabicStyle = fontsLoaded ? { fontFamily: 'AmiriQuran_400Regular' } : null;
 
+  const { surahs } = useSurahs();
   const [query, setQuery] = useState('');
-  const [data, setData] = useState<SearchData | null>(null);
+  const [data, setData] = useState<Results | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const runSearch = useCallback(async (term: string) => {
-    const trimmed = term.trim();
-    if (!trimmed) return;
-    setLoading(true);
-    setError(null);
-    try {
-      setData(await searchQuran(trimmed));
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Unknown error');
-      setData(null);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  const translationKey = getTranslationKey(language);
+
+  const runSearch = useCallback(
+    async (term: string) => {
+      const trimmed = term.trim();
+      if (!trimmed) return;
+      setLoading(true);
+      setError(null);
+      try {
+        if (containsArabic(trimmed)) {
+          // The API matches the vocalised text literally, so an Arabic word
+          // typed or dictated without tashkeel finds nothing there. We match
+          // locally, then ask the API to translate the spellings we found.
+          const matches = searchLocal(trimmed);
+          const forms = collectForms(matches, MAX_FORMS);
+          const translations = new Map<string, string>();
+
+          const responses = await Promise.allSettled(
+            forms.map((form) => searchQuran(form, translationKey))
+          );
+          responses.forEach((response) => {
+            if (response.status !== 'fulfilled') return;
+            response.value.results.forEach((result) => {
+              translations.set(result.verse_key, result.translation);
+            });
+          });
+
+          setData({
+            query: trimmed,
+            total: matches.length,
+            capped: false,
+            items: matches.map((match) => ({
+              verseKey: match.verseKey,
+              surahNumber: match.surahNumber,
+              ayah: match.ayah,
+              surahName:
+                surahs.find((s) => s.number === match.surahNumber)?.name_english ??
+                `Surah ${match.surahNumber}`,
+              arabic: match.arabic,
+              translation: translations.get(match.verseKey),
+              matchedIn: 'arabic',
+            })),
+          });
+        } else {
+          const result = await searchQuran(trimmed, translationKey);
+          setData({
+            query: trimmed,
+            total: result.results_count,
+            capped: result.results_count >= SEARCH_LIMIT,
+            items: result.results.map((item) => ({
+              verseKey: item.verse_key,
+              surahNumber: item.surah_number,
+              ayah: item.ayah,
+              surahName: item.surah_name,
+              arabic: item.arabic,
+              translation: item.translation,
+              matchedIn: item.matched_in,
+            })),
+          });
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Unknown error');
+        setData(null);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [surahs, translationKey]
+  );
 
   const speechLocale = getSpeechLocale(language);
 
@@ -73,31 +152,33 @@ export default function SearchScreen() {
     },
   });
 
-  const renderResult = ({ item }: { item: SearchResult }) => (
+  const renderResult = ({ item }: { item: ResultItem }) => (
     <View style={[styles.card, dark && styles.cardDark]}>
       <View style={[styles.cardHeader, isRTL && styles.rowRTL]}>
         <View style={styles.badge}>
           <Text style={styles.badgeText}>
-            {item.surah_number}:{item.ayah}
+            {item.surahNumber}:{item.ayah}
           </Text>
         </View>
         <Text style={[styles.surahName, dark && styles.textDark]} numberOfLines={1}>
-          {item.surah_name}
+          {item.surahName}
         </Text>
         <View style={styles.matchTag}>
-          <Text style={styles.matchTagText}>{MATCH_LABELS[item.matched_in] ?? item.matched_in}</Text>
+          <Text style={styles.matchTagText}>{MATCH_LABELS[item.matchedIn] ?? item.matchedIn}</Text>
         </View>
       </View>
 
       <Text style={[styles.arabic, dark && styles.textDark, arabicStyle]}>{item.arabic}</Text>
-      <Text style={[styles.translation, dark && styles.mutedDark]}>{item.translation}</Text>
+      {item.translation ? (
+        <Text style={[styles.translation, dark && styles.mutedDark]}>{item.translation}</Text>
+      ) : null}
 
       <TouchableOpacity
         style={styles.openButton}
         onPress={() =>
           router.push({
             pathname: '/lecture/[number]',
-            params: { number: String(item.surah_number), sound: '0' },
+            params: { number: String(item.surahNumber), sound: '0' },
           } as never)
         }
       >
@@ -160,16 +241,17 @@ export default function SearchScreen() {
         </View>
       ) : data ? (
         <FlatList
-          data={data.results}
-          keyExtractor={(item) => item.verse_key}
+          data={data.items}
+          keyExtractor={(item) => item.verseKey}
           renderItem={renderResult}
           contentContainerStyle={styles.listContent}
+          initialNumToRender={8}
           ListHeaderComponent={
             <View style={styles.resultsHeader}>
               <Text style={[styles.resultsCount, dark && styles.textDark]}>
-                {t('search.resultsCount', { count: data.results_count, query: data.query })}
+                {t('search.resultsCount', { count: data.total, query: data.query })}
               </Text>
-              {data.results_count >= SEARCH_LIMIT ? (
+              {data.capped ? (
                 <Text style={[styles.capNotice, dark && styles.mutedDark]}>
                   {t('search.limitNotice', { limit: SEARCH_LIMIT })}
                 </Text>

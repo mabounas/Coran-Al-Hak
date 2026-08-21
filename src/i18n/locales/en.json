@@ -93,7 +93,7 @@
   },
   "search": {
     "placeholder": "Type a word to search...",
-    "hint": "Searches the Arabic text, the transliteration and the English translation",
+    "hint": "Searches the Arabic text, the transliteration and the translation",
     "intro": "Type a word or use the microphone to search the Quran",
     "listening": "Listening... speak now",
     "micStart": "Dictate the word",

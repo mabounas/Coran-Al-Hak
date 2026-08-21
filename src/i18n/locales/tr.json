@@ -93,7 +93,7 @@
   },
   "search": {
     "placeholder": "Aranacak kelimeyi yazın...",
-    "hint": "Arapça metin, transliterasyon ve İngilizce mealde arar",
+    "hint": "Arapça metin, transliterasyon ve mealde arar",
     "intro": "Kuran'da aramak için bir kelime yazın veya mikrofonu kullanın",
     "listening": "Dinleniyor... konuşun",
     "micStart": "Kelimeyi söyleyin",

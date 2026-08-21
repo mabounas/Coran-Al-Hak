@@ -93,7 +93,7 @@
   },
   "search": {
     "placeholder": "Ein Wort zum Suchen eingeben...",
-    "hint": "Durchsucht den arabischen Text, die Transliteration und die englische Übersetzung",
+    "hint": "Durchsucht den arabischen Text, die Transliteration und die Übersetzung",
     "intro": "Gib ein Wort ein oder nutze das Mikrofon, um im Koran zu suchen",
     "listening": "Höre zu... sprich jetzt",
     "micStart": "Wort diktieren",
