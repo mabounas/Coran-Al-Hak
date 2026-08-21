@@ -1,9 +1,5 @@
 import { AmiriQuran_400Regular, useFonts } from '@expo-google-fonts/amiri-quran';
 import { useRouter } from 'expo-router';
-import {
-  ExpoSpeechRecognitionModule,
-  useSpeechRecognitionEvent,
-} from 'expo-speech-recognition';
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -21,7 +17,14 @@ import { SEARCH_LIMIT, searchQuran } from '../src/api/search';
 import { COLORS } from '../src/constants/config';
 import { getSpeechLocale } from '../src/constants/speechLocales';
 import { useLocale } from '../src/context/LocaleContext';
+import { useDictation, type DictationError } from '../src/hooks/useDictation';
 import type { SearchData, SearchResult } from '../src/types/search';
+
+const MIC_ERROR_KEYS: Record<DictationError, string> = {
+  denied: 'search.micDenied',
+  unsupported: 'search.micUnavailable',
+  failed: 'search.micError',
+};
 
 const MATCH_LABELS: Record<string, string> = {
   arabic: 'العربية',
@@ -43,8 +46,6 @@ export default function SearchScreen() {
   const [data, setData] = useState<SearchData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [listening, setListening] = useState(false);
-  const [micError, setMicError] = useState<string | null>(null);
 
   const runSearch = useCallback(async (term: string) => {
     const trimmed = term.trim();
@@ -61,51 +62,16 @@ export default function SearchScreen() {
     }
   }, []);
 
+  const speechLocale = getSpeechLocale(language);
+
   // Dictation feeds the very same search as the keyboard does.
-  useSpeechRecognitionEvent('result', (event) => {
-    const transcript = event.results?.[0]?.transcript ?? '';
-    if (!transcript) return;
-    setQuery(transcript);
-    if (event.isFinal) {
-      setListening(false);
-      runSearch(transcript);
-    }
+  const { listening, error: micError, start: startListening, stop: stopListening } = useDictation({
+    locale: speechLocale,
+    onResult: (transcript, isFinal) => {
+      setQuery(transcript);
+      if (isFinal) runSearch(transcript);
+    },
   });
-
-  useSpeechRecognitionEvent('end', () => setListening(false));
-
-  useSpeechRecognitionEvent('error', () => {
-    setListening(false);
-    setMicError(t('search.micError'));
-  });
-
-  const startListening = useCallback(async () => {
-    setMicError(null);
-    try {
-      const permission = await ExpoSpeechRecognitionModule.requestPermissionsAsync();
-      if (!permission.granted) {
-        setMicError(t('search.micDenied'));
-        return;
-      }
-      ExpoSpeechRecognitionModule.start({
-        lang: getSpeechLocale(language),
-        interimResults: true,
-        continuous: false,
-      });
-      setListening(true);
-    } catch {
-      setMicError(t('search.micUnavailable'));
-    }
-  }, [language, t]);
-
-  const stopListening = useCallback(() => {
-    try {
-      ExpoSpeechRecognitionModule.stop();
-    } catch {
-      // The recognizer was already stopped.
-    }
-    setListening(false);
-  }, []);
 
   const renderResult = ({ item }: { item: SearchResult }) => (
     <View style={[styles.card, dark && styles.cardDark]}>
@@ -170,9 +136,11 @@ export default function SearchScreen() {
         </View>
 
         {listening ? (
-          <Text style={styles.listening}>{t('search.listening')}</Text>
+          <Text style={styles.listening}>
+            {t('search.listening')} · {speechLocale}
+          </Text>
         ) : micError ? (
-          <Text style={styles.micErrorText}>{micError}</Text>
+          <Text style={styles.micErrorText}>{t(MIC_ERROR_KEYS[micError])}</Text>
         ) : (
           <Text style={[styles.hint, dark && styles.mutedDark]}>{t('search.hint')}</Text>
         )}
