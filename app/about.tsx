@@ -38,7 +38,6 @@ export default function AboutScreen() {
       </View>
 
       <View style={[styles.card, dark && styles.cardDark]}>
-        <Text style={[styles.cardTitle, dark && styles.textDark]}>{t('about.apiCredit')}</Text>
         <Text style={[styles.arabicCredit, dark && styles.textDark]}>
           محمد أبوالنصر · صدقة جارية
         </Text>
