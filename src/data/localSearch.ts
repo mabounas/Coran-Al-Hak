@@ -72,17 +72,3 @@ export function searchLocal(query: string): LocalMatch[] {
 
   return matches;
 }
-
-/** The distinct vocalised spellings a query matched, most frequent first. */
-export function collectForms(matches: LocalMatch[], max: number): string[] {
-  const counts = new Map<string, number>();
-  for (const match of matches) {
-    for (const form of match.forms) {
-      counts.set(form, (counts.get(form) ?? 0) + 1);
-    }
-  }
-  return [...counts.entries()]
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, max)
-    .map(([form]) => form);
-}

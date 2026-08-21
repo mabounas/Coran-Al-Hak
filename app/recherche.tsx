@@ -1,5 +1,4 @@
 import { AmiriQuran_400Regular, useFonts } from '@expo-google-fonts/amiri-quran';
-import { useRouter } from 'expo-router';
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -14,34 +13,15 @@ import {
 } from 'react-native';
 
 import { SEARCH_LIMIT, searchQuran } from '../src/api/search';
+import { SearchResultCard, type SearchResultItem } from '../src/components/SearchResultCard';
 import { containsArabic } from '../src/constants/arabic';
 import { COLORS } from '../src/constants/config';
 import { getSpeechLocale } from '../src/constants/speechLocales';
 import { getTranslationKey } from '../src/constants/translations';
 import { useLocale } from '../src/context/LocaleContext';
 import { useSurahs } from '../src/context/SurahsContext';
-import { collectForms, searchLocal } from '../src/data/localSearch';
+import { searchLocal } from '../src/data/localSearch';
 import { useDictation, type DictationError } from '../src/hooks/useDictation';
-
-// How many vocalised spellings of an Arabic word we ask the API to translate.
-const MAX_FORMS = 6;
-
-interface ResultItem {
-  verseKey: string;
-  surahNumber: number;
-  ayah: number;
-  surahName: string;
-  arabic: string;
-  translation?: string;
-  matchedIn: string;
-}
-
-interface Results {
-  query: string;
-  total: number;
-  capped: boolean;
-  items: ResultItem[];
-}
 
 const MIC_ERROR_KEYS: Record<DictationError, string> = {
   denied: 'search.micDenied',
@@ -49,21 +29,21 @@ const MIC_ERROR_KEYS: Record<DictationError, string> = {
   failed: 'search.micError',
 };
 
-const MATCH_LABELS: Record<string, string> = {
-  arabic: 'العربية',
-  transliteration: 'Translit.',
-  sahih_international: 'EN',
-};
+interface Results {
+  query: string;
+  total: number;
+  capped: boolean;
+  items: SearchResultItem[];
+}
 
 export default function SearchScreen() {
   const { t } = useTranslation();
   const { language, isRTL } = useLocale();
-  const router = useRouter();
   const scheme = useColorScheme();
   const dark = scheme === 'dark';
 
   const [fontsLoaded] = useFonts({ AmiriQuran_400Regular });
-  const arabicStyle = fontsLoaded ? { fontFamily: 'AmiriQuran_400Regular' } : null;
+  const arabicFont = fontsLoaded ? 'AmiriQuran_400Regular' : undefined;
 
   const { surahs } = useSurahs();
   const [query, setQuery] = useState('');
@@ -72,6 +52,7 @@ export default function SearchScreen() {
   const [error, setError] = useState<string | null>(null);
 
   const translationKey = getTranslationKey(language);
+  const speechLocale = getSpeechLocale(language);
 
   const runSearch = useCallback(
     async (term: string) => {
@@ -81,23 +62,10 @@ export default function SearchScreen() {
       setError(null);
       try {
         if (containsArabic(trimmed)) {
-          // The API matches the vocalised text literally, so an Arabic word
-          // typed or dictated without tashkeel finds nothing there. We match
-          // locally, then ask the API to translate the spellings we found.
+          // The API compares the vocalised text literally, so an Arabic word
+          // written or dictated without tashkeel never matches there. We match
+          // the mushaf text locally on folded letters instead.
           const matches = searchLocal(trimmed);
-          const forms = collectForms(matches, MAX_FORMS);
-          const translations = new Map<string, string>();
-
-          const responses = await Promise.allSettled(
-            forms.map((form) => searchQuran(form, translationKey))
-          );
-          responses.forEach((response) => {
-            if (response.status !== 'fulfilled') return;
-            response.value.results.forEach((result) => {
-              translations.set(result.verse_key, result.translation);
-            });
-          });
-
           setData({
             query: trimmed,
             total: matches.length,
@@ -108,9 +76,8 @@ export default function SearchScreen() {
               ayah: match.ayah,
               surahName:
                 surahs.find((s) => s.number === match.surahNumber)?.name_english ??
-                `Surah ${match.surahNumber}`,
+                `${match.surahNumber}`,
               arabic: match.arabic,
-              translation: translations.get(match.verseKey),
               matchedIn: 'arabic',
             })),
           });
@@ -126,7 +93,10 @@ export default function SearchScreen() {
               ayah: item.ayah,
               surahName: item.surah_name,
               arabic: item.arabic,
-              translation: item.translation,
+              // The endpoint answers in English whatever we asked for; the card
+              // fetches the profile language itself when it differs.
+              translation:
+                translationKey === 'sahih_international' ? item.translation : undefined,
               matchedIn: item.matched_in,
             })),
           });
@@ -141,51 +111,18 @@ export default function SearchScreen() {
     [surahs, translationKey]
   );
 
-  const speechLocale = getSpeechLocale(language);
-
   // Dictation feeds the very same search as the keyboard does.
   const { listening, error: micError, start: startListening, stop: stopListening } = useDictation({
     locale: speechLocale,
     onResult: (transcript, isFinal) => {
       setQuery(transcript);
-      if (isFinal) runSearch(transcript);
+      if (!isFinal) return;
+      runSearch(transcript);
+      // The searched word stays visible in the results header, so the field is
+      // emptied and ready for the next dictation.
+      setQuery('');
     },
   });
-
-  const renderResult = ({ item }: { item: ResultItem }) => (
-    <View style={[styles.card, dark && styles.cardDark]}>
-      <View style={[styles.cardHeader, isRTL && styles.rowRTL]}>
-        <View style={styles.badge}>
-          <Text style={styles.badgeText}>
-            {item.surahNumber}:{item.ayah}
-          </Text>
-        </View>
-        <Text style={[styles.surahName, dark && styles.textDark]} numberOfLines={1}>
-          {item.surahName}
-        </Text>
-        <View style={styles.matchTag}>
-          <Text style={styles.matchTagText}>{MATCH_LABELS[item.matchedIn] ?? item.matchedIn}</Text>
-        </View>
-      </View>
-
-      <Text style={[styles.arabic, dark && styles.textDark, arabicStyle]}>{item.arabic}</Text>
-      {item.translation ? (
-        <Text style={[styles.translation, dark && styles.mutedDark]}>{item.translation}</Text>
-      ) : null}
-
-      <TouchableOpacity
-        style={styles.openButton}
-        onPress={() =>
-          router.push({
-            pathname: '/lecture/[number]',
-            params: { number: String(item.surahNumber), sound: '0' },
-          } as never)
-        }
-      >
-        <Text style={styles.openButtonText}>{t('search.openSurah')}</Text>
-      </TouchableOpacity>
-    </View>
-  );
 
   return (
     <View style={[styles.container, dark && styles.containerDark]}>
@@ -243,7 +180,9 @@ export default function SearchScreen() {
         <FlatList
           data={data.items}
           keyExtractor={(item) => item.verseKey}
-          renderItem={renderResult}
+          renderItem={({ item }) => (
+            <SearchResultCard item={item} translationKey={translationKey} arabicFont={arabicFont} />
+          )}
           contentContainerStyle={styles.listContent}
           initialNumToRender={8}
           ListHeaderComponent={
@@ -409,82 +348,6 @@ const styles = StyleSheet.create({
     color: COLORS.muted,
     paddingHorizontal: 24,
     paddingTop: 20,
-  },
-  card: {
-    backgroundColor: COLORS.card,
-    borderRadius: 16,
-    padding: 14,
-    marginHorizontal: 16,
-    marginVertical: 6,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    gap: 10,
-  },
-  cardDark: {
-    backgroundColor: COLORS.cardDark,
-    borderColor: COLORS.borderDark,
-  },
-  cardHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  badge: {
-    backgroundColor: COLORS.primary,
-    borderRadius: 8,
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-  },
-  badgeText: {
-    color: '#fff',
-    fontSize: 12,
-    fontWeight: '700',
-  },
-  surahName: {
-    flex: 1,
-    fontSize: 14,
-    fontWeight: '600',
-    color: COLORS.text,
-  },
-  matchTag: {
-    borderWidth: 1,
-    borderColor: COLORS.gold,
-    borderRadius: 8,
-    paddingHorizontal: 8,
-    paddingVertical: 2,
-  },
-  matchTagText: {
-    fontSize: 11,
-    color: COLORS.gold,
-    fontWeight: '600',
-  },
-  arabic: {
-    fontSize: 22,
-    lineHeight: 46,
-    textAlign: 'right',
-    writingDirection: 'rtl',
-    color: COLORS.text,
-  },
-  translation: {
-    fontSize: 14,
-    lineHeight: 22,
-    color: COLORS.muted,
-    borderTopWidth: 1,
-    borderTopColor: COLORS.border,
-    paddingTop: 10,
-  },
-  openButton: {
-    alignSelf: 'flex-start',
-    borderWidth: 1,
-    borderColor: COLORS.primary,
-    borderRadius: 10,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-  },
-  openButtonText: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: COLORS.primary,
   },
   textDark: {
     color: COLORS.textDark,
