@@ -12,19 +12,23 @@ import {
   View,
 } from 'react-native';
 
+import { LanguagePicker } from '../src/components/LanguagePicker';
 import { SurahCard } from '../src/components/SurahCard';
 import { COLORS } from '../src/constants/config';
+import { LANGUAGES } from '../src/constants/languages';
 import { useLocale } from '../src/context/LocaleContext';
 import { useSurahs } from '../src/context/SurahsContext';
 import type { Surah } from '../src/types/quran';
 
 export default function SummaryScreen() {
   const { t } = useTranslation();
-  const { isRTL } = useLocale();
+  const { language, isRTL } = useLocale();
   const { surahs, loading, error, refresh } = useSurahs();
   const [query, setQuery] = useState('');
+  const [languagePickerVisible, setLanguagePickerVisible] = useState(false);
   const scheme = useColorScheme();
   const dark = scheme === 'dark';
+  const currentLanguage = LANGUAGES.find((lang) => lang.code === language);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -61,6 +65,19 @@ export default function SummaryScreen() {
   return (
     <View style={[styles.container, dark && styles.containerDark]}>
       <View style={styles.searchWrap}>
+        <View style={[styles.topRow, isRTL && styles.topRowRTL]}>
+          <Text style={[styles.subtitle, dark && styles.mutedDark]}>
+            {t('home.subtitle')}
+          </Text>
+          <TouchableOpacity
+            onPress={() => setLanguagePickerVisible(true)}
+            style={[styles.languageButton, dark && styles.languageButtonDark]}
+          >
+            <Text style={[styles.languageButtonText, dark && styles.textDark]}>
+              {currentLanguage?.nativeLabel ?? t('settings.language')}
+            </Text>
+          </TouchableOpacity>
+        </View>
         <TextInput
           value={query}
           onChangeText={setQuery}
@@ -72,10 +89,11 @@ export default function SummaryScreen() {
             { textAlign: isRTL ? 'right' : 'left' },
           ]}
         />
-        <Text style={[styles.subtitle, dark && styles.mutedDark]}>
-          {t('home.subtitle')}
-        </Text>
       </View>
+      <LanguagePicker
+        visible={languagePickerVisible}
+        onClose={() => setLanguagePickerVisible(false)}
+      />
       <FlatList
         data={filtered}
         keyExtractor={(item) => String(item.number)}
@@ -132,7 +150,32 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 14,
     paddingBottom: 6,
-    gap: 6,
+    gap: 8,
+  },
+  topRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  topRowRTL: {
+    flexDirection: 'row-reverse',
+  },
+  languageButton: {
+    backgroundColor: COLORS.card,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 5,
+  },
+  languageButtonDark: {
+    backgroundColor: COLORS.cardDark,
+    borderColor: COLORS.borderDark,
+  },
+  languageButtonText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: COLORS.primary,
   },
   search: {
     backgroundColor: COLORS.card,

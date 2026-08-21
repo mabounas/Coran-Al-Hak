@@ -5,12 +5,17 @@ import { ScrollView, StyleSheet, Text, useColorScheme, View } from 'react-native
 
 import { COLORS } from '../src/constants/config';
 import { LANGUAGES } from '../src/constants/languages';
+import { useLocale } from '../src/context/LocaleContext';
 
 export default function AboutScreen() {
   const { t } = useTranslation();
+  const { language } = useLocale();
   const scheme = useColorScheme();
   const dark = scheme === 'dark';
   const version = Constants.expoConfig?.version ?? '1.0.0';
+  const isArabic = language === 'ar';
+  const sadaqah = isArabic ? 'صدقة جارية' : 'Sadaqah Jariyah';
+  const creator = isArabic ? 'بقلم محمد أبوالنصر' : 'by Mohamed Abounasser';
 
   return (
     <ScrollView
@@ -18,7 +23,9 @@ export default function AboutScreen() {
       contentContainerStyle={styles.content}
     >
       <Text style={styles.crescent}>🌙</Text>
-      <Text style={[styles.appName, dark && styles.textDark]}>Coran Al Hak</Text>
+      <Text style={[styles.sadaqah, dark && styles.mutedDark]}>{sadaqah}</Text>
+      <Text style={[styles.appName, dark && styles.textDark]}>{t('app.name')}</Text>
+      <Text style={[styles.creator, dark && styles.mutedDark]}>{creator}</Text>
       <Text style={[styles.description, dark && styles.mutedDark]}>{t('about.description')}</Text>
 
       <View style={[styles.card, dark && styles.cardDark]}>
@@ -57,10 +64,22 @@ const styles = StyleSheet.create({
   crescent: {
     fontSize: 44,
   },
+  sadaqah: {
+    fontSize: 12,
+    fontWeight: '600',
+    letterSpacing: 0.5,
+    color: COLORS.gold,
+    textTransform: 'uppercase',
+  },
   appName: {
     fontSize: 22,
     fontWeight: '700',
     color: COLORS.primary,
+  },
+  creator: {
+    fontSize: 12,
+    color: COLORS.muted,
+    marginTop: -6,
   },
   description: {
     fontSize: 14,

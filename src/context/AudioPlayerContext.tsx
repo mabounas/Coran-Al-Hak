@@ -1,15 +1,17 @@
 import { useAudioPlayer, useAudioPlayerStatus, setAudioModeAsync } from 'expo-audio';
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
+import type { Reciter } from '../constants/reciters';
 import type { Surah } from '../types/quran';
 
 interface AudioPlayerContextValue {
   currentSurah: Surah | null;
+  currentReciter: Reciter | null;
   isPlaying: boolean;
   isBuffering: boolean;
   currentTime: number;
   duration: number;
-  playSurah: (surah: Surah) => void;
+  playSurah: (surah: Surah, audioUrl: string, reciter: Reciter) => void;
   togglePlayPause: () => void;
   stop: () => void;
 }
@@ -18,6 +20,7 @@ const AudioPlayerContext = createContext<AudioPlayerContextValue | undefined>(un
 
 export function AudioPlayerProvider({ children }: { children: React.ReactNode }) {
   const [currentSurah, setCurrentSurah] = useState<Surah | null>(null);
+  const [currentReciter, setCurrentReciter] = useState<Reciter | null>(null);
   const player = useAudioPlayer(null, { updateInterval: 500 });
   const status = useAudioPlayerStatus(player);
 
@@ -28,13 +31,14 @@ export function AudioPlayerProvider({ children }: { children: React.ReactNode })
     }).catch(() => {});
   }, []);
 
-  const playSurah = (surah: Surah) => {
-    if (currentSurah?.number === surah.number) {
+  const playSurah = (surah: Surah, audioUrl: string, reciter: Reciter) => {
+    if (currentSurah?.number === surah.number && currentReciter?.linkReciter === reciter.linkReciter) {
       player.play();
       return;
     }
     setCurrentSurah(surah);
-    player.replace(surah.audio.example_audio);
+    setCurrentReciter(reciter);
+    player.replace(audioUrl);
     player.play();
   };
 
@@ -50,11 +54,13 @@ export function AudioPlayerProvider({ children }: { children: React.ReactNode })
   const stop = () => {
     player.pause();
     setCurrentSurah(null);
+    setCurrentReciter(null);
   };
 
   const value = useMemo<AudioPlayerContextValue>(
     () => ({
       currentSurah,
+      currentReciter,
       isPlaying: status.playing,
       isBuffering: status.isBuffering,
       currentTime: status.currentTime,
@@ -63,7 +69,7 @@ export function AudioPlayerProvider({ children }: { children: React.ReactNode })
       togglePlayPause,
       stop,
     }),
-    [currentSurah, status.playing, status.isBuffering, status.currentTime, status.duration]
+    [currentSurah, currentReciter, status.playing, status.isBuffering, status.currentTime, status.duration]
   );
 
   return <AudioPlayerContext.Provider value={value}>{children}</AudioPlayerContext.Provider>;

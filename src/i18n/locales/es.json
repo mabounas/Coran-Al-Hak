@@ -1,5 +1,5 @@
 {
-  "app": { "name": "Corán Al Hak" },
+  "app": { "name": "Corán Al Ummah" },
   "menu": {
     "open": "Menú",
     "summary": "Índice",
@@ -34,9 +34,10 @@
   },
   "about": {
     "title": "Acerca de",
-    "description": "Corán Al Hak te permite escuchar y seguir la recitación del Sagrado Corán en varios idiomas.",
+    "description": "Corán Al Ummah te permite escuchar y seguir la recitación del Sagrado Corán en varios idiomas.",
     "apiCredit": "Datos proporcionados por la API Ummah, ofrecidos como sadaqah jariyah para la Umma.",
     "version": "Versión"
   },
-  "player": { "nowPlaying": "Reproduciendo ahora" }
+  "player": { "nowPlaying": "Reproduciendo ahora" },
+  "reciter": { "title": "Elige un recitador" }
 }

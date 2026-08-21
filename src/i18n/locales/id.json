@@ -1,5 +1,5 @@
 {
-  "app": { "name": "Coran Al Hak" },
+  "app": { "name": "Coran Al Ummah" },
   "menu": {
     "open": "Menu",
     "summary": "Daftar Isi",
@@ -34,9 +34,10 @@
   },
   "about": {
     "title": "Tentang",
-    "description": "Coran Al Hak memungkinkan Anda mendengarkan dan mengikuti bacaan Al-Qur'an dalam berbagai bahasa.",
+    "description": "Coran Al Ummah memungkinkan Anda mendengarkan dan mengikuti bacaan Al-Qur'an dalam berbagai bahasa.",
     "apiCredit": "Data disediakan oleh Ummah API, dipersembahkan sebagai sedekah jariyah untuk umat.",
     "version": "Versi"
   },
-  "player": { "nowPlaying": "Sedang diputar" }
+  "player": { "nowPlaying": "Sedang diputar" },
+  "reciter": { "title": "Pilih qari" }
 }

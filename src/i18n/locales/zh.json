@@ -1,5 +1,5 @@
 {
-  "app": { "name": "古兰经·哈克" },
+  "app": { "name": "古兰经·乌玛" },
   "menu": {
     "open": "菜单",
     "summary": "目录",
@@ -34,9 +34,10 @@
   },
   "about": {
     "title": "关于",
-    "description": "古兰经·哈克 让您以多种语言聆听并跟读《古兰经》。",
+    "description": "古兰经·乌玛 让您以多种语言聆听并跟读《古兰经》。",
     "apiCredit": "数据由 Ummah API 提供，作为造福乌玛的长期善举（sadaqah jariyah）。",
     "version": "版本"
   },
-  "player": { "nowPlaying": "正在播放" }
+  "player": { "nowPlaying": "正在播放" },
+  "reciter": { "title": "选择诵读者" }
 }

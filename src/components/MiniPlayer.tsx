@@ -8,9 +8,17 @@ import { useAudioPlayerContext } from '../context/AudioPlayerContext';
 import { useLocale } from '../context/LocaleContext';
 
 export function MiniPlayer() {
-  const { currentSurah, isPlaying, isBuffering, currentTime, duration, togglePlayPause, stop } =
-    useAudioPlayerContext();
-  const { t } = useTranslation();
+  const {
+    currentSurah,
+    currentReciter,
+    isPlaying,
+    isBuffering,
+    currentTime,
+    duration,
+    togglePlayPause,
+    stop,
+  } = useAudioPlayerContext();
+  const { t, i18n } = useTranslation();
   const { isRTL } = useLocale();
   const insets = useSafeAreaInsets();
   const scheme = useColorScheme();
@@ -38,6 +46,9 @@ export function MiniPlayer() {
           </Text>
           <Text style={[styles.title, dark && styles.textDark]} numberOfLines={1}>
             {currentSurah.name_arabic} · {currentSurah.name_english}
+            {currentReciter
+              ? ` — ${i18n.language === 'ar' ? currentReciter.nameArabic : currentReciter.nameTranslation}`
+              : ''}
           </Text>
         </View>
         <TouchableOpacity onPress={togglePlayPause} style={styles.playButton} hitSlop={10}>

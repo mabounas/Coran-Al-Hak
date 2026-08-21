@@ -1,5 +1,5 @@
 {
-  "app": { "name": "Kur'an Al Hak" },
+  "app": { "name": "Kur'an Al Ummah" },
   "menu": {
     "open": "Meni",
     "summary": "Sadržaj",
@@ -34,9 +34,10 @@
   },
   "about": {
     "title": "O aplikaciji",
-    "description": "Kur'an Al Hak vam omogućava da slušate i pratite učenje Časnog Kur'ana na više jezika.",
+    "description": "Kur'an Al Ummah vam omogućava da slušate i pratite učenje Časnog Kur'ana na više jezika.",
     "apiCredit": "Podatke pruža Ummah API, ponuđen kao sadaka džarija za ummet.",
     "version": "Verzija"
   },
-  "player": { "nowPlaying": "Trenutno svira" }
+  "player": { "nowPlaying": "Trenutno svira" },
+  "reciter": { "title": "Odaberite kari'ja" }
 }

@@ -1,5 +1,5 @@
 {
-  "app": { "name": "Coran Al Hak" },
+  "app": { "name": "Coran Al Ummah" },
   "menu": {
     "open": "Menu",
     "summary": "Sommaire",
@@ -34,9 +34,10 @@
   },
   "about": {
     "title": "À propos",
-    "description": "Coran Al Hak vous permet d'écouter et de suivre la lecture du Saint Coran dans plusieurs langues.",
+    "description": "Coran Al Ummah vous permet d'écouter et de suivre la lecture du Saint Coran dans plusieurs langues.",
     "apiCredit": "Données fournies par l'API Ummah, offertes en sadaqah jariyah pour la Oummah.",
     "version": "Version"
   },
-  "player": { "nowPlaying": "Lecture en cours" }
+  "player": { "nowPlaying": "Lecture en cours" },
+  "reciter": { "title": "Choisir un récitateur" }
 }

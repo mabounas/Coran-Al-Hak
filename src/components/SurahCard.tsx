@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
 
 import { COLORS } from '../constants/config';
+import { buildReciterAudioUrl, type Reciter } from '../constants/reciters';
 import { useAudioPlayerContext } from '../context/AudioPlayerContext';
 import { useBookmarks } from '../context/BookmarksContext';
 import { useLocale } from '../context/LocaleContext';
 import type { Surah } from '../types/quran';
+import { ReciterPicker } from './ReciterPicker';
 
 interface Props {
   surah: Surah;
@@ -20,6 +22,7 @@ export function SurahCard({ surah }: Props) {
   const { currentSurah, isPlaying, isBuffering, playSurah, togglePlayPause } =
     useAudioPlayerContext();
   const { isBookmarked, toggleBookmark } = useBookmarks();
+  const [pickerVisible, setPickerVisible] = useState(false);
 
   const active = currentSurah?.number === surah.number;
   const bookmarked = isBookmarked(surah.number);
@@ -28,8 +31,14 @@ export function SurahCard({ surah }: Props) {
     if (active) {
       togglePlayPause();
     } else {
-      playSurah(surah);
+      setPickerVisible(true);
     }
+  };
+
+  const handleReciterSelect = (reciter: Reciter) => {
+    setPickerVisible(false);
+    const audioUrl = buildReciterAudioUrl(reciter.linkReciter, surah.number);
+    playSurah(surah, audioUrl, reciter);
   };
 
   return (
@@ -79,6 +88,11 @@ export function SurahCard({ surah }: Props) {
           </TouchableOpacity>
         </View>
       </View>
+      <ReciterPicker
+        visible={pickerVisible}
+        onClose={() => setPickerVisible(false)}
+        onSelect={handleReciterSelect}
+      />
     </View>
   );
 }

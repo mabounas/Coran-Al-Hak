@@ -1,5 +1,5 @@
 {
-  "app": { "name": "Kuran Al Hak" },
+  "app": { "name": "Kuran Al Ümmet" },
   "menu": {
     "open": "Menü",
     "summary": "İçindekiler",
@@ -34,9 +34,10 @@
   },
   "about": {
     "title": "Hakkında",
-    "description": "Coran Al Hak, Kur'an-ı Kerim'i birçok dilde dinlemenizi ve takip etmenizi sağlar.",
+    "description": "Kuran Al Ümmet, Kur'an-ı Kerim'i birçok dilde dinlemenizi ve takip etmenizi sağlar.",
     "apiCredit": "Veriler, ümmet için sadaka-i cariye olarak sunulan Ummah API tarafından sağlanmaktadır.",
     "version": "Sürüm"
   },
-  "player": { "nowPlaying": "Şu an çalıyor" }
+  "player": { "nowPlaying": "Şu an çalıyor" },
+  "reciter": { "title": "Bir kâri seçin" }
 }

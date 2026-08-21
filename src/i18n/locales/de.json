@@ -1,5 +1,5 @@
 {
-  "app": { "name": "Coran Al Hak" },
+  "app": { "name": "Coran Al Ummah" },
   "menu": {
     "open": "Menü",
     "summary": "Inhalt",
@@ -34,9 +34,10 @@
   },
   "about": {
     "title": "Über",
-    "description": "Mit Coran Al Hak können Sie den Heiligen Koran in vielen Sprachen anhören und mitlesen.",
+    "description": "Mit Coran Al Ummah können Sie den Heiligen Koran in vielen Sprachen anhören und mitlesen.",
     "apiCredit": "Daten bereitgestellt von der Ummah API, als Sadaqah Jariyah für die Umma.",
     "version": "Version"
   },
-  "player": { "nowPlaying": "Wird jetzt abgespielt" }
+  "player": { "nowPlaying": "Wird jetzt abgespielt" },
+  "reciter": { "title": "Rezitator auswählen" }
 }
