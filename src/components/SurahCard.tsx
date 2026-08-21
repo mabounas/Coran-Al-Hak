@@ -37,7 +37,7 @@ export function SurahCard({ surah }: Props) {
 
   const handleReciterSelect = (reciter: Reciter) => {
     setPickerVisible(false);
-    const audioUrl = buildReciterAudioUrl(reciter.linkReciter, surah.number);
+    const audioUrl = buildReciterAudioUrl(reciter, surah.number);
     playSurah(surah, audioUrl, reciter);
   };
 
