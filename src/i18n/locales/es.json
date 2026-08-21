@@ -84,12 +84,11 @@
     "soundOn": "Recitación activada",
     "soundOff": "Sin recitación",
     "translation": "Traducción",
-    "translationOn": "Traducción visible",
-    "translationOff": "Solo árabe",
     "noTranslation": "Traducción no disponible en este idioma",
     "loading": "Cargando la sura...",
     "error": "No se pudo cargar la sura.",
     "verse": "Versículo {{number}}",
-    "tapHint": "Toca un versículo para ver su traducción"
+    "tapHint": "Toca un versículo para verlo en árabe y traducido",
+    "textLanguage": "Idioma del texto"
   }
 }

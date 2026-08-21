@@ -84,12 +84,11 @@
     "soundOn": "Učenje uključeno",
     "soundOff": "Bez učenja",
     "translation": "Prijevod",
-    "translationOn": "Prijevod prikazan",
-    "translationOff": "Samo arapski",
     "noTranslation": "Prijevod nije dostupan na ovom jeziku",
     "loading": "Učitavanje sure...",
     "error": "Nije moguće učitati suru.",
     "verse": "Ajet {{number}}",
-    "tapHint": "Dodirnite ajet da vidite prijevod"
+    "tapHint": "Dodirnite ajet da ga vidite na arapskom i prevedenog",
+    "textLanguage": "Jezik teksta"
   }
 }

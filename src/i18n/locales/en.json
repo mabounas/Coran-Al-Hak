@@ -84,12 +84,11 @@
     "soundOn": "Recitation on",
     "soundOff": "No recitation",
     "translation": "Translation",
-    "translationOn": "Translation shown",
-    "translationOff": "Arabic only",
     "noTranslation": "Translation not available in this language",
     "loading": "Loading the surah...",
     "error": "Could not load the surah.",
     "verse": "Verse {{number}}",
-    "tapHint": "Tap a verse to show its translation"
+    "tapHint": "Tap a verse to see it in Arabic and translated",
+    "textLanguage": "Text language"
   }
 }

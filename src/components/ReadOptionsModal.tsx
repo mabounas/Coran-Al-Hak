@@ -12,15 +12,20 @@ import {
 } from 'react-native';
 
 import { COLORS } from '../constants/config';
+import { LANGUAGES } from '../constants/languages';
 import { RECITERS, type Reciter } from '../constants/reciters';
 import { hasTranslation } from '../constants/translations';
 import { useLocale } from '../context/LocaleContext';
 import type { Surah } from '../types/quran';
 import { ReciterPicker } from './ReciterPicker';
 
+// Which text the reading screen shows: the Arabic mushaf or the translation
+// matching the language picked in the profile.
+export type TextMode = 'ar' | 'translation';
+
 export interface ReadOptions {
   sound: boolean;
-  translation: boolean;
+  textMode: TextMode;
   reciter: Reciter;
 }
 
@@ -38,13 +43,16 @@ export function ReadOptionsModal({ visible, surah, onClose, onConfirm }: Props) 
   const dark = scheme === 'dark';
   const translationAvailable = hasTranslation(language);
 
+  const profileLanguage = LANGUAGES.find((lang) => lang.code === language);
+
   const [sound, setSound] = useState(false);
-  const [translation, setTranslation] = useState(translationAvailable);
+  // The profile language wins by default; Arabic stays one tap away.
+  const [textMode, setTextMode] = useState<TextMode>(translationAvailable ? 'translation' : 'ar');
   const [reciter, setReciter] = useState<Reciter>(RECITERS[0]);
   const [reciterPickerVisible, setReciterPickerVisible] = useState(false);
 
   const handleConfirm = () => {
-    onConfirm({ sound, translation: translation && translationAvailable, reciter });
+    onConfirm({ sound, textMode: translationAvailable ? textMode : 'ar', reciter });
   };
 
   return (
@@ -96,26 +104,41 @@ export function ReadOptionsModal({ visible, surah, onClose, onConfirm }: Props) 
             </TouchableOpacity>
           )}
 
-          <View style={[styles.row, isRTL && styles.rowRTL, dark && styles.rowDark]}>
-            <View style={styles.rowLabelWrap}>
-              <Text style={[styles.rowLabel, dark && styles.textDark, isRTL && styles.textRTL]}>
-                {t('read.translation')}
-              </Text>
+          <View style={[styles.textModeRow, dark && styles.rowDark]}>
+            <Text style={[styles.rowLabel, dark && styles.textDark, isRTL && styles.textRTL]}>
+              {t('read.textLanguage')}
+            </Text>
+            {translationAvailable ? (
+              <View style={[styles.segmented, isRTL && styles.rowRTL]}>
+                <TouchableOpacity
+                  style={[styles.segment, textMode === 'ar' && styles.segmentActive]}
+                  onPress={() => setTextMode('ar')}
+                >
+                  <Text
+                    style={[styles.segmentText, textMode === 'ar' && styles.segmentTextActive]}
+                  >
+                    العربية
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.segment, textMode === 'translation' && styles.segmentActive]}
+                  onPress={() => setTextMode('translation')}
+                >
+                  <Text
+                    style={[
+                      styles.segmentText,
+                      textMode === 'translation' && styles.segmentTextActive,
+                    ]}
+                  >
+                    {profileLanguage?.nativeLabel}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            ) : (
               <Text style={[styles.rowHint, dark && styles.mutedDark, isRTL && styles.textRTL]}>
-                {!translationAvailable
-                  ? t('read.noTranslation')
-                  : translation
-                    ? t('read.translationOn')
-                    : t('read.translationOff')}
+                {t('read.noTranslation')}
               </Text>
-            </View>
-            <Switch
-              value={translation && translationAvailable}
-              onValueChange={setTranslation}
-              disabled={!translationAvailable}
-              trackColor={{ false: COLORS.border, true: COLORS.primary }}
-              thumbColor="#fff"
-            />
+            )}
           </View>
 
           <TouchableOpacity style={styles.confirmButton} onPress={handleConfirm}>
@@ -196,6 +219,36 @@ const styles = StyleSheet.create({
   rowLabelWrap: {
     flex: 1,
     gap: 2,
+  },
+  textModeRow: {
+    gap: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 14,
+    borderTopWidth: 1,
+    borderTopColor: COLORS.border,
+  },
+  segmented: {
+    flexDirection: 'row',
+    borderWidth: 1,
+    borderColor: COLORS.primary,
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+  segment: {
+    flex: 1,
+    paddingVertical: 10,
+    alignItems: 'center',
+  },
+  segmentActive: {
+    backgroundColor: COLORS.primary,
+  },
+  segmentText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: COLORS.primary,
+  },
+  segmentTextActive: {
+    color: '#fff',
   },
   rowLabel: {
     fontSize: 16,

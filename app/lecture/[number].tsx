@@ -14,11 +14,13 @@ import {
 
 import { fetchSurahDetail } from '../../src/api/quran';
 import { MushafFrame } from '../../src/components/MushafFrame';
+import type { TextMode } from '../../src/components/ReadOptionsModal';
 import { VerseTranslationSheet } from '../../src/components/VerseTranslationSheet';
 import { ayahMarker, toArabicNumerals } from '../../src/constants/arabic';
 import { COLORS } from '../../src/constants/config';
+import { LANGUAGES } from '../../src/constants/languages';
 import { RECITERS, buildReciterAudioUrl } from '../../src/constants/reciters';
-import { hasTranslation } from '../../src/constants/translations';
+import { getVerseTranslation, hasTranslation } from '../../src/constants/translations';
 import { useAudioPlayerContext } from '../../src/context/AudioPlayerContext';
 import { useLocale } from '../../src/context/LocaleContext';
 import { useSurahs } from '../../src/context/SurahsContext';
@@ -28,18 +30,19 @@ const BISMILLAH = 'بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَ
 
 export default function ReadSurahScreen() {
   const { t } = useTranslation();
-  const { language } = useLocale();
+  const { language, isRTL } = useLocale();
   const scheme = useColorScheme();
   const dark = scheme === 'dark';
   const params = useLocalSearchParams<{
     number: string;
     sound?: string;
-    translation?: string;
+    mode?: string;
     reciter?: string;
   }>();
 
   const surahNumber = Number(params.number);
   const translationAvailable = hasTranslation(language);
+  const profileLanguage = LANGUAGES.find((lang) => lang.code === language);
 
   const [fontsLoaded] = useFonts({ AmiriQuran_400Regular });
   const arabicFont = fontsLoaded ? 'AmiriQuran_400Regular' : undefined;
@@ -51,9 +54,10 @@ export default function ReadSurahScreen() {
   const [detail, setDetail] = useState<SurahDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [showTranslation, setShowTranslation] = useState(
-    params.translation === '1' && translationAvailable
-  );
+  const [textMode, setTextMode] = useState<TextMode>(() => {
+    if (!translationAvailable) return 'ar';
+    return params.mode === 'ar' ? 'ar' : 'translation';
+  });
   const [selectedVerse, setSelectedVerse] = useState<Verse | null>(null);
   const autoPlayedRef = useRef(false);
 
@@ -112,13 +116,8 @@ export default function ReadSurahScreen() {
     playSurah(playableSurah, buildReciterAudioUrl(reciter, surahNumber), reciter);
   }, [params.sound, playableSurah, playSurah, reciter, surahNumber]);
 
-  const handleVersePress = useCallback(
-    (verse: Verse) => {
-      if (!showTranslation) return;
-      setSelectedVerse(verse);
-    },
-    [showTranslation]
-  );
+  // The sheet always carries both sides, so a tap is useful in either mode.
+  const handleVersePress = useCallback((verse: Verse) => setSelectedVerse(verse), []);
 
   const title = detail
     ? `${detail.surah.number}. ${detail.surah.name_arabic}`
@@ -163,17 +162,13 @@ export default function ReadSurahScreen() {
         </View>
 
         <TouchableOpacity
-          onPress={() => setShowTranslation((v) => !v)}
+          onPress={() => setTextMode((mode) => (mode === 'ar' ? 'translation' : 'ar'))}
           disabled={!translationAvailable}
-          style={[
-            styles.chip,
-            dark && styles.chipDark,
-            showTranslation && styles.chipActive,
-            !translationAvailable && styles.chipDisabled,
-          ]}
+          style={[styles.chip, dark && styles.chipDark, !translationAvailable && styles.chipDisabled]}
+          accessibilityLabel={t('read.textLanguage')}
         >
-          <Text style={[styles.chipText, showTranslation && styles.chipTextActive]}>
-            {t('read.translation')}
+          <Text style={styles.chipText}>
+            {textMode === 'ar' ? profileLanguage?.nativeLabel : 'العربية'}
           </Text>
         </TouchableOpacity>
 
@@ -191,41 +186,74 @@ export default function ReadSurahScreen() {
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <MushafFrame dark={dark}>
           <View style={styles.cartouche}>
-            <Text style={[styles.cartoucheText, arabicStyle]}>
-              سورة {detail.surah.name_arabic} {toArabicNumerals(detail.surah.number)}
-            </Text>
+            {textMode === 'ar' ? (
+              <Text style={[styles.cartoucheText, arabicStyle]}>
+                سورة {detail.surah.name_arabic} {toArabicNumerals(detail.surah.number)}
+              </Text>
+            ) : (
+              <Text style={styles.cartoucheTextLatin}>
+                {detail.surah.number}. {detail.surah.name_english} · {detail.surah.name_translation}
+              </Text>
+            )}
           </View>
 
-          {detail.surah.bismillah_pre ? (
+          {detail.surah.bismillah_pre && textMode === 'ar' ? (
             <Text style={[styles.bismillah, arabicStyle]}>{BISMILLAH}</Text>
           ) : null}
 
-          <Text style={[styles.mushaf, dark && styles.textDark, arabicStyle]}>
-            {detail.verses.map((verse) => (
-              <Text
-                key={verse.verse_key}
-                onPress={() => handleVersePress(verse)}
-                suppressHighlighting={!showTranslation}
-                style={
-                  selectedVerse?.verse_key === verse.verse_key ? styles.verseSelected : undefined
-                }
-              >
-                {verse.arabic.trim()}
-                <Text style={styles.marker}> {ayahMarker(verse.ayah)} </Text>
-              </Text>
-            ))}
-          </Text>
+          {textMode === 'ar' ? (
+            <Text style={[styles.mushaf, dark && styles.textDark, arabicStyle]}>
+              {detail.verses.map((verse) => (
+                <Text
+                  key={verse.verse_key}
+                  onPress={() => handleVersePress(verse)}
+                  style={
+                    selectedVerse?.verse_key === verse.verse_key ? styles.verseSelected : undefined
+                  }
+                >
+                  {verse.arabic.trim()}
+                  <Text style={styles.marker}> {ayahMarker(verse.ayah)} </Text>
+                </Text>
+              ))}
+            </Text>
+          ) : (
+            <Text
+              style={[
+                styles.translated,
+                dark && styles.textDark,
+                { textAlign: isRTL ? 'right' : 'left', writingDirection: isRTL ? 'rtl' : 'ltr' },
+              ]}
+            >
+              {detail.verses.map((verse) => (
+                <Text
+                  key={verse.verse_key}
+                  onPress={() => handleVersePress(verse)}
+                  style={
+                    selectedVerse?.verse_key === verse.verse_key ? styles.verseSelected : undefined
+                  }
+                >
+                  <Text style={styles.markerLatin}>{verse.ayah}. </Text>
+                  {getVerseTranslation(verse, language) ?? verse.arabic.trim()}
+                  {'  '}
+                </Text>
+              ))}
+            </Text>
+          )}
 
           <View style={styles.cartoucheFooter}>
-            <Text style={[styles.cartoucheFooterText, arabicStyle]}>
-              وآياتها {toArabicNumerals(detail.total_verses)}
-            </Text>
+            {textMode === 'ar' ? (
+              <Text style={[styles.cartoucheFooterText, arabicStyle]}>
+                وآياتها {toArabicNumerals(detail.total_verses)}
+              </Text>
+            ) : (
+              <Text style={styles.cartoucheFooterTextLatin}>
+                {t('home.verses', { count: detail.total_verses })}
+              </Text>
+            )}
           </View>
         </MushafFrame>
 
-        {showTranslation ? (
-          <Text style={[styles.hint, dark && styles.mutedDark]}>{t('read.tapHint')}</Text>
-        ) : null}
+        <Text style={[styles.hint, dark && styles.mutedDark]}>{t('read.tapHint')}</Text>
       </ScrollView>
 
       <VerseTranslationSheet
@@ -396,6 +424,25 @@ const styles = StyleSheet.create({
   marker: {
     color: COLORS.gold,
     fontSize: 22,
+  },
+  translated: {
+    fontSize: 17,
+    lineHeight: 32,
+    color: COLORS.text,
+  },
+  markerLatin: {
+    color: COLORS.gold,
+    fontWeight: '700',
+  },
+  cartoucheTextLatin: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: COLORS.primaryDark,
+    textAlign: 'center',
+  },
+  cartoucheFooterTextLatin: {
+    fontSize: 12,
+    color: COLORS.primaryDark,
   },
   verseSelected: {
     backgroundColor: 'rgba(201,162,75,0.22)',

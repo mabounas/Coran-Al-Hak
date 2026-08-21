@@ -24,14 +24,14 @@ export function SurahReadCard({ surah }: Props) {
 
   const bookmarked = isBookmarked(surah.number);
 
-  const handleConfirm = ({ sound, translation, reciter }: ReadOptions) => {
+  const handleConfirm = ({ sound, textMode, reciter }: ReadOptions) => {
     setOptionsVisible(false);
     router.push({
       pathname: '/lecture/[number]',
       params: {
         number: String(surah.number),
         sound: sound ? '1' : '0',
-        translation: translation ? '1' : '0',
+        mode: textMode,
         reciter: reciter.linkReciter,
       },
     } as never);

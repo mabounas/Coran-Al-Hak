@@ -84,12 +84,11 @@
     "soundOn": "Rezitation an",
     "soundOff": "Ohne Rezitation",
     "translation": "Übersetzung",
-    "translationOn": "Übersetzung angezeigt",
-    "translationOff": "Nur Arabisch",
     "noTranslation": "Übersetzung in dieser Sprache nicht verfügbar",
     "loading": "Sure wird geladen...",
     "error": "Die Sure konnte nicht geladen werden.",
     "verse": "Vers {{number}}",
-    "tapHint": "Tippe auf einen Vers, um die Übersetzung zu sehen"
+    "tapHint": "Tippe auf einen Vers, um ihn auf Arabisch und übersetzt zu sehen",
+    "textLanguage": "Sprache des Textes"
   }
 }

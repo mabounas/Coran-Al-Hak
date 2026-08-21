@@ -84,12 +84,11 @@
     "soundOn": "Tilavet açık",
     "soundOff": "Tilavetsiz",
     "translation": "Meal",
-    "translationOn": "Meal gösteriliyor",
-    "translationOff": "Sadece Arapça",
     "noTranslation": "Bu dilde meal mevcut değil",
     "loading": "Sure yükleniyor...",
     "error": "Sure yüklenemedi.",
     "verse": "{{number}}. ayet",
-    "tapHint": "Mealini görmek için bir ayete dokunun"
+    "tapHint": "Ayeti Arapça ve mealiyle görmek için dokunun",
+    "textLanguage": "Metin dili"
   }
 }

@@ -84,12 +84,11 @@
     "soundOn": "已开启诵读",
     "soundOff": "不诵读",
     "translation": "翻译",
-    "translationOn": "显示翻译",
-    "translationOff": "仅阿拉伯语",
     "noTranslation": "该语言暂无翻译",
     "loading": "正在加载章节...",
     "error": "无法加载该章节。",
     "verse": "第 {{number}} 节",
-    "tapHint": "点按经节以查看翻译"
+    "tapHint": "点按经节以查看阿拉伯原文和翻译",
+    "textLanguage": "文本语言"
   }
 }

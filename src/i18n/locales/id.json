@@ -84,12 +84,11 @@
     "soundOn": "Bacaan aktif",
     "soundOff": "Tanpa bacaan",
     "translation": "Terjemahan",
-    "translationOn": "Terjemahan ditampilkan",
-    "translationOff": "Hanya bahasa Arab",
     "noTranslation": "Terjemahan tidak tersedia dalam bahasa ini",
     "loading": "Memuat surah...",
     "error": "Tidak dapat memuat surah.",
     "verse": "Ayat {{number}}",
-    "tapHint": "Ketuk ayat untuk melihat terjemahannya"
+    "tapHint": "Ketuk ayat untuk melihatnya dalam bahasa Arab dan terjemahannya",
+    "textLanguage": "Bahasa teks"
   }
 }
