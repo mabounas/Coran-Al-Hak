@@ -1,7 +1,7 @@
 import Constants from 'expo-constants';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ScrollView, StyleSheet, Text, useColorScheme, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, useColorScheme, View } from 'react-native';
 
 import { COLORS } from '../src/constants/config';
 import { LANGUAGES } from '../src/constants/languages';
@@ -22,9 +22,13 @@ export default function AboutScreen() {
       style={[styles.container, dark && styles.containerDark]}
       contentContainerStyle={styles.content}
     >
-      <Text style={styles.crescent}>🌙</Text>
+      <Image
+        source={require('../assets/coran-al-ummah-logo.png')}
+        style={styles.logo}
+        resizeMode="contain"
+        accessibilityLabel={t('app.name')}
+      />
       <Text style={[styles.sadaqah, dark && styles.mutedDark]}>{sadaqah}</Text>
-      <Text style={[styles.appName, dark && styles.textDark]}>{t('app.name')}</Text>
       <Text style={[styles.creator, dark && styles.mutedDark]}>{creator}</Text>
       <Text style={[styles.description, dark && styles.mutedDark]}>{t('about.description')}</Text>
 
@@ -63,8 +67,9 @@ const styles = StyleSheet.create({
     padding: 24,
     gap: 12,
   },
-  crescent: {
-    fontSize: 44,
+  logo: {
+    width: 220,
+    height: 186,
   },
   sadaqah: {
     fontSize: 12,
@@ -72,11 +77,6 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
     color: COLORS.gold,
     textTransform: 'uppercase',
-  },
-  appName: {
-    fontSize: 22,
-    fontWeight: '700',
-    color: COLORS.primary,
   },
   creator: {
     fontSize: 12,
