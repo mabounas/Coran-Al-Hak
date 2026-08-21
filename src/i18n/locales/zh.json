@@ -62,5 +62,12 @@
     "bearing": "距北方 {{degrees}}°",
     "chooseCity": "或选择您的城市",
     "citySearch": "搜索城市..."
+  },
+  "dua": {
+    "selectCategory": "选择分类",
+    "loadingCategories": "正在加载分类...",
+    "loadingDuas": "正在加载祈祷词...",
+    "errorCategories": "无法加载分类。",
+    "errorDuas": "无法加载祈祷词。"
   }
 }

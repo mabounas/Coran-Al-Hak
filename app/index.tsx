@@ -21,7 +21,7 @@ const TILES: Tile[] = [
   { key: 'search', icon: '🔎', route: '/coming-soon/search' },
   { key: 'hadith', icon: '📜', route: '/coming-soon/hadith' },
   { key: 'tafsir', icon: '💡', route: '/coming-soon/tafsir' },
-  { key: 'dua', icon: '🤲', route: '/coming-soon/dua' },
+  { key: 'dua', icon: '🤲', route: '/dua' },
   { key: 'qibla', icon: '🧭', route: '/qibla' },
   { key: 'about', icon: 'ℹ️', route: '/about' },
 ];

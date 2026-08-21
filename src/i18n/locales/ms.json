@@ -62,5 +62,12 @@
     "bearing": "{{degrees}}° dari Utara",
     "chooseCity": "Atau pilih bandar anda",
     "citySearch": "Cari bandar..."
+  },
+  "dua": {
+    "selectCategory": "Pilih kategori",
+    "loadingCategories": "Memuatkan kategori...",
+    "loadingDuas": "Memuatkan doa...",
+    "errorCategories": "Tidak dapat memuatkan kategori.",
+    "errorDuas": "Tidak dapat memuatkan doa."
   }
 }

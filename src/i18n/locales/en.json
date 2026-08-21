@@ -62,5 +62,12 @@
     "bearing": "{{degrees}}° from North",
     "chooseCity": "Or choose your city",
     "citySearch": "Search a city..."
+  },
+  "dua": {
+    "selectCategory": "Select a category",
+    "loadingCategories": "Loading categories...",
+    "loadingDuas": "Loading duas...",
+    "errorCategories": "Could not load categories.",
+    "errorDuas": "Could not load duas."
   }
 }

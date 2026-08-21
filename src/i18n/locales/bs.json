@@ -62,5 +62,12 @@
     "bearing": "{{degrees}}° od sjevera",
     "chooseCity": "Ili odaberite svoj grad",
     "citySearch": "Pretraži grad..."
+  },
+  "dua": {
+    "selectCategory": "Odaberite kategoriju",
+    "loadingCategories": "Učitavanje kategorija...",
+    "loadingDuas": "Učitavanje dova...",
+    "errorCategories": "Nije moguće učitati kategorije.",
+    "errorDuas": "Nije moguće učitati dove."
   }
 }

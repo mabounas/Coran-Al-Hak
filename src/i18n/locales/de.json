@@ -62,5 +62,12 @@
     "bearing": "{{degrees}}° von Norden",
     "chooseCity": "Oder wählen Sie Ihre Stadt",
     "citySearch": "Stadt suchen..."
+  },
+  "dua": {
+    "selectCategory": "Kategorie auswählen",
+    "loadingCategories": "Kategorien werden geladen...",
+    "loadingDuas": "Bittgebete werden geladen...",
+    "errorCategories": "Kategorien konnten nicht geladen werden.",
+    "errorDuas": "Bittgebete konnten nicht geladen werden."
   }
 }

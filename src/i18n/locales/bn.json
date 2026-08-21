@@ -62,5 +62,12 @@
     "bearing": "উত্তর থেকে {{degrees}}°",
     "chooseCity": "অথবা আপনার শহর নির্বাচন করুন",
     "citySearch": "শহর খুঁজুন..."
+  },
+  "dua": {
+    "selectCategory": "একটি বিভাগ নির্বাচন করুন",
+    "loadingCategories": "বিভাগ লোড হচ্ছে...",
+    "loadingDuas": "দোয়া লোড হচ্ছে...",
+    "errorCategories": "বিভাগ লোড করা যায়নি।",
+    "errorDuas": "দোয়া লোড করা যায়নি।"
   }
 }

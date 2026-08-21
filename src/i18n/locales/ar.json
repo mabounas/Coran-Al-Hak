@@ -62,5 +62,12 @@
     "bearing": "{{degrees}}° من الشمال",
     "chooseCity": "أو اختر مدينتك",
     "citySearch": "ابحث عن مدينة..."
+  },
+  "dua": {
+    "selectCategory": "اختر تصنيفاً",
+    "loadingCategories": "جارٍ تحميل التصنيفات...",
+    "loadingDuas": "جارٍ تحميل الأدعية...",
+    "errorCategories": "تعذّر تحميل التصنيفات.",
+    "errorDuas": "تعذّر تحميل الأدعية."
   }
 }

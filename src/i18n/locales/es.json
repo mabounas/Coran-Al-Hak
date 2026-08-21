@@ -62,5 +62,12 @@
     "bearing": "{{degrees}}° desde el Norte",
     "chooseCity": "O elige tu ciudad",
     "citySearch": "Buscar una ciudad..."
+  },
+  "dua": {
+    "selectCategory": "Selecciona una categoría",
+    "loadingCategories": "Cargando categorías...",
+    "loadingDuas": "Cargando súplicas...",
+    "errorCategories": "No se pudieron cargar las categorías.",
+    "errorDuas": "No se pudieron cargar las súplicas."
   }
 }

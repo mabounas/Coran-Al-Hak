@@ -62,5 +62,12 @@
     "bearing": "Kuzeyden {{degrees}}°",
     "chooseCity": "Veya şehrinizi seçin",
     "citySearch": "Şehir ara..."
+  },
+  "dua": {
+    "selectCategory": "Bir kategori seçin",
+    "loadingCategories": "Kategoriler yükleniyor...",
+    "loadingDuas": "Dualar yükleniyor...",
+    "errorCategories": "Kategoriler yüklenemedi.",
+    "errorDuas": "Dualar yüklenemedi."
   }
 }

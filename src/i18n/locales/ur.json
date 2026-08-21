@@ -62,5 +62,12 @@
     "bearing": "شمال سے {{degrees}}°",
     "chooseCity": "یا اپنا شہر منتخب کریں",
     "citySearch": "شہر تلاش کریں..."
+  },
+  "dua": {
+    "selectCategory": "زمرہ منتخب کریں",
+    "loadingCategories": "زمرے لوڈ ہو رہے ہیں...",
+    "loadingDuas": "دعائیں لوڈ ہو رہی ہیں...",
+    "errorCategories": "زمرے لوڈ نہیں ہو سکے۔",
+    "errorDuas": "دعائیں لوڈ نہیں ہو سکیں۔"
   }
 }
