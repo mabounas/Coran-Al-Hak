@@ -57,6 +57,22 @@ function startsSurah(line: Line): number | null {
   return first.ayah_number === 1 && first.position === 1 ? first.surah_number : null;
 }
 
+/**
+ * The blank lines sitting just before a surah start are the ones the printed
+ * page gives to its banner and basmalah, so the heading replaces them instead
+ * of being added on top.
+ */
+function bannerSlots(lines: Line[]): Set<number> {
+  const slots = new Set<number>();
+  lines.forEach((line, index) => {
+    if (!startsSurah(line)) return;
+    for (let i = index - 1; i >= 0 && lines[i].words.length === 0; i -= 1) {
+      slots.add(lines[i].number);
+    }
+  });
+  return slots;
+}
+
 export default function MushafPageScreen() {
   const { t } = useTranslation();
   const { language } = useLocale();
@@ -95,6 +111,7 @@ export default function MushafPageScreen() {
   }, [load]);
 
   const lines = useMemo(() => (page ? buildLines(page) : []), [page]);
+  const skippedLines = useMemo(() => bannerSlots(lines), [lines]);
 
   // Mushaf lines run edge to edge, so the type shrinks with the page width.
   const fontSize = useMemo(() => {
@@ -149,6 +166,7 @@ export default function MushafPageScreen() {
               const surahStart = startsSurah(line);
 
               if (line.words.length === 0) {
+                if (skippedLines.has(line.number)) return null;
                 return <View key={line.number} style={[styles.line, { height: fontSize * 2 }]} />;
               }
 
