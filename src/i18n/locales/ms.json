@@ -59,6 +59,8 @@
     "permissionDenied": "Kebenaran lokasi diperlukan untuk mencari arah Kiblat.",
     "error": "Tidak dapat menentukan arah Kiblat.",
     "instructions": "Arahkan bahagian atas telefon anda ke arah anak panah",
-    "bearing": "{{degrees}}° dari Utara"
+    "bearing": "{{degrees}}° dari Utara",
+    "chooseCity": "Atau pilih bandar anda",
+    "citySearch": "Cari bandar..."
   }
 }

@@ -59,6 +59,8 @@
     "permissionDenied": "Izin lokasi diperlukan untuk menemukan arah Kiblat.",
     "error": "Tidak dapat menentukan arah Kiblat.",
     "instructions": "Arahkan bagian atas ponsel Anda ke panah",
-    "bearing": "{{degrees}}° dari Utara"
+    "bearing": "{{degrees}}° dari Utara",
+    "chooseCity": "Atau pilih kota Anda",
+    "citySearch": "Cari kota..."
   }
 }

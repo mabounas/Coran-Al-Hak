@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { Animated, StyleSheet, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
 
 import { fetchQiblaDirection } from '../src/api/qibla';
+import { CityPicker } from '../src/components/CityPicker';
+import type { City } from '../src/constants/cities';
 import { COLORS } from '../src/constants/config';
 import { useLocale } from '../src/context/LocaleContext';
 
@@ -18,6 +20,7 @@ export default function QiblaScreen() {
   const [status, setStatus] = useState<Status>('idle');
   const [bearing, setBearing] = useState<number | null>(null);
   const [heading, setHeading] = useState(0);
+  const [cityPickerVisible, setCityPickerVisible] = useState(false);
   const rotation = useRef(new Animated.Value(0)).current;
   const headingSubscription = useRef<Location.LocationSubscription | undefined>(undefined);
 
@@ -37,6 +40,23 @@ export default function QiblaScreen() {
     }).start();
   }, [bearing, heading, rotation]);
 
+  const finalize = async (latitude: number, longitude: number) => {
+    const direction = await fetchQiblaDirection(latitude, longitude);
+    setBearing(direction);
+    setStatus('ready');
+
+    // Live compass rotation is a bonus; if it's unavailable (e.g. web, or
+    // location services off) we still show the numeric bearing above.
+    try {
+      headingSubscription.current = await Location.watchHeadingAsync((event) => {
+        const value = event.trueHeading >= 0 ? event.trueHeading : event.magHeading;
+        setHeading(value);
+      });
+    } catch {
+      // ignore — numeric bearing still works without a live needle
+    }
+  };
+
   // Must run directly from a user tap (onPress), not from an effect on mount:
   // Safari on iOS silently refuses the geolocation prompt otherwise.
   const start = async () => {
@@ -50,21 +70,34 @@ export default function QiblaScreen() {
 
     try {
       const position = await Location.getCurrentPositionAsync({});
-      const direction = await fetchQiblaDirection(
-        position.coords.latitude,
-        position.coords.longitude
-      );
-      setBearing(direction);
-      setStatus('ready');
-
-      headingSubscription.current = await Location.watchHeadingAsync((event) => {
-        const value = event.trueHeading >= 0 ? event.trueHeading : event.magHeading;
-        setHeading(value);
-      });
+      await finalize(position.coords.latitude, position.coords.longitude);
     } catch {
       setStatus('error');
     }
   };
+
+  const selectCity = async (city: City) => {
+    setCityPickerVisible(false);
+    setStatus('loading');
+    try {
+      await finalize(city.latitude, city.longitude);
+    } catch {
+      setStatus('error');
+    }
+  };
+
+  const cityFallback = (
+    <>
+      <TouchableOpacity onPress={() => setCityPickerVisible(true)} style={styles.cityLink}>
+        <Text style={styles.cityLinkText}>{t('qibla.chooseCity')}</Text>
+      </TouchableOpacity>
+      <CityPicker
+        visible={cityPickerVisible}
+        onClose={() => setCityPickerVisible(false)}
+        onSelect={selectCity}
+      />
+    </>
+  );
 
   if (status === 'idle' || status === 'loading') {
     return (
@@ -80,6 +113,7 @@ export default function QiblaScreen() {
             <TouchableOpacity style={styles.retryButton} onPress={start}>
               <Text style={styles.retryText}>{t('qibla.start')}</Text>
             </TouchableOpacity>
+            {cityFallback}
           </>
         )}
       </View>
@@ -95,6 +129,7 @@ export default function QiblaScreen() {
         <TouchableOpacity style={styles.retryButton} onPress={start}>
           <Text style={styles.retryText}>{t('home.retry')}</Text>
         </TouchableOpacity>
+        {cityFallback}
       </View>
     );
   }
@@ -122,6 +157,7 @@ export default function QiblaScreen() {
           {t('qibla.bearing', { degrees: Math.round(bearing) })}
         </Text>
       )}
+      {cityFallback}
     </View>
   );
 }
@@ -172,6 +208,16 @@ const styles = StyleSheet.create({
   retryText: {
     color: '#fff',
     fontWeight: '600',
+  },
+  cityLink: {
+    marginTop: 4,
+    padding: 6,
+  },
+  cityLinkText: {
+    color: COLORS.primary,
+    fontWeight: '600',
+    fontSize: 13,
+    textDecorationLine: 'underline',
   },
   dial: {
     width: 260,

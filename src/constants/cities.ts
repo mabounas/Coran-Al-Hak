@@ -1,0 +1,61 @@
+export interface City {
+  name: string;
+  latitude: number;
+  longitude: number;
+}
+
+// A manual fallback list so users can get the Qibla direction without
+// granting location permission (or when the browser's permission prompt
+// is stuck/broken, as iOS Safari is known to do once a site is denied).
+export const CITIES: City[] = [
+  { name: 'Mecca', latitude: 21.4225, longitude: 39.8262 },
+  { name: 'Medina', latitude: 24.4672, longitude: 39.6111 },
+  { name: 'Riyadh', latitude: 24.7136, longitude: 46.6753 },
+  { name: 'Jeddah', latitude: 21.5433, longitude: 39.1728 },
+  { name: 'Cairo', latitude: 30.0444, longitude: 31.2357 },
+  { name: 'Istanbul', latitude: 41.0082, longitude: 28.9784 },
+  { name: 'Ankara', latitude: 39.9334, longitude: 32.8597 },
+  { name: 'Dubai', latitude: 25.2048, longitude: 55.2708 },
+  { name: 'Abu Dhabi', latitude: 24.4539, longitude: 54.3773 },
+  { name: 'Doha', latitude: 25.2854, longitude: 51.531 },
+  { name: 'Kuwait City', latitude: 29.3759, longitude: 47.9774 },
+  { name: 'Manama', latitude: 26.2285, longitude: 50.586 },
+  { name: 'Muscat', latitude: 23.588, longitude: 58.3829 },
+  { name: 'Amman', latitude: 31.9454, longitude: 35.9284 },
+  { name: 'Beirut', latitude: 33.8938, longitude: 35.5018 },
+  { name: 'Damascus', latitude: 33.5138, longitude: 36.2765 },
+  { name: 'Baghdad', latitude: 33.3152, longitude: 44.3661 },
+  { name: 'Tehran', latitude: 35.6892, longitude: 51.389 },
+  { name: 'Karachi', latitude: 24.8607, longitude: 67.0011 },
+  { name: 'Lahore', latitude: 31.5497, longitude: 74.3436 },
+  { name: 'Islamabad', latitude: 33.6844, longitude: 73.0479 },
+  { name: 'Dhaka', latitude: 23.8103, longitude: 90.4125 },
+  { name: 'Jakarta', latitude: -6.2088, longitude: 106.8456 },
+  { name: 'Kuala Lumpur', latitude: 3.139, longitude: 101.6869 },
+  { name: 'Singapore', latitude: 1.3521, longitude: 103.8198 },
+  { name: 'Rabat', latitude: 34.0209, longitude: -6.8416 },
+  { name: 'Casablanca', latitude: 33.5731, longitude: -7.5898 },
+  { name: 'Algiers', latitude: 36.7538, longitude: 3.0588 },
+  { name: 'Tunis', latitude: 36.8065, longitude: 10.1815 },
+  { name: 'Tripoli', latitude: 32.8872, longitude: 13.1913 },
+  { name: 'Khartoum', latitude: 15.5007, longitude: 32.5599 },
+  { name: 'Mogadishu', latitude: 2.0469, longitude: 45.3182 },
+  { name: 'Nairobi', latitude: -1.2921, longitude: 36.8219 },
+  { name: 'Lagos', latitude: 6.5244, longitude: 3.3792 },
+  { name: 'Abuja', latitude: 9.0765, longitude: 7.3986 },
+  { name: 'London', latitude: 51.5074, longitude: -0.1278 },
+  { name: 'Paris', latitude: 48.8566, longitude: 2.3522 },
+  { name: 'Berlin', latitude: 52.52, longitude: 13.405 },
+  { name: 'Madrid', latitude: 40.4168, longitude: -3.7038 },
+  { name: 'Rome', latitude: 41.9028, longitude: 12.4964 },
+  { name: 'New York', latitude: 40.7128, longitude: -74.006 },
+  { name: 'Los Angeles', latitude: 34.0522, longitude: -118.2437 },
+  { name: 'Chicago', latitude: 41.8781, longitude: -87.6298 },
+  { name: 'Toronto', latitude: 43.6532, longitude: -79.3832 },
+  { name: 'Montreal', latitude: 45.5019, longitude: -73.5674 },
+  { name: 'Sydney', latitude: -33.8688, longitude: 151.2093 },
+  { name: 'Moscow', latitude: 55.7558, longitude: 37.6173 },
+  { name: 'Beijing', latitude: 39.9042, longitude: 116.4074 },
+  { name: 'Delhi', latitude: 28.7041, longitude: 77.1025 },
+  { name: 'Mumbai', latitude: 19.076, longitude: 72.8777 },
+];

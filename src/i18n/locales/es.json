@@ -59,6 +59,8 @@
     "permissionDenied": "Se requiere permiso de ubicación para encontrar la dirección de la Qibla.",
     "error": "No se pudo determinar la dirección de la Qibla.",
     "instructions": "Apunta la parte superior de tu teléfono hacia la flecha",
-    "bearing": "{{degrees}}° desde el Norte"
+    "bearing": "{{degrees}}° desde el Norte",
+    "chooseCity": "O elige tu ciudad",
+    "citySearch": "Buscar una ciudad..."
   }
 }

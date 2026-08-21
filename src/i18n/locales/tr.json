@@ -59,6 +59,8 @@
     "permissionDenied": "Kıble yönünü bulmak için konum izni gereklidir.",
     "error": "Kıble yönü belirlenemedi.",
     "instructions": "Telefonunuzun üst kısmını oka doğru çevirin",
-    "bearing": "Kuzeyden {{degrees}}°"
+    "bearing": "Kuzeyden {{degrees}}°",
+    "chooseCity": "Veya şehrinizi seçin",
+    "citySearch": "Şehir ara..."
   }
 }

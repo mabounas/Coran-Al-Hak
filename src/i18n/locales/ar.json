@@ -59,6 +59,8 @@
     "permissionDenied": "يلزم إذن الموقع لتحديد اتجاه القبلة.",
     "error": "تعذّر تحديد اتجاه القبلة.",
     "instructions": "وجّه أعلى هاتفك نحو السهم",
-    "bearing": "{{degrees}}° من الشمال"
+    "bearing": "{{degrees}}° من الشمال",
+    "chooseCity": "أو اختر مدينتك",
+    "citySearch": "ابحث عن مدينة..."
   }
 }

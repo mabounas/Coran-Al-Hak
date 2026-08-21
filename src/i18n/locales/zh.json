@@ -59,6 +59,8 @@
     "permissionDenied": "需要定位权限才能确定朝拜方向。",
     "error": "无法确定朝拜方向。",
     "instructions": "将手机顶部指向箭头",
-    "bearing": "距北方 {{degrees}}°"
+    "bearing": "距北方 {{degrees}}°",
+    "chooseCity": "或选择您的城市",
+    "citySearch": "搜索城市..."
   }
 }

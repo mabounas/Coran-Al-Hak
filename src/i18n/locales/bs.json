@@ -59,6 +59,8 @@
     "permissionDenied": "Potrebna je dozvola za lokaciju kako bi se pronašao pravac Kible.",
     "error": "Nije moguće odrediti pravac Kible.",
     "instructions": "Usmjerite vrh telefona prema strelici",
-    "bearing": "{{degrees}}° od sjevera"
+    "bearing": "{{degrees}}° od sjevera",
+    "chooseCity": "Ili odaberite svoj grad",
+    "citySearch": "Pretraži grad..."
   }
 }
