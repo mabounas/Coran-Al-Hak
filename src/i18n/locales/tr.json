@@ -2,6 +2,7 @@
   "app": { "name": "Kuran Al Ümmet" },
   "menu": {
     "open": "Menü",
+    "home": "Ana Sayfa",
     "summary": "İçindekiler",
     "bookmarks": "Okumalarım",
     "settings": "Ayarlar",
@@ -39,5 +40,16 @@
     "version": "Sürüm"
   },
   "player": { "nowPlaying": "Şu an çalıyor" },
-  "reciter": { "title": "Bir kâri seçin" }
+  "reciter": { "title": "Bir kâri seçin" },
+  "landing": {
+    "chooseLanguage": "Dilinizi seçin",
+    "listen": "Kur'an Dinle",
+    "read": "Kur'an Oku",
+    "search": "Kur'an'da kelime ara",
+    "hadith": "Hadis",
+    "tafsir": "Tefsir",
+    "dua": "Dua",
+    "qibla": "Kıble",
+    "comingSoon": "Yakında"
+  }
 }

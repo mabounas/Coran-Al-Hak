@@ -2,6 +2,7 @@
   "app": { "name": "Coran Al Ummah" },
   "menu": {
     "open": "Menu",
+    "home": "Beranda",
     "summary": "Daftar Isi",
     "bookmarks": "Bacaan Saya",
     "settings": "Pengaturan",
@@ -39,5 +40,16 @@
     "version": "Versi"
   },
   "player": { "nowPlaying": "Sedang diputar" },
-  "reciter": { "title": "Pilih qari" }
+  "reciter": { "title": "Pilih qari" },
+  "landing": {
+    "chooseLanguage": "Pilih bahasa Anda",
+    "listen": "Dengarkan Al-Qur'an",
+    "read": "Baca Al-Qur'an",
+    "search": "Cari kata dalam Al-Qur'an",
+    "hadith": "Hadis",
+    "tafsir": "Tafsir",
+    "dua": "Doa",
+    "qibla": "Kiblat",
+    "comingSoon": "Segera hadir"
+  }
 }

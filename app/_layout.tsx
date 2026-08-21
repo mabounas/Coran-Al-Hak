@@ -32,7 +32,8 @@ function RootStack() {
           contentStyle: { backgroundColor: COLORS.background },
         }}
       >
-        <Stack.Screen name="index" options={{ title: t('home.title') }} />
+        <Stack.Screen name="index" options={{ title: t('app.name') }} />
+        <Stack.Screen name="quran-listen" options={{ title: t('home.title') }} />
         <Stack.Screen name="bookmarks" options={{ title: t('bookmarks.title') }} />
         <Stack.Screen name="settings" options={{ title: t('settings.title') }} />
         <Stack.Screen name="about" options={{ title: t('about.title') }} />

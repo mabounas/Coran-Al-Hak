@@ -2,6 +2,7 @@
   "app": { "name": "قرآن الامت" },
   "menu": {
     "open": "مینو",
+    "home": "ہوم",
     "summary": "فہرست",
     "bookmarks": "میری قراءتیں",
     "settings": "ترتیبات",
@@ -39,5 +40,16 @@
     "version": "ورژن"
   },
   "player": { "nowPlaying": "اس وقت چل رہا ہے" },
-  "reciter": { "title": "قاری منتخب کریں" }
+  "reciter": { "title": "قاری منتخب کریں" },
+  "landing": {
+    "chooseLanguage": "اپنی زبان منتخب کریں",
+    "listen": "قرآن سنیں",
+    "read": "قرآن پڑھیں",
+    "search": "قرآن میں لفظ تلاش کریں",
+    "hadith": "حدیث",
+    "tafsir": "تفسیر",
+    "dua": "دعا",
+    "qibla": "قبلہ",
+    "comingSoon": "جلد آرہا ہے"
+  }
 }

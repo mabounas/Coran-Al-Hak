@@ -2,6 +2,7 @@
   "app": { "name": "Corán Al Ummah" },
   "menu": {
     "open": "Menú",
+    "home": "Inicio",
     "summary": "Índice",
     "bookmarks": "Mis lecturas",
     "settings": "Ajustes",
@@ -39,5 +40,16 @@
     "version": "Versión"
   },
   "player": { "nowPlaying": "Reproduciendo ahora" },
-  "reciter": { "title": "Elige un recitador" }
+  "reciter": { "title": "Elige un recitador" },
+  "landing": {
+    "chooseLanguage": "Elige tu idioma",
+    "listen": "Escuchar el Corán",
+    "read": "Leer el Corán",
+    "search": "Buscar una palabra en el Corán",
+    "hadith": "Hadiz",
+    "tafsir": "Tafsir",
+    "dua": "Dua",
+    "qibla": "Qibla",
+    "comingSoon": "Próximamente"
+  }
 }

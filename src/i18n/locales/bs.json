@@ -2,6 +2,7 @@
   "app": { "name": "Kur'an Al Ummah" },
   "menu": {
     "open": "Meni",
+    "home": "Početna",
     "summary": "Sadržaj",
     "bookmarks": "Moja čitanja",
     "settings": "Postavke",
@@ -39,5 +40,16 @@
     "version": "Verzija"
   },
   "player": { "nowPlaying": "Trenutno svira" },
-  "reciter": { "title": "Odaberite kari'ja" }
+  "reciter": { "title": "Odaberite kari'ja" },
+  "landing": {
+    "chooseLanguage": "Odaberite jezik",
+    "listen": "Slušaj Kur'an",
+    "read": "Čitaj Kur'an",
+    "search": "Pretraži riječ u Kur'anu",
+    "hadith": "Hadis",
+    "tafsir": "Tefsir",
+    "dua": "Dova",
+    "qibla": "Kibla",
+    "comingSoon": "Uskoro dostupno"
+  }
 }

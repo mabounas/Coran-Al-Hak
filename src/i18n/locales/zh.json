@@ -2,6 +2,7 @@
   "app": { "name": "古兰经·乌玛" },
   "menu": {
     "open": "菜单",
+    "home": "首页",
     "summary": "目录",
     "bookmarks": "我的诵读",
     "settings": "设置",
@@ -39,5 +40,16 @@
     "version": "版本"
   },
   "player": { "nowPlaying": "正在播放" },
-  "reciter": { "title": "选择诵读者" }
+  "reciter": { "title": "选择诵读者" },
+  "landing": {
+    "chooseLanguage": "选择您的语言",
+    "listen": "聆听古兰经",
+    "read": "阅读古兰经",
+    "search": "在古兰经中搜索词语",
+    "hadith": "圣训",
+    "tafsir": "古兰经注释",
+    "dua": "祈祷词",
+    "qibla": "朝拜方向",
+    "comingSoon": "即将推出"
+  }
 }

@@ -1,108 +1,71 @@
-import React, { useMemo, useState } from 'react';
+import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  ActivityIndicator,
-  FlatList,
-  RefreshControl,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  useColorScheme,
-  View,
-} from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
 
 import { LanguagePicker } from '../src/components/LanguagePicker';
-import { SurahCard } from '../src/components/SurahCard';
 import { COLORS } from '../src/constants/config';
 import { LANGUAGES } from '../src/constants/languages';
 import { useLocale } from '../src/context/LocaleContext';
-import { useSurahs } from '../src/context/SurahsContext';
-import type { Surah } from '../src/types/quran';
 
-export default function SummaryScreen() {
+interface Tile {
+  key: string;
+  icon: string;
+  route: string;
+}
+
+const TILES: Tile[] = [
+  { key: 'listen', icon: '🎧', route: '/quran-listen' },
+  { key: 'read', icon: '📖', route: '/coming-soon/read' },
+  { key: 'search', icon: '🔎', route: '/coming-soon/search' },
+  { key: 'hadith', icon: '📜', route: '/coming-soon/hadith' },
+  { key: 'tafsir', icon: '💡', route: '/coming-soon/tafsir' },
+  { key: 'dua', icon: '🤲', route: '/coming-soon/dua' },
+  { key: 'qibla', icon: '🧭', route: '/coming-soon/qibla' },
+  { key: 'about', icon: 'ℹ️', route: '/about' },
+];
+
+export default function LandingScreen() {
   const { t } = useTranslation();
   const { language, isRTL } = useLocale();
-  const { surahs, loading, error, refresh } = useSurahs();
-  const [query, setQuery] = useState('');
-  const [languagePickerVisible, setLanguagePickerVisible] = useState(false);
+  const router = useRouter();
   const scheme = useColorScheme();
   const dark = scheme === 'dark';
+  const [languagePickerVisible, setLanguagePickerVisible] = useState(false);
   const currentLanguage = LANGUAGES.find((lang) => lang.code === language);
-
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return surahs;
-    return surahs.filter(
-      (s: Surah) =>
-        s.name_english.toLowerCase().includes(q) ||
-        s.name_translation.toLowerCase().includes(q) ||
-        s.name_arabic.includes(q) ||
-        String(s.number).includes(q)
-    );
-  }, [surahs, query]);
-
-  if (loading && surahs.length === 0) {
-    return (
-      <View style={[styles.centered, dark && styles.centeredDark]}>
-        <ActivityIndicator color={COLORS.primary} size="large" />
-        <Text style={[styles.loadingText, dark && styles.textDark]}>{t('home.loading')}</Text>
-      </View>
-    );
-  }
-
-  if (error && surahs.length === 0) {
-    return (
-      <View style={[styles.centered, dark && styles.centeredDark]}>
-        <Text style={[styles.errorTitle, dark && styles.textDark]}>{t('home.errorTitle')}</Text>
-        <TouchableOpacity style={styles.retryButton} onPress={refresh}>
-          <Text style={styles.retryText}>{t('home.retry')}</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
 
   return (
     <View style={[styles.container, dark && styles.containerDark]}>
-      <View style={styles.searchWrap}>
-        <View style={[styles.topRow, isRTL && styles.topRowRTL]}>
-          <Text style={[styles.subtitle, dark && styles.mutedDark]}>
-            {t('home.subtitle')}
-          </Text>
-          <TouchableOpacity
-            onPress={() => setLanguagePickerVisible(true)}
-            style={[styles.languageButton, dark && styles.languageButtonDark]}
-          >
-            <Text style={[styles.languageButtonText, dark && styles.textDark]}>
-              {currentLanguage?.nativeLabel ?? t('settings.language')}
-            </Text>
-          </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.languageBanner, isRTL && styles.languageBannerRTL]}
+        onPress={() => setLanguagePickerVisible(true)}
+      >
+        <Text style={styles.languageBannerIcon}>🌐</Text>
+        <View style={styles.languageBannerText}>
+          <Text style={styles.languageBannerTitle}>{t('landing.chooseLanguage')}</Text>
+          <Text style={styles.languageBannerCurrent}>{currentLanguage?.nativeLabel}</Text>
         </View>
-        <TextInput
-          value={query}
-          onChangeText={setQuery}
-          placeholder={t('home.searchPlaceholder')}
-          placeholderTextColor={COLORS.muted}
-          style={[
-            styles.search,
-            dark && styles.searchDark,
-            { textAlign: isRTL ? 'right' : 'left' },
-          ]}
-        />
-      </View>
+      </TouchableOpacity>
+
       <LanguagePicker
         visible={languagePickerVisible}
         onClose={() => setLanguagePickerVisible(false)}
       />
-      <FlatList
-        data={filtered}
-        keyExtractor={(item) => String(item.number)}
-        renderItem={({ item }) => <SurahCard surah={item} />}
-        contentContainerStyle={styles.listContent}
-        refreshControl={
-          <RefreshControl refreshing={loading} onRefresh={refresh} tintColor={COLORS.primary} />
-        }
-      />
+
+      <ScrollView contentContainerStyle={styles.grid}>
+        {TILES.map((tile) => (
+          <TouchableOpacity
+            key={tile.key}
+            style={[styles.tile, dark && styles.tileDark]}
+            onPress={() => router.push(tile.route as never)}
+          >
+            <Text style={styles.tileIcon}>{tile.icon}</Text>
+            <Text style={[styles.tileLabel, dark && styles.textDark]}>
+              {tile.key === 'about' ? t('about.title') : t(`landing.${tile.key}`)}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
     </View>
   );
 }
@@ -115,94 +78,66 @@ const styles = StyleSheet.create({
   containerDark: {
     backgroundColor: COLORS.backgroundDark,
   },
-  centered: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 12,
-    backgroundColor: COLORS.background,
-    padding: 24,
-  },
-  centeredDark: {
-    backgroundColor: COLORS.backgroundDark,
-  },
-  loadingText: {
-    color: COLORS.muted,
-  },
-  errorTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: COLORS.danger,
-    textAlign: 'center',
-  },
-  retryButton: {
-    marginTop: 8,
-    backgroundColor: COLORS.primary,
-    paddingHorizontal: 24,
-    paddingVertical: 10,
-    borderRadius: 10,
-  },
-  retryText: {
-    color: '#fff',
-    fontWeight: '600',
-  },
-  searchWrap: {
-    paddingHorizontal: 16,
-    paddingTop: 14,
-    paddingBottom: 6,
-    gap: 8,
-  },
-  topRow: {
+  languageBanner: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    gap: 12,
+    backgroundColor: COLORS.primary,
+    marginHorizontal: 16,
+    marginTop: 16,
+    padding: 14,
+    borderRadius: 14,
   },
-  topRowRTL: {
+  languageBannerRTL: {
     flexDirection: 'row-reverse',
   },
-  languageButton: {
+  languageBannerIcon: {
+    fontSize: 24,
+  },
+  languageBannerText: {
+    gap: 2,
+  },
+  languageBannerTitle: {
+    color: '#fff',
+    fontWeight: '700',
+    fontSize: 14,
+  },
+  languageBannerCurrent: {
+    color: 'rgba(255,255,255,0.8)',
+    fontSize: 12,
+  },
+  grid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    padding: 16,
+    gap: 14,
+  },
+  tile: {
+    width: '46%',
+    aspectRatio: 1,
     backgroundColor: COLORS.card,
+    borderRadius: 18,
     borderWidth: 1,
     borderColor: COLORS.border,
-    borderRadius: 8,
-    paddingHorizontal: 12,
-    paddingVertical: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    padding: 12,
   },
-  languageButtonDark: {
+  tileDark: {
     backgroundColor: COLORS.cardDark,
     borderColor: COLORS.borderDark,
   },
-  languageButtonText: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: COLORS.primary,
+  tileIcon: {
+    fontSize: 34,
   },
-  search: {
-    backgroundColor: COLORS.card,
-    borderRadius: 12,
-    paddingHorizontal: 14,
-    paddingVertical: 10,
-    borderWidth: 1,
-    borderColor: COLORS.border,
+  tileLabel: {
+    fontSize: 15,
+    fontWeight: '700',
     color: COLORS.text,
-  },
-  searchDark: {
-    backgroundColor: COLORS.cardDark,
-    borderColor: COLORS.borderDark,
-    color: COLORS.textDark,
-  },
-  subtitle: {
-    fontSize: 12,
-    color: COLORS.muted,
-    paddingHorizontal: 2,
-  },
-  listContent: {
-    paddingBottom: 24,
+    textAlign: 'center',
   },
   textDark: {
     color: COLORS.textDark,
-  },
-  mutedDark: {
-    color: COLORS.mutedDark,
   },
 });

@@ -20,7 +20,7 @@ export const LANGUAGES: LanguageOption[] = [
   { code: 'zh', englishLabel: 'Chinese', nativeLabel: '中文', rtl: false },
 ];
 
-export const DEFAULT_LANGUAGE_CODE = 'en';
+export const DEFAULT_LANGUAGE_CODE = 'ar';
 
 export function isRtlLanguage(code: string): boolean {
   return LANGUAGES.find((lang) => lang.code === code)?.rtl ?? false;

@@ -2,6 +2,7 @@
   "app": { "name": "Coran Al Ummah" },
   "menu": {
     "open": "Menu",
+    "home": "Laman Utama",
     "summary": "Kandungan",
     "bookmarks": "Bacaan Saya",
     "settings": "Tetapan",
@@ -39,5 +40,16 @@
     "version": "Versi"
   },
   "player": { "nowPlaying": "Sedang dimainkan" },
-  "reciter": { "title": "Pilih qari" }
+  "reciter": { "title": "Pilih qari" },
+  "landing": {
+    "chooseLanguage": "Pilih bahasa anda",
+    "listen": "Dengar Al-Quran",
+    "read": "Baca Al-Quran",
+    "search": "Cari perkataan dalam Al-Quran",
+    "hadith": "Hadis",
+    "tafsir": "Tafsir",
+    "dua": "Doa",
+    "qibla": "Kiblat",
+    "comingSoon": "Akan datang"
+  }
 }

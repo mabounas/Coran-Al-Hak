@@ -2,6 +2,7 @@
   "app": { "name": "قرآن الأمة" },
   "menu": {
     "open": "القائمة",
+    "home": "الرئيسية",
     "summary": "الفهرس",
     "bookmarks": "قراءاتي",
     "settings": "الإعدادات",
@@ -39,5 +40,16 @@
     "version": "الإصدار"
   },
   "player": { "nowPlaying": "قيد التشغيل الآن" },
-  "reciter": { "title": "اختر القارئ" }
+  "reciter": { "title": "اختر القارئ" },
+  "landing": {
+    "chooseLanguage": "اختر لغتك",
+    "listen": "استماع القرآن",
+    "read": "قراءة القرآن",
+    "search": "البحث عن كلمة في القرآن",
+    "hadith": "الحديث",
+    "tafsir": "التفسير",
+    "dua": "الدعاء",
+    "qibla": "القبلة",
+    "comingSoon": "قريباً"
+  }
 }

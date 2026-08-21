@@ -1,9 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Localization from 'expo-localization';
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 import i18n from '../i18n';
-import { DEFAULT_LANGUAGE_CODE, LANGUAGES, isRtlLanguage } from '../constants/languages';
+import { DEFAULT_LANGUAGE_CODE, isRtlLanguage } from '../constants/languages';
 
 const STORAGE_KEY = 'coran_al_hak.language';
 
@@ -16,14 +15,6 @@ interface LocaleContextValue {
 
 const LocaleContext = createContext<LocaleContextValue | undefined>(undefined);
 
-function resolveDeviceLanguage(): string {
-  const locales = Localization.getLocales();
-  const match = locales.find((locale) =>
-    LANGUAGES.some((lang) => lang.code === locale.languageCode)
-  );
-  return match?.languageCode ?? DEFAULT_LANGUAGE_CODE;
-}
-
 export function LocaleProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState(DEFAULT_LANGUAGE_CODE);
   const [isReady, setIsReady] = useState(false);
@@ -32,7 +23,7 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
     (async () => {
       try {
         const stored = await AsyncStorage.getItem(STORAGE_KEY);
-        const initial = stored ?? resolveDeviceLanguage();
+        const initial = stored ?? DEFAULT_LANGUAGE_CODE;
         await i18n.changeLanguage(initial);
         setLanguageState(initial);
       } finally {
