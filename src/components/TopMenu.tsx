@@ -18,12 +18,12 @@ interface MenuEntry {
   key: string;
   labelKey: string;
   icon: string;
-  route: '/' | '/quran-listen' | '/bookmarks' | '/settings' | '/about';
+  route: '/' | '/sommaire' | '/bookmarks' | '/settings' | '/about';
 }
 
 const ENTRIES: MenuEntry[] = [
   { key: 'home', labelKey: 'menu.home', icon: '🏠', route: '/' },
-  { key: 'summary', labelKey: 'menu.summary', icon: '📖', route: '/quran-listen' },
+  { key: 'summary', labelKey: 'menu.summary', icon: '📖', route: '/sommaire' },
   { key: 'bookmarks', labelKey: 'menu.bookmarks', icon: '🔖', route: '/bookmarks' },
   { key: 'settings', labelKey: 'menu.settings', icon: '🌐', route: '/settings' },
   { key: 'about', labelKey: 'menu.about', icon: 'ℹ️', route: '/about' },

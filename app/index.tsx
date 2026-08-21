@@ -15,7 +15,7 @@ interface Tile {
 }
 
 const TILES: Tile[] = [
-  { key: 'listen', icon: '🎧', route: '/quran-listen' },
+  { key: 'listen', icon: '🎧', route: '/sommaire' },
   { key: 'read', icon: '📖', route: '/coming-soon/read' },
   { key: 'search', icon: '🔎', route: '/coming-soon/search' },
   { key: 'hadith', icon: '📜', route: '/coming-soon/hadith' },
