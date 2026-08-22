@@ -14,6 +14,7 @@ import {
 import { fetchAsmaUlHusna } from '../src/api/asmaUlHusna';
 import { toArabicNumerals } from '../src/constants/arabic';
 import { COLORS } from '../src/constants/config';
+import { getNameMeaning } from '../src/constants/divineNameMeanings';
 import { useLocale } from '../src/context/LocaleContext';
 import type { AsmaUlHusnaData, DivineName } from '../src/types/asmaUlHusna';
 
@@ -68,10 +69,9 @@ export default function DivineNamesScreen() {
     );
   }
 
-  // The API only writes the explanation in English, so it is left out of the
-  // Arabic reading, where nothing would be gained by a tap.
   const renderName = ({ item }: { item: DivineName }) => {
-    const expandable = !arabicUi && Boolean(item.meaning);
+    const meaning = getNameMeaning(item.number, item.meaning, language);
+    const expandable = Boolean(meaning);
     const expanded = openName === item.number;
 
     return (
@@ -100,7 +100,15 @@ export default function DivineNamesScreen() {
         </View>
 
         {expandable && expanded ? (
-          <Text style={[styles.meaning, dark && styles.mutedDark]}>{item.meaning}</Text>
+          <Text
+            style={[
+              styles.meaning,
+              dark && styles.mutedDark,
+              arabicUi && styles.meaningArabic,
+            ]}
+          >
+            {meaning}
+          </Text>
         ) : null}
       </TouchableOpacity>
     );
@@ -124,11 +132,9 @@ export default function DivineNamesScreen() {
                 count: arabicUi ? toArabicNumerals(data.total_count) : data.total_count,
               })}
             </Text>
-            {!arabicUi ? (
-              <Text style={[styles.headerSubtitle, dark && styles.mutedDark]}>
-                {t('names.tapHint')}
-              </Text>
-            ) : null}
+            <Text style={[styles.headerSubtitle, dark && styles.mutedDark]}>
+              {t('names.tapHint')}
+            </Text>
             {!arabicUi && data.hadith ? (
               <Text style={[styles.hadith, dark && styles.mutedDark]}>{data.hadith}</Text>
             ) : null}
@@ -274,6 +280,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: COLORS.muted,
     textAlign: 'center',
+  },
+  meaningArabic: {
+    textAlign: 'right',
+    writingDirection: 'rtl',
+    fontSize: 15,
+    lineHeight: 28,
   },
   meaning: {
     fontSize: 13,
