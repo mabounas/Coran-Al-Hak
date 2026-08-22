@@ -15,6 +15,7 @@ import { LanguagePicker } from '../../src/components/LanguagePicker';
 import { SurahReadCard } from '../../src/components/SurahReadCard';
 import { SurahSearchField } from '../../src/components/SurahSearchField';
 import { COLORS } from '../../src/constants/config';
+import { filterSurahs } from '../../src/constants/surahFilter';
 import { LANGUAGES } from '../../src/constants/languages';
 import { useLocale } from '../../src/context/LocaleContext';
 import { useSurahs } from '../../src/context/SurahsContext';
@@ -30,17 +31,7 @@ export default function ReadSummaryScreen() {
   const dark = scheme === 'dark';
   const currentLanguage = LANGUAGES.find((lang) => lang.code === language);
 
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return surahs;
-    return surahs.filter(
-      (s: Surah) =>
-        s.name_english.toLowerCase().includes(q) ||
-        s.name_translation.toLowerCase().includes(q) ||
-        s.name_arabic.includes(q) ||
-        String(s.number).includes(q)
-    );
-  }, [surahs, query]);
+  const filtered = useMemo(() => filterSurahs(surahs, query), [surahs, query]);
 
   if (loading && surahs.length === 0) {
     return (

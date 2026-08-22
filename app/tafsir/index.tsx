@@ -13,6 +13,7 @@ import {
 
 import { SurahSearchField } from '../../src/components/SurahSearchField';
 import { COLORS } from '../../src/constants/config';
+import { filterSurahs } from '../../src/constants/surahFilter';
 import { useLocale } from '../../src/context/LocaleContext';
 import { useSurahs } from '../../src/context/SurahsContext';
 import type { Surah } from '../../src/types/quran';
@@ -26,17 +27,7 @@ export default function TafsirSurahListScreen() {
   const { surahs, loading, error, refresh } = useSurahs();
   const [query, setQuery] = useState('');
 
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return surahs;
-    return surahs.filter(
-      (s: Surah) =>
-        s.name_english.toLowerCase().includes(q) ||
-        s.name_translation.toLowerCase().includes(q) ||
-        s.name_arabic.includes(q) ||
-        String(s.number).includes(q)
-    );
-  }, [surahs, query]);
+  const filtered = useMemo(() => filterSurahs(surahs, query), [surahs, query]);
 
   if (loading && surahs.length === 0) {
     return (
