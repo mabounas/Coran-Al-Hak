@@ -1,33 +1,35 @@
 import type { DuaCategory } from '../types/dua';
 
-// Best-effort Arabic names for common dua category ids. The API only returns
-// English names, so unknown ids fall back to the English name even in Arabic.
+// Arabic names for the dua category ids the API actually returns; it only
+// names them in English. Unknown ids fall back to that English name.
 const ARABIC_NAMES: Record<string, string> = {
-  wudu: 'الوضوء والطهارة',
   morning: 'أذكار الصباح',
   evening: 'أذكار المساء',
+  wudu: 'الوضوء والطهارة',
+  prayer: 'الصلاة',
+  after_prayer: 'بعد الصلاة',
   sleep: 'قبل النوم',
-  waking_up: 'عند الاستيقاظ',
-  eating: 'الطعام والشراب',
+  food: 'الطعام والشراب',
   travel: 'السفر',
   home: 'دخول وخروج المنزل',
-  mosque: 'المسجد',
-  prayer: 'الصلاة',
+  masjid: 'المسجد',
   distress: 'الكرب والهم',
   forgiveness: 'الاستغفار والتوبة',
-  protection: 'الحماية والحفظ',
-  rain: 'المطر',
   illness: 'المرض والشفاء',
-  funeral: 'الجنازة',
-  marriage: 'الزواج',
-  children: 'الأولاد',
+  weather: 'الطقس',
   knowledge: 'طلب العلم',
+  parents: 'الوالدان',
   guidance: 'الهداية',
-  anxiety: 'القلق والهم',
   gratitude: 'الشكر',
-  friday: 'يوم الجمعة',
-  ramadan: 'رمضان',
+  protection: 'الحماية والحفظ',
+  dhikr: 'الذكر',
+  marriage: 'الزواج',
   hajj: 'الحج والعمرة',
+  grief: 'دعاء للأموات',
+  children: 'الأولاد',
+  business: 'العمل والرزق',
+  night_prayer: 'صلاة الليل',
+  quran_recitation: 'تلاوة القرآن',
 };
 
 export function getCategoryDisplayName(category: DuaCategory, language: string): string {
