@@ -112,7 +112,13 @@ export default function SearchScreen() {
   );
 
   // Dictation feeds the very same search as the keyboard does.
-  const { listening, error: micError, start: startListening, stop: stopListening } = useDictation({
+  const {
+    listening,
+    error: micError,
+    supported: micSupported,
+    start: startListening,
+    stop: stopListening,
+  } = useDictation({
     locale: speechLocale,
     onResult: (transcript, isFinal) => {
       setQuery(transcript);
@@ -141,13 +147,15 @@ export default function SearchScreen() {
               { textAlign: isRTL ? 'right' : 'left' },
             ]}
           />
-          <TouchableOpacity
-            onPress={listening ? stopListening : startListening}
-            style={[styles.micButton, listening && styles.micButtonActive]}
-            accessibilityLabel={t('search.micStart')}
-          >
-            <Text style={styles.micGlyph}>{listening ? '■' : '🎤'}</Text>
-          </TouchableOpacity>
+          {micSupported ? (
+            <TouchableOpacity
+              onPress={listening ? stopListening : startListening}
+              style={[styles.micButton, listening && styles.micButtonActive]}
+              accessibilityLabel={t('search.micStart')}
+            >
+              <Text style={styles.micGlyph}>{listening ? '■' : '🎤'}</Text>
+            </TouchableOpacity>
+          ) : null}
           <TouchableOpacity onPress={() => runSearch(query)} style={styles.searchButton}>
             <Text style={styles.searchButtonText}>🔎</Text>
           </TouchableOpacity>

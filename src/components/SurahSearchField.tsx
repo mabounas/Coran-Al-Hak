@@ -28,7 +28,7 @@ export function SurahSearchField({ value, onChangeText, placeholder }: Props) {
 
   const speechLocale = getSpeechLocale(language);
 
-  const { listening, error, start, stop } = useDictation({
+  const { listening, error, supported, start, stop } = useDictation({
     locale: speechLocale,
     onResult: (transcript) => {
       // Recognisers like to end a phrase with punctuation; the filter does not.
@@ -46,13 +46,15 @@ export function SurahSearchField({ value, onChangeText, placeholder }: Props) {
           placeholderTextColor={COLORS.muted}
           style={[styles.input, dark && styles.inputDark, { textAlign: isRTL ? 'right' : 'left' }]}
         />
-        <TouchableOpacity
-          onPress={listening ? stop : start}
-          style={[styles.micButton, listening && styles.micButtonActive]}
-          accessibilityLabel={t('search.micStart')}
-        >
-          <Text style={styles.micGlyph}>{listening ? '■' : '🎤'}</Text>
-        </TouchableOpacity>
+        {supported ? (
+          <TouchableOpacity
+            onPress={listening ? stop : start}
+            style={[styles.micButton, listening && styles.micButtonActive]}
+            accessibilityLabel={t('search.micStart')}
+          >
+            <Text style={styles.micGlyph}>{listening ? '■' : '🎤'}</Text>
+          </TouchableOpacity>
+        ) : null}
       </View>
 
       {listening ? (

@@ -1,7 +1,3 @@
-import {
-  ExpoSpeechRecognitionModule,
-  useSpeechRecognitionEvent,
-} from 'expo-speech-recognition';
 import { useCallback, useRef, useState } from 'react';
 
 export type DictationError = 'denied' | 'unsupported' | 'failed';
@@ -19,37 +15,56 @@ export interface Dictation {
   stop: () => void;
 }
 
-// Native dictation, backed by the platform recognizer. The web build uses
-// useDictation.web.ts instead, which drives the Web Speech API directly.
+// expo-speech-recognition ships native code, so it is missing from Expo Go and
+// its import throws there. Loading it defensively lets the whole app run in
+// Expo Go with dictation simply reported as unavailable.
+const speech = (() => {
+  try {
+    return require('expo-speech-recognition') as typeof import('expo-speech-recognition');
+  } catch {
+    return null;
+  }
+})();
+
+const noopEvent = () => {};
+const useSpeechEvent = speech?.useSpeechRecognitionEvent ?? noopEvent;
+
+/** Native dictation. The web build uses useDictation.web.ts instead. */
 export function useDictation({ locale, onResult }: DictationOptions): Dictation {
   const [listening, setListening] = useState(false);
   const [error, setError] = useState<DictationError | null>(null);
   const onResultRef = useRef(onResult);
   onResultRef.current = onResult;
 
-  useSpeechRecognitionEvent('result', (event) => {
+  useSpeechEvent('result', (event: { results?: { transcript?: string }[]; isFinal?: boolean }) => {
     const transcript = event.results?.[0]?.transcript?.trim() ?? '';
     if (!transcript) return;
     if (event.isFinal) setListening(false);
     onResultRef.current(transcript, Boolean(event.isFinal));
   });
 
-  useSpeechRecognitionEvent('end', () => setListening(false));
+  useSpeechEvent('end', () => setListening(false));
 
-  useSpeechRecognitionEvent('error', (event) => {
+  useSpeechEvent('error', (event: { error?: string }) => {
     setError(event.error === 'not-allowed' ? 'denied' : 'failed');
     setListening(false);
   });
 
   const start = useCallback(async () => {
     setError(null);
+
+    if (!speech) {
+      setError('unsupported');
+      return;
+    }
+
     try {
-      const permission = await ExpoSpeechRecognitionModule.requestPermissionsAsync();
+      const permission = await speech.ExpoSpeechRecognitionModule.requestPermissionsAsync();
       if (!permission.granted) {
         setError('denied');
         return;
       }
-      ExpoSpeechRecognitionModule.start({
+      speech.ExpoSpeechRecognitionModule.start({
         lang: locale,
         interimResults: true,
         continuous: false,
@@ -63,12 +78,12 @@ export function useDictation({ locale, onResult }: DictationOptions): Dictation 
 
   const stop = useCallback(() => {
     try {
-      ExpoSpeechRecognitionModule.stop();
+      speech?.ExpoSpeechRecognitionModule.stop();
     } catch {
       // Already stopped.
     }
     setListening(false);
   }, []);
 
-  return { listening, error, supported: true, start, stop };
+  return { listening, error, supported: speech !== null, start, stop };
 }
