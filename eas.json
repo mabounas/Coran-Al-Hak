@@ -34,7 +34,8 @@
     "production": {
       "ios": {
         "appleId": "mohammed.abounasser@gmail.com",
-        "appleTeamId": "92BDST42WW"
+        "appleTeamId": "92BDST42WW",
+        "ascAppId": "6804298413"
       },
       "android": {
         "serviceAccountKeyPath": "./google-play-service-account.json",
