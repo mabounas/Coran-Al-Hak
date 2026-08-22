@@ -116,9 +116,13 @@ export default function DivineNamesScreen() {
         initialNumToRender={10}
         ListHeaderComponent={
           <View style={styles.header}>
-            <Text style={[styles.headerTitle, arabicFont]}>{data.arabic_title}</Text>
+            {!arabicUi ? (
+              <Text style={[styles.headerTitle, arabicFont]}>{data.arabic_title}</Text>
+            ) : null}
             <Text style={[styles.headerSubtitle, dark && styles.mutedDark]}>
-              {t('names.count', { count: data.total_count })}
+              {t('names.count', {
+                count: arabicUi ? toArabicNumerals(data.total_count) : data.total_count,
+              })}
             </Text>
             {!arabicUi ? (
               <Text style={[styles.headerSubtitle, dark && styles.mutedDark]}>
