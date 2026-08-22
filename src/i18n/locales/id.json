@@ -53,7 +53,7 @@
     "read": "Baca Al-Qur'an",
     "search": "Cari kata dalam Al-Qur'an",
     "hadith": "Hadis",
-    "tafsir": "Tafsir",
+    "tafsir": "Tafssir",
     "dua": "Doa",
     "qibla": "Kiblat",
     "comingSoon": "Segera hadir"
@@ -141,5 +141,11 @@
     "total": "{{count}} hadis",
     "loading": "Memuat hadis...",
     "error": "Tidak dapat memuat hadis."
+  },
+  "tafsir": {
+    "button": "Penjelasan",
+    "choose": "Pilih surah",
+    "tapHint": "Ketuk ayat untuk membaca penjelasannya",
+    "error": "Tidak dapat memuat penjelasan."
   }
 }

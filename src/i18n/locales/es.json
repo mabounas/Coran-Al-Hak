@@ -53,7 +53,7 @@
     "read": "Leer el Corán",
     "search": "Buscar una palabra en el Corán",
     "hadith": "Hadiz",
-    "tafsir": "Tafsir",
+    "tafsir": "Tafssir",
     "dua": "Dua",
     "qibla": "Qibla",
     "comingSoon": "Próximamente"
@@ -141,5 +141,11 @@
     "total": "{{count}} hadices",
     "loading": "Cargando los hadices...",
     "error": "No se pudieron cargar los hadices."
+  },
+  "tafsir": {
+    "button": "Explicación",
+    "choose": "Elige una sura",
+    "tapHint": "Toca un versículo para leer su explicación",
+    "error": "No se pudo cargar la explicación."
   }
 }

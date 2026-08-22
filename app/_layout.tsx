@@ -42,6 +42,8 @@ function RootStack() {
         <Stack.Screen name="horaires" options={{ title: t('prayer.title') }} />
         <Stack.Screen name="hadith/index" options={{ title: t('landing.hadith') }} />
         <Stack.Screen name="hadith/[collection]" options={{ title: t('landing.hadith') }} />
+        <Stack.Screen name="tafsir/index" options={{ title: t('landing.tafsir') }} />
+        <Stack.Screen name="tafsir/[number]" options={{ title: t('landing.tafsir') }} />
         <Stack.Screen name="bookmarks" options={{ title: t('bookmarks.title') }} />
         <Stack.Screen name="settings" options={{ title: t('settings.title') }} />
         <Stack.Screen name="about" options={{ title: t('about.title') }} />

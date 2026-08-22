@@ -21,7 +21,7 @@ const TILES: Tile[] = [
   { key: 'read', icon: '📖', route: '/lecture', labelKey: 'landing.read' },
   { key: 'search', icon: '🔎', route: '/recherche', labelKey: 'landing.search' },
   { key: 'hadith', icon: '📜', route: '/hadith', labelKey: 'landing.hadith' },
-  { key: 'tafsir', icon: '💡', route: '/coming-soon/tafsir', labelKey: 'landing.tafsir' },
+  { key: 'tafsir', icon: '💡', route: '/tafsir', labelKey: 'landing.tafsir' },
   { key: 'dua', icon: '🤲', route: '/dua', labelKey: 'landing.dua' },
   { key: 'qibla', icon: '🧭', route: '/qibla', labelKey: 'landing.qibla' },
   { key: 'prayer', icon: '🕰️', route: '/horaires', labelKey: 'prayer.title' },

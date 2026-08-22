@@ -6,6 +6,8 @@ export const DUAS_API_BASE_URL = 'https://ummahapi.com/api/duas';
 export const ASMA_UL_HUSNA_API_URL = 'https://ummahapi.com/api/asma-ul-husna';
 export const PRAYER_TIMES_API_URL = 'https://ummahapi.com/api/prayer-times';
 export const HADITH_API_BASE_URL = 'https://ummahapi.com/api/hadith';
+// Served by our own function (api/tafsir.js): the tafsir service is HTTP only.
+export const TAFSIR_PROXY_URL = 'https://coran-al-ummah.vercel.app/api/tafsir';
 
 export const COLORS = {
   primary: '#0F6E52',

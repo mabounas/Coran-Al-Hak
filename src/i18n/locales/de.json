@@ -53,7 +53,7 @@
     "read": "Koran lesen",
     "search": "Ein Wort im Koran suchen",
     "hadith": "Hadith",
-    "tafsir": "Tafsir",
+    "tafsir": "Tafssir",
     "dua": "Dua",
     "qibla": "Qibla",
     "comingSoon": "Demnächst verfügbar"
@@ -141,5 +141,11 @@
     "total": "{{count}} Hadithe",
     "loading": "Hadithe werden geladen...",
     "error": "Die Hadithe konnten nicht geladen werden."
+  },
+  "tafsir": {
+    "button": "Erklärung",
+    "choose": "Wähle eine Sure",
+    "tapHint": "Tippe auf einen Vers, um seine Erklärung zu lesen",
+    "error": "Die Erklärung konnte nicht geladen werden."
   }
 }

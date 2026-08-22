@@ -53,7 +53,7 @@
     "read": "Read the Quran",
     "search": "Search a word in the Quran",
     "hadith": "Hadith",
-    "tafsir": "Tafsir",
+    "tafsir": "Tafssir",
     "dua": "Dua",
     "qibla": "Qibla",
     "comingSoon": "Coming soon"
@@ -141,5 +141,11 @@
     "total": "{{count}} hadiths",
     "loading": "Loading the hadiths...",
     "error": "Could not load the hadiths."
+  },
+  "tafsir": {
+    "button": "Explanation",
+    "choose": "Choose a surah",
+    "tapHint": "Tap a verse to read its explanation",
+    "error": "Could not load the explanation."
   }
 }
