@@ -13,17 +13,21 @@ interface Tile {
   key: string;
   icon: string;
   route: string;
+  labelKey: string;
 }
 
 const TILES: Tile[] = [
-  { key: 'listen', icon: '🎧', route: '/sommaire' },
-  { key: 'read', icon: '📖', route: '/lecture' },
-  { key: 'search', icon: '🔎', route: '/recherche' },
-  { key: 'hadith', icon: '📜', route: '/coming-soon/hadith' },
-  { key: 'tafsir', icon: '💡', route: '/coming-soon/tafsir' },
-  { key: 'dua', icon: '🤲', route: '/dua' },
-  { key: 'qibla', icon: '🧭', route: '/qibla' },
-  { key: 'about', icon: 'ℹ️', route: '/about' },
+  { key: 'listen', icon: '🎧', route: '/sommaire', labelKey: 'landing.listen' },
+  { key: 'read', icon: '📖', route: '/lecture', labelKey: 'landing.read' },
+  { key: 'search', icon: '🔎', route: '/recherche', labelKey: 'landing.search' },
+  { key: 'hadith', icon: '📜', route: '/coming-soon/hadith', labelKey: 'landing.hadith' },
+  { key: 'tafsir', icon: '💡', route: '/coming-soon/tafsir', labelKey: 'landing.tafsir' },
+  { key: 'dua', icon: '🤲', route: '/dua', labelKey: 'landing.dua' },
+  { key: 'qibla', icon: '🧭', route: '/qibla', labelKey: 'landing.qibla' },
+  { key: 'prayer', icon: '🕰️', route: '/horaires', labelKey: 'prayer.title' },
+  { key: 'names', icon: '🕌', route: '/noms', labelKey: 'names.title' },
+  // About stays the last tile of the grid.
+  { key: 'about', icon: 'ℹ️', route: '/about', labelKey: 'about.title' },
 ];
 
 export default function LandingScreen() {
@@ -63,7 +67,7 @@ export default function LandingScreen() {
           >
             <Text style={styles.tileIcon}>{tile.icon}</Text>
             <Text style={[styles.tileLabel, dark && styles.textDark]}>
-              {tile.key === 'about' ? t('about.title') : t(`landing.${tile.key}`)}
+              {t(tile.labelKey)}
             </Text>
           </TouchableOpacity>
         ))}
