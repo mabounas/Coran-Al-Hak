@@ -15,6 +15,7 @@
     "expo-router": "^57.0.15",
     "expo-speech-recognition": "^56.0.1",
     "expo-status-bar": "~57.0.1",
+    "expo-system-ui": "~57.0.2",
     "i18next": "^26.4.0",
     "react": "19.2.3",
     "react-dom": "^19.2.3",
