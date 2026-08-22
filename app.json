@@ -19,15 +19,15 @@
       [
         "expo-location",
         {
-          "locationWhenInUsePermission": "Allow Coran Al Ummah to use your location to find the Qibla direction."
+          "locationWhenInUsePermission": "Allow Quran Al Ummah to use your location to find the Qibla direction."
         }
       ],
       "expo-font",
       [
         "expo-speech-recognition",
         {
-          "microphonePermission": "Allow Coran Al Ummah to use the microphone to search the Quran by voice.",
-          "speechRecognitionPermission": "Allow Coran Al Ummah to use speech recognition to search the Quran by voice."
+          "microphonePermission": "Allow Quran Al Ummah to use the microphone to search the Quran by voice.",
+          "speechRecognitionPermission": "Allow Quran Al Ummah to use speech recognition to search the Quran by voice."
         }
       ]
     ],
@@ -40,8 +40,10 @@
           "audio"
         ],
         "ITSAppUsesNonExemptEncryption": false,
-        "NSSpeechRecognitionUsageDescription": "Allow Coran Al Ummah to use speech recognition to search the Quran by voice.",
-        "NSMicrophoneUsageDescription": "Allow Coran Al Ummah to use the microphone to search the Quran by voice."
+        "NSSpeechRecognitionUsageDescription": "Allow Quran Al Ummah to use speech recognition to search the Quran by voice.",
+        "NSMicrophoneUsageDescription": "Allow Quran Al Ummah to use the microphone to search the Quran by voice.",
+        "NSPhotoLibraryUsageDescription": "Quran Al Ummah does not open your photo library. This entry is required because a system component of the app links Apple photo APIs.",
+        "NSPhotoLibraryAddUsageDescription": "Quran Al Ummah does not save anything to your photo library. This entry is required because a system component of the app links Apple photo APIs."
       }
     },
     "android": {
