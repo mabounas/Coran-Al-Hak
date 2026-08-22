@@ -18,13 +18,14 @@ interface MenuEntry {
   key: string;
   labelKey: string;
   icon: string;
-  route: '/' | '/sommaire' | '/bookmarks' | '/noms' | '/settings' | '/about';
+  route: '/' | '/sommaire' | '/bookmarks' | '/horaires' | '/noms' | '/settings' | '/about';
 }
 
 const ENTRIES: MenuEntry[] = [
   { key: 'home', labelKey: 'menu.home', icon: '🏠', route: '/' },
   { key: 'summary', labelKey: 'menu.summary', icon: '📖', route: '/sommaire' },
   { key: 'bookmarks', labelKey: 'menu.bookmarks', icon: '🔖', route: '/bookmarks' },
+  { key: 'prayer', labelKey: 'prayer.title', icon: '🕰️', route: '/horaires' },
   { key: 'names', labelKey: 'names.title', icon: '🕌', route: '/noms' },
   { key: 'settings', labelKey: 'menu.settings', icon: '🌐', route: '/settings' },
   // About stays the last entry of the menu.

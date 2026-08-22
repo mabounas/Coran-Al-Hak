@@ -120,5 +120,20 @@
     "tapHint": "Tippe auf einen Namen, um seine Bedeutung zu lesen",
     "loading": "Namen werden geladen...",
     "error": "Die Namen konnten nicht geladen werden."
+  },
+  "prayer": {
+    "title": "Gebetszeiten",
+    "intro": "Wir brauchen deinen Standort, um die Zeiten des Monats zu berechnen.",
+    "start": "Zeiten anzeigen",
+    "permissionDenied": "Für die Berechnung der Zeiten wird der Standortzugriff benötigt.",
+    "error": "Die Gebetszeiten konnten nicht geladen werden.",
+    "date": "Tag",
+    "imsak": "Imsak",
+    "fajr": "Fadschr",
+    "sunrise": "Aufgang",
+    "dhuhr": "Dhuhr",
+    "asr": "Asr",
+    "maghrib": "Maghrib",
+    "isha": "Ischa"
   }
 }

@@ -120,5 +120,20 @@
     "tapHint": "Tap a name to read its meaning",
     "loading": "Loading the names...",
     "error": "Could not load the names."
+  },
+  "prayer": {
+    "title": "Prayer Times",
+    "intro": "We need your location to work out this month's times.",
+    "start": "Show the times",
+    "permissionDenied": "Location access is required to work out the times.",
+    "error": "Could not load the prayer times.",
+    "date": "Day",
+    "imsak": "Imsak",
+    "fajr": "Fajr",
+    "sunrise": "Sunrise",
+    "dhuhr": "Dhuhr",
+    "asr": "Asr",
+    "maghrib": "Maghrib",
+    "isha": "Isha"
   }
 }

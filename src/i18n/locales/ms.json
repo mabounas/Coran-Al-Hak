@@ -120,5 +120,20 @@
     "tapHint": "Ketik nama untuk membaca maknanya",
     "loading": "Memuatkan nama...",
     "error": "Nama tidak dapat dimuatkan."
+  },
+  "prayer": {
+    "title": "Waktu solat",
+    "intro": "Kami memerlukan lokasi anda untuk mengira waktu bulan ini.",
+    "start": "Lihat waktu solat",
+    "permissionDenied": "Akses lokasi diperlukan untuk mengira waktu solat.",
+    "error": "Waktu solat tidak dapat dimuatkan.",
+    "date": "Hari",
+    "imsak": "Imsak",
+    "fajr": "Subuh",
+    "sunrise": "Syuruk",
+    "dhuhr": "Zohor",
+    "asr": "Asar",
+    "maghrib": "Maghrib",
+    "isha": "Isyak"
   }
 }

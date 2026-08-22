@@ -120,5 +120,20 @@
     "tapHint": "点按名字查看其含义",
     "loading": "正在加载名字……",
     "error": "无法加载名字。"
+  },
+  "prayer": {
+    "title": "礼拜时间",
+    "intro": "我们需要您的位置来计算本月的时间。",
+    "start": "查看时间表",
+    "permissionDenied": "计算时间需要位置权限。",
+    "error": "无法加载礼拜时间。",
+    "date": "日",
+    "imsak": "封斋",
+    "fajr": "晨礼",
+    "sunrise": "日出",
+    "dhuhr": "晌礼",
+    "asr": "晡礼",
+    "maghrib": "昏礼",
+    "isha": "宵礼"
   }
 }

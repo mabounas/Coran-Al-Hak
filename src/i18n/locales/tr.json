@@ -120,5 +120,20 @@
     "tapHint": "Anlamını okumak için bir isme dokunun",
     "loading": "İsimler yükleniyor...",
     "error": "İsimler yüklenemedi."
+  },
+  "prayer": {
+    "title": "Namaz vakitleri",
+    "intro": "Bu ayın vakitlerini hesaplamak için konumunuza ihtiyacımız var.",
+    "start": "Vakitleri göster",
+    "permissionDenied": "Vakitleri hesaplamak için konum erişimi gerekir.",
+    "error": "Namaz vakitleri yüklenemedi.",
+    "date": "Gün",
+    "imsak": "İmsak",
+    "fajr": "Sabah",
+    "sunrise": "Güneş",
+    "dhuhr": "Öğle",
+    "asr": "İkindi",
+    "maghrib": "Akşam",
+    "isha": "Yatsı"
   }
 }

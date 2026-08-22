@@ -120,5 +120,20 @@
     "tapHint": "Dodirnite ime da pročitate značenje",
     "loading": "Učitavanje imena...",
     "error": "Nije moguće učitati imena."
+  },
+  "prayer": {
+    "title": "Vaktovi namaza",
+    "intro": "Potrebna nam je vaša lokacija da izračunamo vaktove ovog mjeseca.",
+    "start": "Prikaži vaktove",
+    "permissionDenied": "Za izračun vaktova potreban je pristup lokaciji.",
+    "error": "Nije moguće učitati vaktove.",
+    "date": "Dan",
+    "imsak": "Imsak",
+    "fajr": "Zora",
+    "sunrise": "Izlazak",
+    "dhuhr": "Podne",
+    "asr": "Ikindija",
+    "maghrib": "Akšam",
+    "isha": "Jacija"
   }
 }

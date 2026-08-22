@@ -120,5 +120,20 @@
     "tapHint": "Touchez un nom pour lire sa signification",
     "loading": "Chargement des noms...",
     "error": "Impossible de charger les noms."
+  },
+  "prayer": {
+    "title": "Horaires de prière",
+    "intro": "Nous avons besoin de votre position pour calculer les horaires du mois.",
+    "start": "Voir les horaires",
+    "permissionDenied": "L'accès à la position est nécessaire pour calculer les horaires.",
+    "error": "Impossible de charger les horaires.",
+    "date": "Jour",
+    "imsak": "Imsak",
+    "fajr": "Fajr",
+    "sunrise": "Lever",
+    "dhuhr": "Dhuhr",
+    "asr": "Asr",
+    "maghrib": "Maghrib",
+    "isha": "Isha"
   }
 }

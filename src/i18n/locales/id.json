@@ -120,5 +120,20 @@
     "tapHint": "Ketuk nama untuk membaca maknanya",
     "loading": "Memuat nama-nama...",
     "error": "Tidak dapat memuat nama-nama."
+  },
+  "prayer": {
+    "title": "Jadwal salat",
+    "intro": "Kami memerlukan lokasi Anda untuk menghitung jadwal bulan ini.",
+    "start": "Lihat jadwal",
+    "permissionDenied": "Akses lokasi diperlukan untuk menghitung jadwal.",
+    "error": "Tidak dapat memuat jadwal salat.",
+    "date": "Hari",
+    "imsak": "Imsak",
+    "fajr": "Subuh",
+    "sunrise": "Terbit",
+    "dhuhr": "Zuhur",
+    "asr": "Asar",
+    "maghrib": "Magrib",
+    "isha": "Isya"
   }
 }
