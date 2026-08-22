@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "Coran Al Ummah",
-    "slug": "coran-al-hak",
-    "scheme": "coranalhak",
+    "slug": "coran-al-ummah",
+    "scheme": "coranalummah",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
