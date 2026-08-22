@@ -6,12 +6,12 @@ import {
   FlatList,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   useColorScheme,
   View,
 } from 'react-native';
 
+import { SurahSearchField } from '../../src/components/SurahSearchField';
 import { COLORS } from '../../src/constants/config';
 import { useLocale } from '../../src/context/LocaleContext';
 import { useSurahs } from '../../src/context/SurahsContext';
@@ -94,13 +94,7 @@ export default function TafsirSurahListScreen() {
     <View style={[styles.container, dark && styles.containerDark]}>
       <View style={styles.searchWrap}>
         <Text style={[styles.subtitle, dark && styles.mutedDark]}>{t('tafsir.choose')}</Text>
-        <TextInput
-          value={query}
-          onChangeText={setQuery}
-          placeholder={t('home.searchPlaceholder')}
-          placeholderTextColor={COLORS.muted}
-          style={[styles.search, dark && styles.searchDark, { textAlign: isRTL ? 'right' : 'left' }]}
-        />
+        <SurahSearchField value={query} onChangeText={setQuery} />
       </View>
       <FlatList
         data={filtered}
@@ -162,20 +156,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: COLORS.muted,
     paddingHorizontal: 2,
-  },
-  search: {
-    backgroundColor: COLORS.card,
-    borderRadius: 12,
-    paddingHorizontal: 14,
-    paddingVertical: 10,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    color: COLORS.text,
-  },
-  searchDark: {
-    backgroundColor: COLORS.cardDark,
-    borderColor: COLORS.borderDark,
-    color: COLORS.textDark,
   },
   listContent: {
     paddingBottom: 24,

@@ -6,7 +6,6 @@ import {
   RefreshControl,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   useColorScheme,
   View,
@@ -14,6 +13,7 @@ import {
 
 import { LanguagePicker } from '../../src/components/LanguagePicker';
 import { SurahReadCard } from '../../src/components/SurahReadCard';
+import { SurahSearchField } from '../../src/components/SurahSearchField';
 import { COLORS } from '../../src/constants/config';
 import { LANGUAGES } from '../../src/constants/languages';
 import { useLocale } from '../../src/context/LocaleContext';
@@ -76,17 +76,7 @@ export default function ReadSummaryScreen() {
             </Text>
           </TouchableOpacity>
         </View>
-        <TextInput
-          value={query}
-          onChangeText={setQuery}
-          placeholder={t('home.searchPlaceholder')}
-          placeholderTextColor={COLORS.muted}
-          style={[
-            styles.search,
-            dark && styles.searchDark,
-            { textAlign: isRTL ? 'right' : 'left' },
-          ]}
-        />
+        <SurahSearchField value={query} onChangeText={setQuery} />
       </View>
       <LanguagePicker
         visible={languagePickerVisible}
@@ -174,20 +164,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '600',
     color: COLORS.primary,
-  },
-  search: {
-    backgroundColor: COLORS.card,
-    borderRadius: 12,
-    paddingHorizontal: 14,
-    paddingVertical: 10,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    color: COLORS.text,
-  },
-  searchDark: {
-    backgroundColor: COLORS.cardDark,
-    borderColor: COLORS.borderDark,
-    color: COLORS.textDark,
   },
   subtitle: {
     fontSize: 12,
