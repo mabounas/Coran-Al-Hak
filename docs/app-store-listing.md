@@ -1,6 +1,6 @@
 # App Store Connect — fiche à remplir
 
-Brouillon prêt à copier-coller. Le nom retenu ici est **Coran Al Ummah** (celui
+Brouillon prêt à copier-coller. Le nom retenu ici est **Quran Al Ummah** (celui
 qu'affiche l'application et qu'utilise le domaine) — à confirmer avant le build.
 
 ## Informations générales
@@ -20,7 +20,7 @@ qu'affiche l'application et qu'utilise le domaine) — à confirmer avant le bui
 
 ## Français
 
-**Nom** (30 car. max) : `Coran Al Ummah`
+**Nom** (30 car. max) : `Quran Al Ummah`
 
 **Sous-titre** (30 car. max) : `Lecture, écoute et tafsir`
 
@@ -28,7 +28,7 @@ qu'affiche l'application et qu'utilise le domaine) — à confirmer avant le bui
 > Le Coran en 12 langues : lecture en page de mushaf, récitation par 13 lecteurs, tafsir, hadiths, douaas, Qibla, horaires de prière et 99 noms d'Allah.
 
 **Description** :
-> Coran Al Ummah réunit la lecture, l'écoute et la compréhension du Coran dans une seule application, sans compte, sans publicité et sans collecte de données.
+> Quran Al Ummah réunit la lecture, l'écoute et la compréhension du Coran dans une seule application, sans compte, sans publicité et sans collecte de données.
 >
 > LIRE
 > Le texte uthmani présenté comme dans le mushaf : lignes justifiées, médaillons de fin de verset, cadre enluminé, et les vraies pages du mushaf de Médine avec leur découpage en 15 lignes. La lecture suit la langue de votre profil : le texte s'affiche dans votre langue et un appui sur un verset révèle l'arabe et sa traduction.
@@ -53,7 +53,7 @@ qu'affiche l'application et qu'utilise le domaine) — à confirmer avant le bui
 
 ## English
 
-**Name** : `Coran Al Ummah`
+**Name** : `Quran Al Ummah`
 
 **Subtitle** : `Read, listen and understand`
 
@@ -61,7 +61,7 @@ qu'affiche l'application et qu'utilise le domaine) — à confirmer avant le bui
 > The Quran in 12 languages: mushaf reading, 13 reciters, tafsir, hadith collections, duas, Qibla, prayer times and the 99 names of Allah.
 
 **Description** :
-> Coran Al Ummah brings reading, listening and understanding the Quran together in one app — no account, no ads, no data collection.
+> Quran Al Ummah brings reading, listening and understanding the Quran together in one app — no account, no ads, no data collection.
 >
 > READ
 > The Uthmani text laid out as in the mushaf: justified lines, end-of-verse medallions, an illuminated frame, and the real Madina mushaf pages with their exact 15-line layout. The reading follows your profile language, and tapping a verse reveals the Arabic together with its translation.
