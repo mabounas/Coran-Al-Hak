@@ -135,5 +135,11 @@
     "asr": "İkindi",
     "maghrib": "Akşam",
     "isha": "Yatsı"
+  },
+  "hadith": {
+    "choose": "Bir hadis külliyatı seçin",
+    "total": "{{count}} hadis",
+    "loading": "Hadisler yükleniyor...",
+    "error": "Hadisler yüklenemedi."
   }
 }

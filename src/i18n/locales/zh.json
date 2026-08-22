@@ -135,5 +135,11 @@
     "asr": "晡礼",
     "maghrib": "昏礼",
     "isha": "宵礼"
+  },
+  "hadith": {
+    "choose": "选择一部圣训集",
+    "total": "{{count}} 段圣训",
+    "loading": "正在加载圣训……",
+    "error": "无法加载圣训。"
   }
 }

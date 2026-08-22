@@ -135,5 +135,11 @@
     "asr": "Ikindija",
     "maghrib": "Akšam",
     "isha": "Jacija"
+  },
+  "hadith": {
+    "choose": "Odaberite zbirku hadisa",
+    "total": "{{count}} hadisa",
+    "loading": "Učitavanje hadisa...",
+    "error": "Nije moguće učitati hadise."
   }
 }

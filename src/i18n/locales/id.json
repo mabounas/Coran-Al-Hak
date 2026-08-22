@@ -135,5 +135,11 @@
     "asr": "Asar",
     "maghrib": "Magrib",
     "isha": "Isya"
+  },
+  "hadith": {
+    "choose": "Pilih kitab hadis",
+    "total": "{{count}} hadis",
+    "loading": "Memuat hadis...",
+    "error": "Tidak dapat memuat hadis."
   }
 }

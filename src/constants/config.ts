@@ -5,6 +5,7 @@ export const HIJRI_DATE_API_URL = 'https://ummahapi.com/api/today-hijri';
 export const DUAS_API_BASE_URL = 'https://ummahapi.com/api/duas';
 export const ASMA_UL_HUSNA_API_URL = 'https://ummahapi.com/api/asma-ul-husna';
 export const PRAYER_TIMES_API_URL = 'https://ummahapi.com/api/prayer-times';
+export const HADITH_API_BASE_URL = 'https://ummahapi.com/api/hadith';
 
 export const COLORS = {
   primary: '#0F6E52',

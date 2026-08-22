@@ -40,6 +40,8 @@ function RootStack() {
         <Stack.Screen name="mushaf/[page]" options={{ title: t('mushaf.open') }} />
         <Stack.Screen name="noms" options={{ title: t('names.title') }} />
         <Stack.Screen name="horaires" options={{ title: t('prayer.title') }} />
+        <Stack.Screen name="hadith/index" options={{ title: t('landing.hadith') }} />
+        <Stack.Screen name="hadith/[collection]" options={{ title: t('landing.hadith') }} />
         <Stack.Screen name="bookmarks" options={{ title: t('bookmarks.title') }} />
         <Stack.Screen name="settings" options={{ title: t('settings.title') }} />
         <Stack.Screen name="about" options={{ title: t('about.title') }} />

@@ -135,5 +135,11 @@
     "asr": "Asr",
     "maghrib": "Maghrib",
     "isha": "Ischa"
+  },
+  "hadith": {
+    "choose": "Wähle eine Hadith-Sammlung",
+    "total": "{{count}} Hadithe",
+    "loading": "Hadithe werden geladen...",
+    "error": "Die Hadithe konnten nicht geladen werden."
   }
 }

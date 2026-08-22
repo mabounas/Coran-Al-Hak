@@ -135,5 +135,11 @@
     "asr": "Asr",
     "maghrib": "Maghrib",
     "isha": "Isha"
+  },
+  "hadith": {
+    "choose": "Choose a hadith collection",
+    "total": "{{count}} hadiths",
+    "loading": "Loading the hadiths...",
+    "error": "Could not load the hadiths."
   }
 }
