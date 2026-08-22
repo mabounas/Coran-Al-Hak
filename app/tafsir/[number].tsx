@@ -4,7 +4,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ActivityIndicator,
-  FlatList,
   Modal,
   Pressable,
   ScrollView,
@@ -17,11 +16,17 @@ import {
 
 import { fetchSurahDetail } from '../../src/api/quran';
 import { fetchTafsir } from '../../src/api/tafsir';
+import { MushafFrame } from '../../src/components/MushafFrame';
+import type { TextMode } from '../../src/components/ReadOptionsModal';
+import { ayahMarker, toArabicNumerals } from '../../src/constants/arabic';
 import { COLORS } from '../../src/constants/config';
-import { getVerseTranslation } from '../../src/constants/translations';
+import { LANGUAGES } from '../../src/constants/languages';
+import { getVerseTranslation, hasTranslation } from '../../src/constants/translations';
 import { useLocale } from '../../src/context/LocaleContext';
 import type { SurahDetail, Verse } from '../../src/types/quran';
 import type { Tafsir } from '../../src/types/tafsir';
+
+const BISMILLAH = 'بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ';
 
 export default function TafsirSurahScreen() {
   const { t } = useTranslation();
@@ -31,12 +36,16 @@ export default function TafsirSurahScreen() {
   const params = useLocalSearchParams<{ number: string }>();
   const surahNumber = Number(params.number);
 
+  const translationAvailable = hasTranslation(language);
+  const profileLanguage = LANGUAGES.find((lang) => lang.code === language);
+
   const [fontsLoaded] = useFonts({ AmiriQuran_400Regular });
   const arabicFont = fontsLoaded ? { fontFamily: 'AmiriQuran_400Regular' } : null;
 
   const [detail, setDetail] = useState<SurahDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [textMode, setTextMode] = useState<TextMode>(translationAvailable ? 'translation' : 'ar');
 
   const [selected, setSelected] = useState<Verse | null>(null);
   const [tafsir, setTafsir] = useState<Tafsir | null>(null);
@@ -102,59 +111,102 @@ export default function TafsirSurahScreen() {
     );
   }
 
-  // Verses read in the language of the profile; Arabic profiles keep the
-  // mushaf text itself.
-  const verseText = (verse: Verse) =>
-    getVerseTranslation(verse, language) ?? verse.arabic.trim();
-  const verseIsArabic = (verse: Verse) => !getVerseTranslation(verse, language);
-
-  const renderVerse = ({ item }: { item: Verse }) => (
-    <TouchableOpacity
-      style={[styles.card, dark && styles.cardDark]}
-      onPress={() => openVerse(item)}
-    >
-      <View style={[styles.cardHeader, isRTL && styles.rowRTL]}>
-        <View style={styles.badge}>
-          <Text style={styles.badgeText}>{item.ayah}</Text>
-        </View>
-        <Text style={styles.explainHint}>{t('tafsir.button')}</Text>
-      </View>
-      <Text
-        style={[
-          styles.verse,
-          dark && styles.textDark,
-          verseIsArabic(item) && styles.verseArabic,
-          verseIsArabic(item) && arabicFont,
-          !verseIsArabic(item) && {
-            textAlign: isRTL ? 'right' : 'left',
-            writingDirection: isRTL ? 'rtl' : 'ltr',
-          },
-        ]}
-      >
-        {verseText(item)}
-      </Text>
-    </TouchableOpacity>
-  );
+  const selectedTranslation = selected ? getVerseTranslation(selected, language) : undefined;
 
   return (
     <View style={[styles.container, dark && styles.containerDark]}>
       <Stack.Screen options={{ title }} />
 
-      <FlatList
-        data={detail.verses}
-        keyExtractor={(item) => item.verse_key}
-        renderItem={renderVerse}
-        contentContainerStyle={styles.listContent}
-        initialNumToRender={10}
-        ListHeaderComponent={
-          <View style={styles.header}>
-            <Text style={[styles.headerTitle, dark && styles.textDark]}>
-              {detail.surah.name_english} · {detail.surah.name_translation}
-            </Text>
-            <Text style={[styles.headerHint, dark && styles.mutedDark]}>{t('tafsir.tapHint')}</Text>
+      <View style={[styles.toolbar, dark && styles.toolbarDark]}>
+        <View style={styles.toolbarInfo}>
+          <Text style={[styles.toolbarTitle, dark && styles.textDark]}>
+            {detail.surah.name_english} · {detail.surah.name_translation}
+          </Text>
+          <Text style={[styles.toolbarMeta, dark && styles.mutedDark]}>
+            {t('home.verses', { count: detail.total_verses })}
+          </Text>
+        </View>
+
+        <TouchableOpacity
+          onPress={() => setTextMode((mode) => (mode === 'ar' ? 'translation' : 'ar'))}
+          disabled={!translationAvailable}
+          style={[styles.chip, dark && styles.chipDark, !translationAvailable && styles.chipDisabled]}
+          accessibilityLabel={t('read.textLanguage')}
+        >
+          <Text style={styles.chipText}>
+            {textMode === 'ar' ? profileLanguage?.nativeLabel : 'العربية'}
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <MushafFrame dark={dark}>
+          <View style={styles.cartouche}>
+            {textMode === 'ar' ? (
+              <Text style={[styles.cartoucheText, arabicFont]}>
+                سورة {detail.surah.name_arabic} {toArabicNumerals(detail.surah.number)}
+              </Text>
+            ) : (
+              <Text style={styles.cartoucheTextLatin}>
+                {detail.surah.number}. {detail.surah.name_english} · {detail.surah.name_translation}
+              </Text>
+            )}
           </View>
-        }
-      />
+
+          {detail.surah.bismillah_pre && textMode === 'ar' ? (
+            <Text style={[styles.bismillah, arabicFont]}>{BISMILLAH}</Text>
+          ) : null}
+
+          {textMode === 'ar' ? (
+            <Text style={[styles.mushaf, dark && styles.textDark, arabicFont]}>
+              {detail.verses.map((verse) => (
+                <Text
+                  key={verse.verse_key}
+                  onPress={() => openVerse(verse)}
+                  style={selected?.verse_key === verse.verse_key ? styles.verseSelected : undefined}
+                >
+                  {verse.arabic.trim()}
+                  <Text style={styles.marker}> {ayahMarker(verse.ayah)} </Text>
+                </Text>
+              ))}
+            </Text>
+          ) : (
+            <Text
+              style={[
+                styles.translated,
+                dark && styles.textDark,
+                { textAlign: isRTL ? 'right' : 'left', writingDirection: isRTL ? 'rtl' : 'ltr' },
+              ]}
+            >
+              {detail.verses.map((verse) => (
+                <Text
+                  key={verse.verse_key}
+                  onPress={() => openVerse(verse)}
+                  style={selected?.verse_key === verse.verse_key ? styles.verseSelected : undefined}
+                >
+                  <Text style={styles.markerLatin}>{verse.ayah}. </Text>
+                  {getVerseTranslation(verse, language) ?? verse.arabic.trim()}
+                  {'  '}
+                </Text>
+              ))}
+            </Text>
+          )}
+
+          <View style={styles.cartoucheFooter}>
+            {textMode === 'ar' ? (
+              <Text style={[styles.cartoucheFooterText, arabicFont]}>
+                وآياتها {toArabicNumerals(detail.total_verses)}
+              </Text>
+            ) : (
+              <Text style={styles.cartoucheFooterTextLatin}>
+                {t('home.verses', { count: detail.total_verses })}
+              </Text>
+            )}
+          </View>
+        </MushafFrame>
+
+        <Text style={[styles.hint, dark && styles.mutedDark]}>{t('tafsir.tapHint')}</Text>
+      </ScrollView>
 
       <Modal
         visible={selected !== null}
@@ -180,17 +232,27 @@ export default function TafsirSurahScreen() {
                 </Text>
               ) : null}
 
+              <Text
+                style={[
+                  styles.sheetTranslation,
+                  dark && styles.textDark,
+                  { textAlign: isRTL ? 'right' : 'left', writingDirection: isRTL ? 'rtl' : 'ltr' },
+                ]}
+              >
+                {selectedTranslation ?? t('read.noTranslation')}
+              </Text>
+
               {tafsirLoading ? (
                 <ActivityIndicator color={COLORS.primary} />
               ) : tafsirError ? (
                 <Text style={styles.errorTitle}>{t('tafsir.error')}</Text>
               ) : tafsir ? (
-                <>
+                <View style={styles.tafsirBlock}>
                   <Text style={styles.tafsirName}>{tafsir.tafseer_name}</Text>
                   <Text style={[styles.tafsirText, dark && styles.textDark, arabicFont]}>
                     {tafsir.text}
                   </Text>
-                </>
+                </View>
               ) : null}
             </ScrollView>
           </Pressable>
@@ -240,75 +302,133 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: '600',
   },
-  header: {
+  toolbar: {
+    flexDirection: 'row',
     alignItems: 'center',
-    gap: 2,
-    paddingHorizontal: 20,
-    paddingTop: 14,
-    paddingBottom: 4,
+    gap: 10,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    backgroundColor: COLORS.card,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.border,
   },
-  headerTitle: {
-    fontSize: 15,
+  toolbarDark: {
+    backgroundColor: COLORS.cardDark,
+    borderBottomColor: COLORS.borderDark,
+  },
+  toolbarInfo: {
+    flex: 1,
+    gap: 2,
+  },
+  toolbarTitle: {
+    fontSize: 14,
     fontWeight: '700',
     color: COLORS.text,
+  },
+  toolbarMeta: {
+    fontSize: 12,
+    color: COLORS.muted,
+  },
+  chip: {
+    paddingHorizontal: 12,
+    paddingVertical: 7,
+    borderRadius: 999,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    backgroundColor: COLORS.background,
+  },
+  chipDark: {
+    borderColor: COLORS.borderDark,
+    backgroundColor: COLORS.backgroundDark,
+  },
+  chipDisabled: {
+    opacity: 0.4,
+  },
+  chipText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: COLORS.primary,
+  },
+  scrollContent: {
+    paddingBottom: 32,
+  },
+  cartouche: {
+    borderWidth: 1,
+    borderColor: COLORS.gold,
+    borderRadius: 4,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    marginHorizontal: 26,
+    marginBottom: 14,
+    alignItems: 'center',
+  },
+  cartoucheText: {
+    fontSize: 20,
+    lineHeight: 40,
+    color: COLORS.primaryDark,
+    writingDirection: 'rtl',
+  },
+  cartoucheTextLatin: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: COLORS.primaryDark,
     textAlign: 'center',
   },
-  headerHint: {
+  cartoucheFooter: {
+    borderTopWidth: 1,
+    borderTopColor: COLORS.gold,
+    marginTop: 14,
+    marginHorizontal: 26,
+    paddingTop: 8,
+    alignItems: 'center',
+  },
+  cartoucheFooterText: {
+    fontSize: 16,
+    lineHeight: 34,
+    color: COLORS.primaryDark,
+    writingDirection: 'rtl',
+  },
+  cartoucheFooterTextLatin: {
+    fontSize: 12,
+    color: COLORS.primaryDark,
+  },
+  bismillah: {
+    fontSize: 22,
+    lineHeight: 52,
+    textAlign: 'center',
+    color: COLORS.primaryDark,
+    paddingBottom: 10,
+    writingDirection: 'rtl',
+  },
+  mushaf: {
+    fontSize: 24,
+    lineHeight: 62,
+    textAlign: 'justify',
+    writingDirection: 'rtl',
+    color: COLORS.text,
+  },
+  marker: {
+    color: COLORS.gold,
+    fontSize: 22,
+  },
+  translated: {
+    fontSize: 17,
+    lineHeight: 32,
+    color: COLORS.text,
+  },
+  markerLatin: {
+    color: COLORS.gold,
+    fontWeight: '700',
+  },
+  verseSelected: {
+    backgroundColor: 'rgba(201,162,75,0.22)',
+  },
+  hint: {
     fontSize: 12,
     color: COLORS.muted,
     textAlign: 'center',
-  },
-  listContent: {
-    paddingBottom: 28,
-  },
-  card: {
-    backgroundColor: COLORS.card,
-    borderRadius: 16,
-    padding: 14,
-    marginHorizontal: 16,
-    marginVertical: 6,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    gap: 8,
-  },
-  cardDark: {
-    backgroundColor: COLORS.cardDark,
-    borderColor: COLORS.borderDark,
-  },
-  cardHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  rowRTL: {
-    flexDirection: 'row-reverse',
-  },
-  badge: {
-    backgroundColor: COLORS.primary,
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    paddingVertical: 3,
-  },
-  badgeText: {
-    color: '#fff',
-    fontSize: 12,
-    fontWeight: '700',
-  },
-  explainHint: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: COLORS.gold,
-  },
-  verse: {
-    fontSize: 15,
-    lineHeight: 24,
-    color: COLORS.text,
-  },
-  verseArabic: {
-    fontSize: 22,
-    lineHeight: 46,
-    textAlign: 'right',
-    writingDirection: 'rtl',
+    paddingHorizontal: 24,
+    paddingTop: 4,
   },
   backdrop: {
     flex: 1,
@@ -335,6 +455,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: COLORS.border,
   },
+  rowRTL: {
+    flexDirection: 'row-reverse',
+  },
   sheetTitle: {
     fontSize: 16,
     fontWeight: '700',
@@ -355,9 +478,20 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     writingDirection: 'rtl',
     color: COLORS.text,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.border,
-    paddingBottom: 12,
+  },
+  sheetTranslation: {
+    fontSize: 15,
+    lineHeight: 24,
+    color: COLORS.text,
+    borderTopWidth: 1,
+    borderTopColor: COLORS.border,
+    paddingTop: 12,
+  },
+  tafsirBlock: {
+    borderTopWidth: 1,
+    borderTopColor: COLORS.border,
+    paddingTop: 12,
+    gap: 6,
   },
   tafsirName: {
     fontSize: 12,
