@@ -113,5 +113,12 @@
     "next": "Weiter",
     "tapHint": "Tippe auf ein Wort, um seinen Vers übersetzt zu sehen",
     "open": "Mushaf-Seite"
+  },
+  "names": {
+    "title": "Die 99 Namen Allahs",
+    "count": "{{count}} Namen",
+    "tapHint": "Tippe auf einen Namen, um seine Bedeutung zu lesen",
+    "loading": "Namen werden geladen...",
+    "error": "Die Namen konnten nicht geladen werden."
   }
 }

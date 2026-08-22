@@ -113,5 +113,12 @@
     "next": "Berikutnya",
     "tapHint": "Ketuk kata untuk melihat terjemahan ayatnya",
     "open": "Halaman mushaf"
+  },
+  "names": {
+    "title": "99 Nama Allah",
+    "count": "{{count}} nama",
+    "tapHint": "Ketuk nama untuk membaca maknanya",
+    "loading": "Memuat nama-nama...",
+    "error": "Tidak dapat memuat nama-nama."
   }
 }

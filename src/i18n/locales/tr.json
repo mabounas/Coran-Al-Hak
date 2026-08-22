@@ -113,5 +113,12 @@
     "next": "Sonraki",
     "tapHint": "Ayetin mealini görmek için bir kelimeye dokunun",
     "open": "Mushaf sayfası"
+  },
+  "names": {
+    "title": "Allah'ın 99 ismi",
+    "count": "{{count}} isim",
+    "tapHint": "Anlamını okumak için bir isme dokunun",
+    "loading": "İsimler yükleniyor...",
+    "error": "İsimler yüklenemedi."
   }
 }

@@ -113,5 +113,12 @@
     "next": "Siguiente",
     "tapHint": "Toca una palabra para ver su versículo traducido",
     "open": "Página del mushaf"
+  },
+  "names": {
+    "title": "Los 99 nombres de Alá",
+    "count": "{{count}} nombres",
+    "tapHint": "Toca un nombre para leer su significado",
+    "loading": "Cargando los nombres...",
+    "error": "No se pudieron cargar los nombres."
   }
 }

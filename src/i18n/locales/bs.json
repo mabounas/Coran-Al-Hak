@@ -113,5 +113,12 @@
     "next": "Sljedeća",
     "tapHint": "Dodirnite riječ da vidite prijevod ajeta",
     "open": "Stranica mushafa"
+  },
+  "names": {
+    "title": "99 Allahovih imena",
+    "count": "{{count}} imena",
+    "tapHint": "Dodirnite ime da pročitate značenje",
+    "loading": "Učitavanje imena...",
+    "error": "Nije moguće učitati imena."
   }
 }

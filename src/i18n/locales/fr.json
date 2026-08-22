@@ -113,5 +113,12 @@
     "next": "Suivante",
     "tapHint": "Touchez un mot pour voir son verset traduit",
     "open": "Page du mushaf"
+  },
+  "names": {
+    "title": "Les 99 noms d'Allah",
+    "count": "{{count}} noms",
+    "tapHint": "Touchez un nom pour lire sa signification",
+    "loading": "Chargement des noms...",
+    "error": "Impossible de charger les noms."
   }
 }
