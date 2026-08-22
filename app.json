@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Coran Al Hak",
+    "name": "Coran Al Ummah",
     "slug": "coran-al-hak",
     "scheme": "coranalhak",
     "version": "1.0.0",
@@ -31,7 +31,7 @@
       ]
     ],
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "bundleIdentifier": "com.mabounas.coranalhak",
       "buildNumber": "1",
       "infoPlist": {
