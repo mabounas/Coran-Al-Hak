@@ -232,15 +232,17 @@ export default function TafsirSurahScreen() {
                 </Text>
               ) : null}
 
-              <Text
-                style={[
-                  styles.sheetTranslation,
-                  dark && styles.textDark,
-                  { textAlign: isRTL ? 'right' : 'left', writingDirection: isRTL ? 'rtl' : 'ltr' },
-                ]}
-              >
-                {selectedTranslation ?? t('read.noTranslation')}
-              </Text>
+              {selectedTranslation ? (
+                <Text
+                  style={[
+                    styles.sheetTranslation,
+                    dark && styles.textDark,
+                    { textAlign: isRTL ? 'right' : 'left', writingDirection: isRTL ? 'rtl' : 'ltr' },
+                  ]}
+                >
+                  {selectedTranslation}
+                </Text>
+              ) : null}
 
               {tafsirLoading ? (
                 <ActivityIndicator color={COLORS.primary} />

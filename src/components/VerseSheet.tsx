@@ -86,15 +86,17 @@ export function VerseSheet({ surahNumber, ayah, language, arabicFont, onClose }:
               </Text>
             ) : null}
 
-            <Text
-              style={[
-                styles.translation,
-                dark && styles.textDark,
-                { textAlign: isRTL ? 'right' : 'left', writingDirection: isRTL ? 'rtl' : 'ltr' },
-              ]}
-            >
-              {translation ?? (translationKey ? '…' : t('read.noTranslation'))}
-            </Text>
+            {translationKey ? (
+              <Text
+                style={[
+                  styles.translation,
+                  dark && styles.textDark,
+                  { textAlign: isRTL ? 'right' : 'left', writingDirection: isRTL ? 'rtl' : 'ltr' },
+                ]}
+              >
+                {translation ?? '…'}
+              </Text>
+            ) : null}
           </ScrollView>
         </Pressable>
       </Pressable>

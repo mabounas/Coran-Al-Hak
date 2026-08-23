@@ -62,15 +62,17 @@ export function VerseTranslationSheet({ verse, arabicFont, onClose }: Props) {
               </Text>
             ) : null}
 
-            <Text
-              style={[
-                styles.translation,
-                dark && styles.textDark,
-                { textAlign: isRTL ? 'right' : 'left', writingDirection: isRTL ? 'rtl' : 'ltr' },
-              ]}
-            >
-              {translated ?? t('read.noTranslation')}
-            </Text>
+            {translated ? (
+              <Text
+                style={[
+                  styles.translation,
+                  dark && styles.textDark,
+                  { textAlign: isRTL ? 'right' : 'left', writingDirection: isRTL ? 'rtl' : 'ltr' },
+                ]}
+              >
+                {translated}
+              </Text>
+            ) : null}
           </ScrollView>
         </Pressable>
       </Pressable>
