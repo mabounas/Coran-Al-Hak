@@ -1,5 +1,6 @@
 import { Stack } from 'expo-router';
-import React from 'react';
+import * as SplashScreen from 'expo-splash-screen';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -14,9 +15,18 @@ import { BookmarksProvider } from '../src/context/BookmarksContext';
 import { LocaleProvider, useLocale } from '../src/context/LocaleContext';
 import { SurahsProvider } from '../src/context/SurahsContext';
 
+// Hold the launch screen until the saved language is loaded, so the logo
+// gives way to the app itself rather than to a blank frame.
+SplashScreen.preventAutoHideAsync().catch(() => {});
+SplashScreen.setOptions({ fade: true, duration: 400 });
+
 function RootStack() {
   const { t } = useTranslation();
   const { isReady } = useLocale();
+
+  useEffect(() => {
+    if (isReady) SplashScreen.hideAsync().catch(() => {});
+  }, [isReady]);
 
   if (!isReady) return null;
 

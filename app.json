@@ -29,6 +29,18 @@
           "microphonePermission": "Allow Quran Al Ummah to use the microphone to search the Quran by voice.",
           "speechRecognitionPermission": "Allow Quran Al Ummah to use speech recognition to search the Quran by voice."
         }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 220,
+          "resizeMode": "contain",
+          "backgroundColor": "#0F6E52",
+          "dark": {
+            "backgroundColor": "#0B1A15"
+          }
+        }
       ]
     ],
     "ios": {
