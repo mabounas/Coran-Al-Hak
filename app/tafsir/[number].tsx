@@ -139,6 +139,10 @@ export default function TafsirSurahScreen() {
         </TouchableOpacity>
       </View>
 
+      <View style={[styles.hintBar, dark && styles.hintBarDark]}>
+        <Text style={styles.hintText}>{t('tafsir.tapHint')}</Text>
+      </View>
+
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <MushafFrame dark={dark}>
           <View style={styles.cartouche}>
@@ -205,7 +209,6 @@ export default function TafsirSurahScreen() {
           </View>
         </MushafFrame>
 
-        <Text style={[styles.hint, dark && styles.mutedDark]}>{t('tafsir.tapHint')}</Text>
       </ScrollView>
 
       <Modal
@@ -425,12 +428,19 @@ const styles = StyleSheet.create({
   verseSelected: {
     backgroundColor: 'rgba(201,162,75,0.22)',
   },
-  hint: {
-    fontSize: 12,
-    color: COLORS.muted,
+  hintBar: {
+    backgroundColor: 'rgba(201,162,75,0.18)',
+    paddingVertical: 9,
+    paddingHorizontal: 18,
+  },
+  hintBarDark: {
+    backgroundColor: 'rgba(201,162,75,0.12)',
+  },
+  hintText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: COLORS.primaryDark,
     textAlign: 'center',
-    paddingHorizontal: 24,
-    paddingTop: 4,
   },
   backdrop: {
     flex: 1,

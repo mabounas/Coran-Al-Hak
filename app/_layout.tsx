@@ -1,6 +1,6 @@
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -20,13 +20,24 @@ import { SurahsProvider } from '../src/context/SurahsContext';
 SplashScreen.preventAutoHideAsync().catch(() => {});
 SplashScreen.setOptions({ fade: true, duration: 400 });
 
+// On a fast phone the app is ready in a few hundred milliseconds, which
+// makes the logo flash by. Hold it a moment so the launch reads as one.
+const MINIMUM_SPLASH_MS = 1500;
+
 function RootStack() {
   const { t } = useTranslation();
   const { isReady } = useLocale();
 
+  const [minimumElapsed, setMinimumElapsed] = useState(false);
+
   useEffect(() => {
-    if (isReady) SplashScreen.hideAsync().catch(() => {});
-  }, [isReady]);
+    const timer = setTimeout(() => setMinimumElapsed(true), MINIMUM_SPLASH_MS);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (isReady && minimumElapsed) SplashScreen.hideAsync().catch(() => {});
+  }, [isReady, minimumElapsed]);
 
   if (!isReady) return null;
 
