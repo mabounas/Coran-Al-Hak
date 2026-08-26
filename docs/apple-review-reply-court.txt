@@ -1,0 +1,29 @@
+Thank you for reviewing Quran Al Ummah.
+
+The app is a free Quran reader and study tool. It has no account, no login, no registration, no in-app purchase, no subscription, no advertising, no user-generated content and no tracking. None of the flows listed in point 1 exist in the app, apart from two permission prompts (location and microphone), both shown in the recording.
+
+1. SCREEN RECORDING
+<<URL>>
+Recorded on a physical device. It starts with the app launch and goes through: home screen, reading a surah in the mushaf layout, tapping a verse to reveal its translation, playing a recitation, searching a word by keyboard then by dictation (microphone prompt shown), the Qibla compass (location prompt shown), the monthly prayer timetable, the tafsir and the hadith collections.
+
+2. DEVICES AND OS TESTED
+<<MODELE>> running iOS <<VERSION>>. Build 1.0.0 (12) was distributed through TestFlight and tested on that physical device before submission.
+
+3. FUNCTIONS AND TARGET AUDIENCE
+For Muslim readers of any language who want to read, listen to and understand the Quran on their phone. Most existing tools cover a single need - reading, or audio, or commentary - and few are multilingual. The app brings together: the complete Quran in the Uthmani script laid out as in the printed mushaf, including the 604 Madina mushaf pages with their exact line layout; verse translations in 11 languages; recitation of every surah by 13 reciters with background playback; verse-by-verse tafsir; the major hadith collections; supplications grouped by occasion; the Qibla direction, monthly prayer times, the Hijri date and the 99 names of Allah; and word search across the whole Quran, typed or dictated, which ignores Arabic diacritics so a word written without them still matches every form. The interface is available in 12 languages, right-to-left included.
+
+4. ACCESSING THE FEATURES
+No credentials, sample files or setup are required; every screen is reachable without signing in. Each tile on the home screen opens one feature; the side menu holds prayer times, the 99 names, saved surahs and settings. Two features ask for a permission, and both offer a manual alternative if declined: location (Qibla and prayer times) falls back to a city list; the microphone, used only for optional voice search, falls back to the keyboard.
+
+5. EXTERNAL SERVICES
+- ummahapi.com: Quran text and metadata, verse translations, hadith collections, supplications, prayer times, Qibla direction, Hijri date.
+- api.quran-tafseer.com: verse commentary, requested through our own server at coran-al-ummah.vercel.app because that service is HTTP only.
+- quranicaudio.com and everyayah.com: recitation audio streams.
+- Apple on-device speech recognition: optional voice search.
+There is no analytics SDK, no advertising SDK, no payment processor, no authentication service and no AI service.
+
+6. REGIONAL DIFFERENCES
+None. The same features and the same content are offered in every region. The only values that differ between users are those derived from their own position, the Qibla bearing and the prayer times, computed from the coordinates they allow the app to use or from the city they pick manually.
+
+7. THIRD-PARTY MATERIAL
+The Arabic text of the Quran is in the public domain and is the only content shipped inside the app. Everything else is retrieved at runtime from public services that publish this material free of charge for use in Quran applications: translations, hadith and supplications from UmmahAPI, the commentary at-Tafsir al-Muyassar from api.quran-tafseer.com, and recitation audio from quranicaudio.com and everyayah.com. The app credits these sources on its About screen and does not redistribute the material outside the app. We hold no exclusive licence to these works and make no such claim; if Apple requires formal documentation for a specific translation or commentary, we will remove or replace the source concerned.

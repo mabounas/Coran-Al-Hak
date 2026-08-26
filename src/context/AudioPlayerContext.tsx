@@ -25,9 +25,12 @@ export function AudioPlayerProvider({ children }: { children: React.ReactNode })
   const status = useAudioPlayerStatus(player);
 
   useEffect(() => {
+    // The Info.plist declares the audio background mode; without this flag the
+    // session still stops the moment the app leaves the foreground.
     setAudioModeAsync({
       playsInSilentMode: true,
       interruptionMode: 'doNotMix',
+      shouldPlayInBackground: true,
     }).catch(() => {});
   }, []);
 
